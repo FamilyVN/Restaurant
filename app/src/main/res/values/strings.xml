@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Buffet SS V1</string>
+    <string name="app_name">Quản lý bán hàng</string>
+    <string name="settings">Cài đặt chung</string>
+    <string name="text_menu_sell">BÁN HÀNG</string>
+    <string name="text_menu_quick_payment">THANH TOÁN</string>
+    <string name="text_menu_settings">CÀI ĐẶT</string>
+    <string name="text_menu_help">GIÚP ĐỠ</string>
 </resources>

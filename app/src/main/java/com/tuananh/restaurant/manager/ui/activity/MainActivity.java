@@ -1,5 +1,6 @@
 package com.tuananh.restaurant.manager.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // TODO: 11/09/2016  
                 break;
             case R.id.item_menu_settings:
-                // TODO: 11/09/2016  
+                startActivity(new Intent(this, SettingActivity.class));
                 break;
             case R.id.item_menu_help:
                 // TODO: 11/09/2016  

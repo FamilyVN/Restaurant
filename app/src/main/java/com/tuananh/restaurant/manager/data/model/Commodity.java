@@ -5,5 +5,6 @@ package com.tuananh.restaurant.manager.data.model;
  */
 public class Commodity {
     private int mId;
+    private int mName;
     private int mCost;
 }

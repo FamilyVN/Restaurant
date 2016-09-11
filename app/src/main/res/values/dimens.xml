@@ -7,4 +7,5 @@
     <dimen name="corners_radius">10dp</dimen>
     <dimen name="padding_medium">10dp</dimen>
     <dimen name="size_image_item_menu">160dp</dimen>
+    <dimen name="text_main_margin_top">120dp</dimen>
 </resources>
