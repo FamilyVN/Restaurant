@@ -1,10 +1,11 @@
-package com.tuananh.showgirl.quanlybanhang;
+package com.tuananh.restaurant.manager.ui.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.tuananh.restaurant.manager.R;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
