@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.item_menu_sell:
-                // TODO: 11/09/2016
+                startActivity(new Intent(this, SellActivity.class));
                 break;
             case R.id.item_menu_quick_payment:
                 // TODO: 11/09/2016  
