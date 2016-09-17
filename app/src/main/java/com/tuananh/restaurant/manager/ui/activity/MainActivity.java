@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.tuananh.restaurant.manager.R;
+import com.tuananh.restaurant.manager.data.database.DBTest;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Override
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.item_menu_quick_payment).setOnClickListener(this);
         findViewById(R.id.item_menu_settings).setOnClickListener(this);
         findViewById(R.id.item_menu_help).setOnClickListener(this);
+        DBTest.createDB(this);
     }
 
     @Override
