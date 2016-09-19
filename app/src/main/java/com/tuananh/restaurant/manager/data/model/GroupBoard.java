@@ -6,6 +6,7 @@ package com.tuananh.restaurant.manager.data.model;
 public class GroupBoard {
     private int mId;
     private String mNameGroupBoard;
+    private boolean mIsSelected;
 
     public GroupBoard(int id, String nameGroupBoard) {
         mId = id;
@@ -22,5 +23,13 @@ public class GroupBoard {
 
     public String getNameGroupBoard() {
         return mNameGroupBoard;
+    }
+
+    public void setSelected(boolean selected) {
+        mIsSelected = selected;
+    }
+
+    public boolean isSelected() {
+        return mIsSelected;
     }
 }

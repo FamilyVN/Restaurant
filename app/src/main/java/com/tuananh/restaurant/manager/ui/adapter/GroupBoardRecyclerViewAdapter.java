@@ -1,6 +1,7 @@
 package com.tuananh.restaurant.manager.ui.adapter;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,7 @@ import java.util.List;
  * Created by framgia on 16/09/2016.
  */
 public class GroupBoardRecyclerViewAdapter
-    extends RecyclerView.Adapter<GroupBoardRecyclerViewAdapter.BoardViewHolder> {
+    extends RecyclerView.Adapter<GroupBoardRecyclerViewAdapter.GroupBoardViewHolder> {
     private List<GroupBoard> mGroupBoardList;
     private OnClickGroupBoardItemListener mOnClickGroupBoardItemListener;
     private Context mContext;
@@ -30,19 +31,21 @@ public class GroupBoardRecyclerViewAdapter
     }
 
     @Override
-    public BoardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new BoardViewHolder(LayoutInflater.from(mContext).inflate(
-            R.layout.item_board, parent, false));
+    public GroupBoardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new GroupBoardViewHolder(LayoutInflater.from(mContext).inflate(
+            R.layout.item_group_board, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(final BoardViewHolder holder, int position) {
+    public void onBindViewHolder(final GroupBoardViewHolder holder, final int position) {
         final GroupBoard groupBoard = mGroupBoardList.get(position);
         holder.mTextViewNameGroupBoard.setText(groupBoard.getNameGroupBoard());
+        holder.itemView.setBackground(ContextCompat.getDrawable(mContext, groupBoard.isSelected()
+            ? R.drawable.surround_item_board_selected : R.drawable.surround_item_board));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mOnClickGroupBoardItemListener.onClickItem(holder, groupBoard.getId());
+                mOnClickGroupBoardItemListener.onClickItem(holder, position);
             }
         });
     }
@@ -52,12 +55,13 @@ public class GroupBoardRecyclerViewAdapter
         return mGroupBoardList.isEmpty() ? 0 : mGroupBoardList.size();
     }
 
-    public static class BoardViewHolder extends RecyclerView.ViewHolder {
+    public static class GroupBoardViewHolder extends RecyclerView.ViewHolder {
         private TextView mTextViewNameGroupBoard;
 
-        public BoardViewHolder(View itemView) {
+        GroupBoardViewHolder(View itemView) {
             super(itemView);
-            mTextViewNameGroupBoard = (TextView) itemView.findViewById(R.id.text_number_board);
+            mTextViewNameGroupBoard = (TextView) itemView.findViewById(
+                R.id.text_number_group_board);
         }
     }
 }

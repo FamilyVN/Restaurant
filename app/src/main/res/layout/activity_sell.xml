@@ -18,9 +18,14 @@
 
     <GridView
         android:id="@+id/grid_view_sell_board"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/activity_sell_gird_view_width"
         android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_sell_gird_view_margin_top"
         android:layout_weight="1"
-        android:numColumns="2"/>
+        android:gravity="center"
+        android:horizontalSpacing="@dimen/activity_sell_gird_view_horizontal_spacing"
+        android:numColumns="2"
+        android:verticalSpacing="@dimen/activity_sell_gird_view_vertical_spacing"/>
 
 </LinearLayout>

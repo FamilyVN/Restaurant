@@ -8,7 +8,7 @@ public class Constants {
     public final static String TABLE_BOARD = "board";
     public final static String KEY_ID_BOARD = "id_board";
     public final static String KEY_NAME_BOARD = "name_board";
-    public final static String KEY_FOR_ID_GROUP_BOARD = "id_for_group";
+    public final static String KEY_FOR_ID_GROUP_BOARD = "id_for_group_board";
     // table group board
     public final static String TABLE_GROUP_BOARD = "group_board";
     public final static String KEY_ID_GROUP_BOARD = "id_group_board";
@@ -16,4 +16,5 @@ public class Constants {
     public final static int CHECK_ADD_TRUE = 0;
     public static final String SHARED_PREFERENCES = "restaurant_manager";
     public static final String UPDATE = "update";
+    public static final int ID_GROUP_DEFAULT = 1;
 }

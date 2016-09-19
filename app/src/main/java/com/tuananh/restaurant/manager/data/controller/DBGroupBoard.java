@@ -41,7 +41,7 @@ public class DBGroupBoard {
     }
 
     public List<GroupBoard> getGroupBoardAll() {
-        List<GroupBoard> historyList = new ArrayList<GroupBoard>();
+        List<GroupBoard> groupBoardList = new ArrayList<GroupBoard>();
         String selectQuery = "SELECT  * FROM " + Constants.TABLE_GROUP_BOARD;
         SQLiteDatabase db = mSQLiteOpenHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -52,10 +52,10 @@ public class DBGroupBoard {
                         cursor.getInt(cursor.getColumnIndex(Constants.KEY_ID_GROUP_BOARD)),
                         cursor.getString(cursor.getColumnIndex(Constants.KEY_NAME_GROUP_BOARD))
                     );
-                historyList.add(groupBoard);
+                groupBoardList.add(groupBoard);
             } while (cursor.moveToNext());
         }
         db.close();
-        return historyList;
+        return groupBoardList;
     }
 }

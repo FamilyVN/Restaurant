@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    android:layout_width="100dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="4dp"
-                                    android:background="@android:color/transparent"
-                                    android:orientation="vertical">
+<TextView android:id="@+id/text_number_board"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_gravity="center"
+          android:background="@drawable/surround_item_board"
+          android:gravity="center"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/surround_item_board"
-        android:padding="@dimen/padding_small">
-
-        <TextView
-            android:id="@+id/text_number_board"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/board_number"/>
-    </LinearLayout>
-</android.support.v7.widget.CardView>
+    >
+</TextView>
