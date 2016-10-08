@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_board"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tuananh.restaurant.manager.ui.activity.BoardActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_board_activity_list_sell_selected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_small"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text_board_activity_board"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_small"
+            android:text="@string/board_activity_board"/>
+
+        <TextView
+            android:id="@+id/text_board_activity_number_sell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/text_board_activity_board"
+            android:layout_alignStart="@+id/text_board_activity_board"
+            android:layout_below="@+id/text_board_activity_board"
+            android:text="@string/board_activity_number_sell"/>
+
+        <TextView
+            android:id="@+id/text_board_activity_total_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/text_board_activity_invoice"
+            android:layout_alignStart="@+id/text_board_activity_invoice"
+            android:layout_below="@+id/text_board_activity_invoice"
+            android:text="@string/board_activity_total_money"/>
+
+        <TextView
+            android:id="@+id/text_board_activity_invoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="110dp"
+            android:layout_marginRight="110dp"
+            android:text="@string/board_activity_invoice"/>
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_board_activity_total_money"
+            android:layout_centerHorizontal="true"
+            android:text="@string/board_activity_save"/>
+
+        <Button
+            android:id="@+id/button_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_board_activity_total_money"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/holo_purple"
+            android:text="@string/board_activity_pay"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_board_activity_list_sell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_small"/>
+</LinearLayout>
