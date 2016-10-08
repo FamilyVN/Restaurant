@@ -18,10 +18,12 @@ import java.util.List;
 public class BoardGirdViewAdapter extends BaseAdapter {
     private List<Board> mBoardList;
     private Context mContext;
+    private LayoutInflater mLayoutInflater;
 
     public BoardGirdViewAdapter(Context context, List<Board> boardList) {
         mBoardList = boardList;
         mContext = context;
+        mLayoutInflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -41,19 +43,21 @@ public class BoardGirdViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
-        View grid;
-        TextView textViewName;
-        Board board = mBoardList.get(position);
-        LayoutInflater inflater =
-            (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        BoardViewHolder boardViewHolder;
         if (view == null) {
-            grid = inflater.inflate(R.layout.item_board, null);
-            textViewName = (TextView) grid.findViewById(R.id.text_number_board);
+            view = mLayoutInflater.inflate(R.layout.item_board, null);
+            boardViewHolder = new BoardViewHolder();
+            boardViewHolder.mTextViewName = (TextView) view.findViewById(R.id.text_number_board);
+            view.setTag(boardViewHolder);
         } else {
-            grid = view;
-            textViewName = (TextView) view.findViewById(R.id.text_number_board);
+            boardViewHolder = (BoardViewHolder) view.getTag();
         }
-        textViewName.setText(board.getNameBoard());
-        return grid;
+        Board board = mBoardList.get(position);
+        boardViewHolder.mTextViewName.setText(board.getNameBoard());
+        return view;
+    }
+
+    public class BoardViewHolder {
+        private TextView mTextViewName;
     }
 }
