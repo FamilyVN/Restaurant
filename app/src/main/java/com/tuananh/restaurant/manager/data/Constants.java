@@ -14,7 +14,9 @@ public class Constants {
     public final static String KEY_ID_GROUP_BOARD = "id_group_board";
     public final static String KEY_NAME_GROUP_BOARD = "name_group_board";
     public final static int CHECK_ADD_TRUE = 0;
-    public static final String SHARED_PREFERENCES = "restaurant_manager";
-    public static final String UPDATE = "update";
-    public static final int ID_GROUP_DEFAULT = 1;
+    public final static String SHARED_PREFERENCES = "restaurant_manager";
+    public final static String UPDATE = "update";
+    public final static int ID_GROUP_DEFAULT = 1;
+    public final static String ID_BOARD_SELECTED = "id board selected";
+    public final static int ID_BOARD_DEFAULT = -1;
 }

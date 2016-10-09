@@ -1,8 +1,11 @@
 package com.tuananh.restaurant.manager.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.tuananh.restaurant.manager.R;
@@ -17,7 +20,8 @@ import com.tuananh.restaurant.manager.ui.adapter.GroupBoardRecyclerViewAdapter;
 
 import java.util.List;
 
-public class SellActivity extends BaseActivity implements OnClickGroupBoardItemListener {
+public class SellActivity extends BaseActivity
+    implements OnClickGroupBoardItemListener, AdapterView.OnItemClickListener {
     private RecyclerView mRecyclerViewGroupBoard;
     private GroupBoardRecyclerViewAdapter mGroupBoardRecyclerViewAdapter;
     private BoardGirdViewAdapter mBoardGirdViewAdapter;
@@ -54,6 +58,7 @@ public class SellActivity extends BaseActivity implements OnClickGroupBoardItemL
         }
         GridView gridView = (GridView) findViewById(R.id.grid_view_sell_board);
         gridView.setAdapter(mBoardGirdViewAdapter);
+        gridView.setOnItemClickListener(this);
     }
 
     @Override
@@ -78,5 +83,12 @@ public class SellActivity extends BaseActivity implements OnClickGroupBoardItemL
         for (GroupBoard groupBoard : mGroupBoardList) {
             groupBoard.setSelected(false);
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(this, BoardActivity.class);
+        intent.putExtra(Constants.ID_BOARD_SELECTED, mBoardList.get(position).getId());
+        startActivity(intent);
     }
 }

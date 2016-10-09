@@ -9,14 +9,18 @@
     tools:context="com.tuananh.restaurant.manager.ui.activity.BoardActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_board_activity_list_sell_selected"
+        android:id="@+id/recycler_view_board_activity_list_commodity_selected"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_small"/>
 
+    <include layout="@layout/line_break"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingTop="@dimen/margin_small">
 
         <TextView
             android:id="@+id/text_board_activity_board"
@@ -36,6 +40,7 @@
             android:layout_alignLeft="@+id/text_board_activity_board"
             android:layout_alignStart="@+id/text_board_activity_board"
             android:layout_below="@+id/text_board_activity_board"
+            android:layout_marginTop="@dimen/margin_small"
             android:text="@string/board_activity_number_sell"/>
 
         <TextView
@@ -45,6 +50,7 @@
             android:layout_alignLeft="@+id/text_board_activity_invoice"
             android:layout_alignStart="@+id/text_board_activity_invoice"
             android:layout_below="@+id/text_board_activity_invoice"
+            android:layout_marginTop="@dimen/margin_small"
             android:text="@string/board_activity_total_money"/>
 
         <TextView
@@ -54,17 +60,9 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginEnd="110dp"
-            android:layout_marginRight="110dp"
+            android:layout_marginEnd="@dimen/board_activity_text_margin_right"
+            android:layout_marginRight="@dimen/board_activity_text_margin_right"
             android:text="@string/board_activity_invoice"/>
-
-        <Button
-            android:id="@+id/button_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_board_activity_total_money"
-            android:layout_centerHorizontal="true"
-            android:text="@string/board_activity_save"/>
 
         <Button
             android:id="@+id/button_pay"
@@ -72,13 +70,34 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_board_activity_total_money"
             android:layout_centerHorizontal="true"
-            android:background="@android:color/holo_purple"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:background="@android:color/holo_orange_light"
             android:text="@string/board_activity_pay"
             android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_board_activity_total_money"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:background="@android:color/holo_orange_light"
+            android:text="@string/board_activity_save"/>
     </RelativeLayout>
 
+    <include layout="@layout/line_break"/>
+
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_board_activity_list_sell"
+        android:id="@+id/recycler_view_board_activity_group_commodity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_small"/>
+
+    <include layout="@layout/line_break"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_board_activity_list_commodity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_small"/>

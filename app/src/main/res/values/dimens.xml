@@ -18,4 +18,7 @@
     <dimen name="activity_sell_gird_view_horizontal_spacing">30dp</dimen>
     <dimen name="activity_sell_gird_view_vertical_spacing">30dp</dimen>
     <dimen name="padding_high">20dp</dimen>
+    <dimen name="margin_high">20dp</dimen>
+    <dimen name="board_activity_text_margin_right">110dp</dimen>
+    <dimen name="margin_medium">10dp</dimen>
 </resources>
