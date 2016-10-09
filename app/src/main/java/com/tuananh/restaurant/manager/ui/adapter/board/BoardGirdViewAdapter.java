@@ -1,4 +1,4 @@
-package com.tuananh.restaurant.manager.ui.adapter;
+package com.tuananh.restaurant.manager.ui.adapter.board;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.tuananh.restaurant.manager.R;
-import com.tuananh.restaurant.manager.data.model.Board;
+import com.tuananh.restaurant.manager.data.model.board.Board;
 
 import java.util.List;
 
@@ -17,12 +17,10 @@ import java.util.List;
  */
 public class BoardGirdViewAdapter extends BaseAdapter {
     private List<Board> mBoardList;
-    private Context mContext;
     private LayoutInflater mLayoutInflater;
 
     public BoardGirdViewAdapter(Context context, List<Board> boardList) {
         mBoardList = boardList;
-        mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
     }
 
@@ -57,7 +55,7 @@ public class BoardGirdViewAdapter extends BaseAdapter {
         return view;
     }
 
-    public class BoardViewHolder {
+    private static class BoardViewHolder {
         private TextView mTextViewName;
     }
 }

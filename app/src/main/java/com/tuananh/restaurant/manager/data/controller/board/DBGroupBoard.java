@@ -1,4 +1,4 @@
-package com.tuananh.restaurant.manager.data.controller;
+package com.tuananh.restaurant.manager.data.controller.board;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.tuananh.restaurant.manager.data.Constants;
-import com.tuananh.restaurant.manager.data.model.GroupBoard;
+import com.tuananh.restaurant.manager.data.model.board.GroupBoard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ public class DBGroupBoard {
     }
 
     public List<GroupBoard> getGroupBoardAll() {
-        List<GroupBoard> groupBoardList = new ArrayList<GroupBoard>();
+        List<GroupBoard> groupBoardList = new ArrayList<>();
         String selectQuery = "SELECT  * FROM " + Constants.TABLE_GROUP_BOARD;
         SQLiteDatabase db = mSQLiteOpenHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

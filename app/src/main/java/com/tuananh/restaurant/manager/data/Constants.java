@@ -13,6 +13,11 @@ public class Constants {
     public final static String TABLE_GROUP_BOARD = "group_board";
     public final static String KEY_ID_GROUP_BOARD = "id_group_board";
     public final static String KEY_NAME_GROUP_BOARD = "name_group_board";
+    // table group commodity
+    public final static String TABLE_GROUP_COMMODITY = "group_commodity";
+    public final static String KEY_ID_GROUP_COMMODITY = "id_group_commodity";
+    public final static String KEY_NAME_GROUP_COMMODITY = "name_group_commodity";
+    //
     public final static int CHECK_ADD_TRUE = 0;
     public final static String SHARED_PREFERENCES = "restaurant_manager";
     public final static String UPDATE = "update";

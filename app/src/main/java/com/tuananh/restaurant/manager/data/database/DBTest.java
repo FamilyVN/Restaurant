@@ -4,22 +4,25 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.tuananh.restaurant.manager.data.Constants;
-import com.tuananh.restaurant.manager.data.controller.DBBoard;
-import com.tuananh.restaurant.manager.data.controller.DBGroupBoard;
-import com.tuananh.restaurant.manager.data.enums.Status;
-import com.tuananh.restaurant.manager.data.model.Board;
-import com.tuananh.restaurant.manager.data.model.GroupBoard;
+import com.tuananh.restaurant.manager.data.controller.board.DBBoard;
+import com.tuananh.restaurant.manager.data.controller.board.DBGroupBoard;
+import com.tuananh.restaurant.manager.data.controller.commodity.DBGroupCommodity;
+import com.tuananh.restaurant.manager.data.model.board.Board;
+import com.tuananh.restaurant.manager.data.model.board.GroupBoard;
+import com.tuananh.restaurant.manager.data.model.commodity.GroupCommodity;
 
 /**
  * Created by framgia on 17/09/2016.
  */
 public class DBTest {
     public static void createDB(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants
-            .SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+            Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
         if (sharedPreferences.getBoolean(Constants.UPDATE, true)) {
             DBHelper dbHelper = new DBHelper(context);
-            dbHelper.create(Status.CREATE, Status.CREATE);
+            dbHelper.createDBBoard();
+            dbHelper.createDBGroupBoard();
+            dbHelper.createDBGroupCommodity();
             //
             DBGroupBoard dbGroupBoard = dbHelper.getDBGroupBoard();
             dbGroupBoard.addGroupBoard(new GroupBoard("Bàn 1-5"));
@@ -41,6 +44,15 @@ public class DBTest {
                         new Board(idGroupBoard - 1, "Bàn " + ((idGroupBoard - 2) * 5 + 6)));
                 }
             }
+            //
+            DBGroupCommodity dbGroupCommodity = dbHelper.getDBGroupCommodity();
+            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Phổ biến"));
+            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nước mía"));
+            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nước dừa"));
+            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Đồ ăn"));
+            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Thuốc lá"));
+            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Khác"));
+            //
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean(Constants.UPDATE, false);
             editor.apply();

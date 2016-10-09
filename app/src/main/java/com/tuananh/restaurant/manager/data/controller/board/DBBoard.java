@@ -1,4 +1,4 @@
-package com.tuananh.restaurant.manager.data.controller;
+package com.tuananh.restaurant.manager.data.controller.board;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.tuananh.restaurant.manager.data.Constants;
-import com.tuananh.restaurant.manager.data.model.Board;
+import com.tuananh.restaurant.manager.data.model.board.Board;
 
 import java.util.ArrayList;
 import java.util.List;

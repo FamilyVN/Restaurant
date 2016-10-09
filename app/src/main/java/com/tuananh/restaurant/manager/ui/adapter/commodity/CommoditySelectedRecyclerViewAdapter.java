@@ -1,4 +1,4 @@
-package com.tuananh.restaurant.manager.ui.adapter;
+package com.tuananh.restaurant.manager.ui.adapter.commodity;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.tuananh.restaurant.manager.data.model.CommoditySelected;
+import com.tuananh.restaurant.manager.data.model.commodity.CommoditySelected;
 
 import java.util.List;
 

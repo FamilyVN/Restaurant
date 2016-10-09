@@ -4,7 +4,7 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:layout_gravity="center"
-          android:background="@drawable/surround_item_board"
+          android:background="@drawable/surround_item"
           android:gravity="center"
           android:padding="@dimen/padding_high">
 </TextView>

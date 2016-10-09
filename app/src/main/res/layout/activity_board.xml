@@ -66,23 +66,13 @@
 
         <Button
             android:id="@+id/button_pay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_board_activity_total_money"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:background="@android:color/holo_orange_light"
+            style="@style/activity_board_button"
             android:text="@string/board_activity_pay"
             android:visibility="gone"/>
 
         <Button
             android:id="@+id/button_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_board_activity_total_money"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:background="@android:color/holo_orange_light"
+            style="@style/activity_board_button"
             android:text="@string/board_activity_save"/>
     </RelativeLayout>
 
@@ -96,9 +86,14 @@
 
     <include layout="@layout/line_break"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_board_activity_list_commodity"
-        android:layout_width="match_parent"
+    <GridView
+        android:id="@+id/grid_view_commodity_board_activity"
+        android:layout_width="@dimen/activity_sell_gird_view_width"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_small"/>
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:horizontalSpacing="@dimen/activity_sell_gird_view_horizontal_spacing"
+        android:numColumns="2"
+        android:verticalSpacing="@dimen/activity_sell_gird_view_vertical_spacing"/>
+
 </LinearLayout>

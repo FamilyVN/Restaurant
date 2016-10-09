@@ -11,12 +11,11 @@ import android.widget.GridView;
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.data.database.DBHelper;
-import com.tuananh.restaurant.manager.data.enums.Status;
-import com.tuananh.restaurant.manager.data.listener.OnClickGroupBoardItemListener;
-import com.tuananh.restaurant.manager.data.model.Board;
-import com.tuananh.restaurant.manager.data.model.GroupBoard;
-import com.tuananh.restaurant.manager.ui.adapter.BoardGirdViewAdapter;
-import com.tuananh.restaurant.manager.ui.adapter.GroupBoardRecyclerViewAdapter;
+import com.tuananh.restaurant.manager.data.model.board.Board;
+import com.tuananh.restaurant.manager.data.model.board.GroupBoard;
+import com.tuananh.restaurant.manager.ui.adapter.board.BoardGirdViewAdapter;
+import com.tuananh.restaurant.manager.ui.adapter.board.GroupBoardRecyclerViewAdapter;
+import com.tuananh.restaurant.manager.ui.listener.OnClickGroupBoardItemListener;
 
 import java.util.List;
 
@@ -39,7 +38,8 @@ public class SellActivity extends BaseActivity
 
     private void initData() {
         mDBHelper = new DBHelper(this);
-        mDBHelper.create(Status.CREATE, Status.CREATE);
+        mDBHelper.createDBBoard();
+        mDBHelper.createDBGroupBoard();
         mGroupBoardList = mDBHelper.getDBGroupBoard().getGroupBoardAll();
         mBoardList = mDBHelper.getDBBoard().getBoardAllByIdGroupBoard(Constants.ID_GROUP_DEFAULT);
     }
@@ -51,11 +51,11 @@ public class SellActivity extends BaseActivity
         mRecyclerViewGroupBoard.setLayoutManager(new LinearLayoutManager(this,
             LinearLayoutManager.HORIZONTAL, false));
         mRecyclerViewGroupBoard.setAdapter(mGroupBoardRecyclerViewAdapter);
-        mBoardGirdViewAdapter = new BoardGirdViewAdapter(this, mBoardList);
         if (!mGroupBoardList.isEmpty()) {
             mGroupBoardList.get(0).setSelected(true);
             mGroupBoardRecyclerViewAdapter.notifyItemChanged(Constants.ID_GROUP_DEFAULT);
         }
+        mBoardGirdViewAdapter = new BoardGirdViewAdapter(this, mBoardList);
         GridView gridView = (GridView) findViewById(R.id.grid_view_sell_board);
         gridView.setAdapter(mBoardGirdViewAdapter);
         gridView.setOnItemClickListener(this);

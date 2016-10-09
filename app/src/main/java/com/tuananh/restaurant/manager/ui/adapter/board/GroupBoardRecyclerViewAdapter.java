@@ -1,4 +1,4 @@
-package com.tuananh.restaurant.manager.ui.adapter;
+package com.tuananh.restaurant.manager.ui.adapter.board;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tuananh.restaurant.manager.R;
-import com.tuananh.restaurant.manager.data.listener.OnClickGroupBoardItemListener;
-import com.tuananh.restaurant.manager.data.model.GroupBoard;
+import com.tuananh.restaurant.manager.data.model.board.GroupBoard;
+import com.tuananh.restaurant.manager.ui.listener.OnClickGroupBoardItemListener;
 
 import java.util.List;
 
@@ -23,7 +23,8 @@ public class GroupBoardRecyclerViewAdapter
     private OnClickGroupBoardItemListener mOnClickGroupBoardItemListener;
     private Context mContext;
 
-    public GroupBoardRecyclerViewAdapter(Context context, List<GroupBoard> groupBoardList,
+    public GroupBoardRecyclerViewAdapter(Context context,
+                                         List<GroupBoard> groupBoardList,
                                          OnClickGroupBoardItemListener onClickGroupBoardItemListener) {
         mContext = context;
         mGroupBoardList = groupBoardList;
@@ -32,8 +33,8 @@ public class GroupBoardRecyclerViewAdapter
 
     @Override
     public GroupBoardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new GroupBoardViewHolder(LayoutInflater.from(mContext).inflate(
-            R.layout.item_group_board, parent, false));
+        return new GroupBoardViewHolder(LayoutInflater.from(mContext)
+            .inflate(R.layout.item_group_board, parent, false));
     }
 
     @Override
@@ -41,7 +42,7 @@ public class GroupBoardRecyclerViewAdapter
         final GroupBoard groupBoard = mGroupBoardList.get(position);
         holder.mTextViewNameGroupBoard.setText(groupBoard.getNameGroupBoard());
         holder.itemView.setBackground(ContextCompat.getDrawable(mContext, groupBoard.isSelected()
-            ? R.drawable.surround_item_board_selected : R.drawable.surround_item_board));
+            ? R.drawable.surround_item_selected : R.drawable.surround_item));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

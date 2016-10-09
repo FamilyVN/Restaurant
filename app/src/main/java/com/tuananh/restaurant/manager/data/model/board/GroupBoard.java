@@ -1,4 +1,4 @@
-package com.tuananh.restaurant.manager.data.model;
+package com.tuananh.restaurant.manager.data.model.board;
 
 /**
  * Created by framgia on 17/09/2016.
