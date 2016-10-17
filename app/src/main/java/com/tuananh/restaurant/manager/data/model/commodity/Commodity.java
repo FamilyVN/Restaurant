@@ -5,28 +5,31 @@ package com.tuananh.restaurant.manager.data.model.commodity;
  */
 public class Commodity {
     private int mId;
-    private int mName;
+    private String mName;
     private int mCost;
     private int mIdGroupCommodity;
+    private boolean mIsCommon;
 
-    public Commodity(int id, int name, int cost, int idGroupCommodity) {
+    public Commodity(int id, String name, int cost, int idGroupCommodity, boolean isCommon) {
         mId = id;
         mName = name;
         mCost = cost;
         mIdGroupCommodity = idGroupCommodity;
+        mIsCommon = isCommon;
     }
 
-    public Commodity(int name, int cost, int idGroupCommodity) {
+    public Commodity(String name, int cost, int idGroupCommodity, boolean isCommon) {
         mName = name;
         mCost = cost;
         mIdGroupCommodity = idGroupCommodity;
+        mIsCommon = isCommon;
     }
 
     public int getId() {
         return mId;
     }
 
-    public int getName() {
+    public String getName() {
         return mName;
     }
 
@@ -36,5 +39,9 @@ public class Commodity {
 
     public int getIdGroupCommodity() {
         return mIdGroupCommodity;
+    }
+
+    public boolean isCommon() {
+        return mIsCommon;
     }
 }

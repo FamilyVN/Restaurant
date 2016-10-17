@@ -6,9 +6,11 @@ import android.content.SharedPreferences;
 import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.data.controller.board.DBBoard;
 import com.tuananh.restaurant.manager.data.controller.board.DBGroupBoard;
+import com.tuananh.restaurant.manager.data.controller.commodity.DBCommodity;
 import com.tuananh.restaurant.manager.data.controller.commodity.DBGroupCommodity;
 import com.tuananh.restaurant.manager.data.model.board.Board;
 import com.tuananh.restaurant.manager.data.model.board.GroupBoard;
+import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.data.model.commodity.GroupCommodity;
 
 /**
@@ -23,6 +25,7 @@ public class DBTest {
             dbHelper.createDBBoard();
             dbHelper.createDBGroupBoard();
             dbHelper.createDBGroupCommodity();
+            dbHelper.createDBCommodity();
             //
             DBGroupBoard dbGroupBoard = dbHelper.getDBGroupBoard();
             dbGroupBoard.addGroupBoard(new GroupBoard("Bàn 1-5"));
@@ -51,7 +54,13 @@ public class DBTest {
             dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nước dừa"));
             dbGroupCommodity.addGroupCommodity(new GroupCommodity("Đồ ăn"));
             dbGroupCommodity.addGroupCommodity(new GroupCommodity("Thuốc lá"));
+            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nhân trần"));
             dbGroupCommodity.addGroupCommodity(new GroupCommodity("Khác"));
+            //
+            DBCommodity dbCommodity = dbHelper.getDBCommodity();
+            dbCommodity.addCommodity(new Commodity("Nước mía", 7000, 2, true));
+            dbCommodity.addCommodity(new Commodity("Nước dừa", 12000, 3, true));
+            dbCommodity.addCommodity(new Commodity("Nhân trần", 3000, 6, true));
             //
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean(Constants.UPDATE, false);

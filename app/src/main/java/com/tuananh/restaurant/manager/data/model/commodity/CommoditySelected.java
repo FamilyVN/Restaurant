@@ -6,13 +6,15 @@ package com.tuananh.restaurant.manager.data.model.commodity;
 public class CommoditySelected extends Commodity {
     private int mNumber;
 
-    public CommoditySelected(int id, int name, int cost, int idGroupCommodity, int number) {
-        super(id, name, cost, idGroupCommodity);
+    public CommoditySelected(int id, String name, int cost, int idGroupCommodity, boolean isCommon,
+                             int number) {
+        super(id, name, cost, idGroupCommodity, isCommon);
         mNumber = number;
     }
 
-    public CommoditySelected(int name, int cost, int idGroupCommodity, int number) {
-        super(name, cost, idGroupCommodity);
+    public CommoditySelected(String name, int cost, int idGroupCommodity, boolean isCommon,
+                             int number) {
+        super(name, cost, idGroupCommodity, isCommon);
         mNumber = number;
     }
 

@@ -17,6 +17,13 @@ public class Constants {
     public final static String TABLE_GROUP_COMMODITY = "group_commodity";
     public final static String KEY_ID_GROUP_COMMODITY = "id_group_commodity";
     public final static String KEY_NAME_GROUP_COMMODITY = "name_group_commodity";
+    // table commodity
+    public final static String TABLE_COMMODITY = "commodity";
+    public final static String KEY_ID_COMMODITY = "id_commodity";
+    public final static String KEY_NAME_COMMODITY = "name_commodity";
+    public final static String KEY_COST_COMMODITY = "cost_commodity";
+    public final static String KEY_FOR_ID_GROUP_COMMODITY = "id_for_group_commodity";
+    public final static String KEY_COMMON_COMMODITY = "id_common_commodity";
     //
     public final static int CHECK_ADD_TRUE = 0;
     public final static String SHARED_PREFERENCES = "restaurant_manager";
