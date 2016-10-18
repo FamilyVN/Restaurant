@@ -52,7 +52,8 @@ public class DBBoard {
                 Board board = new Board(
                     cursor.getInt(cursor.getColumnIndex(Constants.KEY_ID_BOARD)),
                     cursor.getInt(cursor.getColumnIndex(Constants.KEY_FOR_ID_GROUP_BOARD)),
-                    cursor.getString(cursor.getColumnIndex(Constants.KEY_NAME_BOARD))
+                    cursor.getString(cursor.getColumnIndex(Constants.KEY_NAME_BOARD)),
+                    cursor.getInt(cursor.getColumnIndex(Constants.KEY_IS_SAVE))
                 );
                 boardList.add(board);
             } while (cursor.moveToNext());

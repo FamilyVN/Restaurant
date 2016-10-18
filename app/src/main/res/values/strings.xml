@@ -13,4 +13,5 @@
     <string name="board_activity_total_money">Tổng: </string>
     <string name="board_activity_save">Lưu</string>
     <string name="board_activity_pay">Thanh toán</string>
+    <string name="title_board">Hóa đơn</string>
 </resources>

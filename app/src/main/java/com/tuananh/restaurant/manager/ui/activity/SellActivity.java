@@ -16,6 +16,7 @@ import com.tuananh.restaurant.manager.data.model.board.GroupBoard;
 import com.tuananh.restaurant.manager.ui.adapter.board.BoardGirdViewAdapter;
 import com.tuananh.restaurant.manager.ui.adapter.board.GroupBoardRecyclerViewAdapter;
 import com.tuananh.restaurant.manager.ui.listener.OnClickGroupBoardItemListener;
+import com.tuananh.restaurant.manager.ui.utility.Utils;
 
 import java.util.List;
 
@@ -62,9 +63,9 @@ public class SellActivity extends BaseActivity
     }
 
     @Override
-    public void onClickItem(GroupBoardRecyclerViewAdapter.GroupBoardViewHolder groupBoardViewHolder,
-                            int position) {
-        unSelected();
+    public void onClickItemBoard(GroupBoardRecyclerViewAdapter.GroupBoardViewHolder
+                                     groupBoardViewHolder, int position) {
+        Utils.unSelected(mGroupBoardList);
         GroupBoard groupBoard = mGroupBoardList.get(position);
         groupBoard.setSelected(true);
         mGroupBoardRecyclerViewAdapter.notifyDataSetChanged();
@@ -76,12 +77,6 @@ public class SellActivity extends BaseActivity
             mBoardList.remove(0);
             mBoardGirdViewAdapter.notifyDataSetChanged();
             i++;
-        }
-    }
-
-    private void unSelected() {
-        for (GroupBoard groupBoard : mGroupBoardList) {
-            groupBoard.setSelected(false);
         }
     }
 

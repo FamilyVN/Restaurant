@@ -17,6 +17,11 @@ import com.tuananh.restaurant.manager.data.model.commodity.GroupCommodity;
  * Created by framgia on 17/09/2016.
  */
 public class DBTest {
+    public final static int NOT_COMMON = 0;
+    public final static int COMMON = 1;
+    public final static int NOT_SAVE = 0;
+    public final static int SAVE = 1;
+
     public static void createDB(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(
             Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
@@ -39,28 +44,34 @@ public class DBTest {
             while (idGroupBoard < 6) {
                 for (int i = 1; i <= 5; i++) {
                     dbBoard.addBoard(
-                        new Board(idGroupBoard, "Bàn " + ((idGroupBoard - 1) * 5 + i)));
+                        new Board(idGroupBoard, "Bàn " + ((idGroupBoard - 1) * 5 + i), NOT_SAVE));
                 }
                 idGroupBoard++;
                 if (idGroupBoard == 6) {
                     dbBoard.addBoard(
-                        new Board(idGroupBoard - 1, "Bàn " + ((idGroupBoard - 2) * 5 + 6)));
+                        new Board(idGroupBoard - 1, "Bàn " + ((idGroupBoard - 2) * 5 + 6),
+                            NOT_SAVE));
                 }
             }
             //
             DBGroupCommodity dbGroupCommodity = dbHelper.getDBGroupCommodity();
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Phổ biến"));
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nước mía"));
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nước dừa"));
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Đồ ăn"));
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Thuốc lá"));
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nhân trần"));
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Khác"));
+            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Phổ biến")); // 1
+            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nước mía")); // 2
+            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nước dừa")); // 3
+            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Đồ ăn"));    // 4
+            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Thuốc lá")); // 5
+            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nhân trần"));// 6
+            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Khác"));     // 7
             //
             DBCommodity dbCommodity = dbHelper.getDBCommodity();
-            dbCommodity.addCommodity(new Commodity("Nước mía", 7000, 2, true));
-            dbCommodity.addCommodity(new Commodity("Nước dừa", 12000, 3, true));
-            dbCommodity.addCommodity(new Commodity("Nhân trần", 3000, 6, true));
+            dbCommodity.addCommodity(new Commodity("Nước mía", 7000, 2, COMMON));
+            dbCommodity.addCommodity(new Commodity("Nước dừa", 12000, 3, COMMON));
+            dbCommodity.addCommodity(new Commodity("Nhân trần", 3000, 6, COMMON));
+            dbCommodity.addCommodity(new Commodity("Nước mía không đá", 8000, 2, NOT_COMMON));
+            dbCommodity.addCommodity(new Commodity("Hướng dương", 5000, 4, COMMON));
+            dbCommodity.addCommodity(new Commodity("Ostar", 7000, 4, COMMON));
+            dbCommodity.addCommodity(new Commodity("Bim bim", 5000, 4, COMMON));
+            dbCommodity.addCommodity(new Commodity("Vina", 20000, 5, COMMON));
             //
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean(Constants.UPDATE, false);

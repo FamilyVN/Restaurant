@@ -1,11 +1,11 @@
 package com.tuananh.restaurant.manager.ui.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridView;
 
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.data.Constants;
@@ -13,14 +13,17 @@ import com.tuananh.restaurant.manager.data.database.DBHelper;
 import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.data.model.commodity.CommoditySelected;
 import com.tuananh.restaurant.manager.data.model.commodity.GroupCommodity;
+import com.tuananh.restaurant.manager.ui.adapter.commodity.CommodityGirdViewAdapter;
 import com.tuananh.restaurant.manager.ui.adapter.commodity.CommoditySelectedRecyclerViewAdapter;
 import com.tuananh.restaurant.manager.ui.adapter.commodity.GroupCommodityRecyclerViewAdapter;
+import com.tuananh.restaurant.manager.ui.listener.OnClickCommodityItemListener;
 import com.tuananh.restaurant.manager.ui.listener.OnClickGroupCommodityItemListener;
 
 import java.util.List;
 
-public class BoardActivity extends AppCompatActivity
-    implements View.OnClickListener, OnClickGroupCommodityItemListener {
+public class BoardActivity extends BaseActivity
+    implements View.OnClickListener, OnClickGroupCommodityItemListener,
+    OnClickCommodityItemListener {
     private Button mButtonSave, mButtonPay;
     private CommoditySelectedRecyclerViewAdapter mCommoditySelectedRecyclerViewAdapter;
     private GroupCommodityRecyclerViewAdapter mGroupCommodityRecyclerViewAdapter;
@@ -30,6 +33,8 @@ public class BoardActivity extends AppCompatActivity
     private RecyclerView mRecyclerViewCommoditySelected;
     private RecyclerView mRecyclerViewGroupCommodity;
     private DBHelper mDBHelper;
+    private CommodityGirdViewAdapter mCommodityGirdViewAdapter;
+    private GridView mGridViewCommodity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +51,9 @@ public class BoardActivity extends AppCompatActivity
         }
         mDBHelper = new DBHelper(this);
         mDBHelper.createDBGroupCommodity();
+        mDBHelper.createDBCommodity();
         mGroupCommodityList = mDBHelper.getDBGroupCommodity().getGroupCommodityAll();
+        mCommodityList = mDBHelper.getDBCommodity().getCommodityAllCommon();
     }
 
     private void initOnListener() {
@@ -65,7 +72,6 @@ public class BoardActivity extends AppCompatActivity
         mRecyclerViewCommoditySelected.setLayoutManager(
             new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerViewCommoditySelected.setAdapter(mCommoditySelectedRecyclerViewAdapter);
-        // grid view commodity
         // group commodity
         mRecyclerViewGroupCommodity =
             (RecyclerView) findViewById(R.id.recycler_view_board_activity_group_commodity);
@@ -79,7 +85,10 @@ public class BoardActivity extends AppCompatActivity
             mGroupCommodityList.get(0).setSelected(true);
             mGroupCommodityRecyclerViewAdapter.notifyItemChanged(Constants.ID_GROUP_DEFAULT);
         }
-        //
+        // grid view commodity
+        mGridViewCommodity = (GridView) findViewById(R.id.grid_view_commodity_board_activity);
+        mCommodityGirdViewAdapter = new CommodityGirdViewAdapter(this, mCommodityList, this);
+        mGridViewCommodity.setAdapter(mCommodityGirdViewAdapter);
     }
 
     @Override
@@ -116,5 +125,10 @@ public class BoardActivity extends AppCompatActivity
         for (GroupCommodity groupCommodity : mGroupCommodityList) {
             groupCommodity.setSelected(false);
         }
+    }
+
+    @Override
+    public void onClickItemCommodity(
+        CommodityGirdViewAdapter.CommodityViewHolder commodityViewHolder, int position) {
     }
 }

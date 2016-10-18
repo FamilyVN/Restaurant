@@ -27,7 +27,10 @@
             android:label="@string/title_sell"
             android:theme="@style/AppTheme.ActionBar">
         </activity>
-        <activity android:name=".ui.activity.BoardActivity">
+        <activity
+            android:name=".ui.activity.BoardActivity"
+            android:label="@string/title_board"
+            android:theme="@style/AppTheme.ActionBar">
         </activity>
     </application>
 

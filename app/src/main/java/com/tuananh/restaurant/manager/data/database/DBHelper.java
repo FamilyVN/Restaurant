@@ -63,20 +63,31 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     private void onCreateTable(SQLiteDatabase db) {
-        String CREATE_TABLE_BOARD = "CREATE TABLE " + Constants.TABLE_BOARD + "("
-            + Constants.KEY_ID_BOARD + " INTEGER PRIMARY KEY,"
-            + Constants.KEY_NAME_BOARD + " TEXT,"
-            + Constants.KEY_FOR_ID_GROUP_BOARD + " INTEGER" + ")";
-        String CREATE_TABLE_GROUP_BOARD = "CREATE TABLE " + Constants.TABLE_GROUP_BOARD + "("
-            + Constants.KEY_ID_GROUP_BOARD + " INTEGER PRIMARY KEY,"
-            + Constants.KEY_NAME_GROUP_BOARD + " TEXT" + ")";
+        String CREATE_TABLE_BOARD =
+            "CREATE TABLE " + Constants.TABLE_BOARD + "("
+                + Constants.KEY_ID_BOARD + " INTEGER PRIMARY KEY,"
+                + Constants.KEY_NAME_BOARD + " TEXT,"
+                + Constants.KEY_FOR_ID_GROUP_BOARD + " INTEGER,"
+                + Constants.KEY_IS_SAVE + " INTEGER" + ")";
+        String CREATE_TABLE_GROUP_BOARD =
+            "CREATE TABLE " + Constants.TABLE_GROUP_BOARD + "("
+                + Constants.KEY_ID_GROUP_BOARD + " INTEGER PRIMARY KEY,"
+                + Constants.KEY_NAME_GROUP_BOARD + " TEXT" + ")";
         String CREATE_TABLE_GROUP_COMMODITY =
             "CREATE TABLE " + Constants.TABLE_GROUP_COMMODITY + "("
                 + Constants.KEY_ID_GROUP_COMMODITY + " INTEGER PRIMARY KEY,"
                 + Constants.KEY_NAME_GROUP_COMMODITY + " TEXT" + ")";
+        String CREATE_TABLE_COMMODITY =
+            "CREATE TABLE " + Constants.TABLE_COMMODITY + "("
+                + Constants.KEY_ID_COMMODITY + " INTEGER PRIMARY KEY,"
+                + Constants.KEY_NAME_COMMODITY + " TEXT,"
+                + Constants.KEY_COST_COMMODITY + " INTEGER,"
+                + Constants.KEY_FOR_ID_GROUP_COMMODITY + " INTEGER,"
+                + Constants.KEY_IS_COMMON_COMMODITY + " INTEGER" + ")";
         db.execSQL(CREATE_TABLE_BOARD);
         db.execSQL(CREATE_TABLE_GROUP_BOARD);
         db.execSQL(CREATE_TABLE_GROUP_COMMODITY);
+        db.execSQL(CREATE_TABLE_COMMODITY);
     }
 
     @Override
@@ -84,6 +95,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_BOARD);
         db.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_GROUP_BOARD);
         db.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_GROUP_COMMODITY);
+        db.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_COMMODITY);
         onCreate(db);
     }
 }

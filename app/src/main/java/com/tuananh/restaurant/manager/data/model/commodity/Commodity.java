@@ -8,9 +8,9 @@ public class Commodity {
     private String mName;
     private int mCost;
     private int mIdGroupCommodity;
-    private boolean mIsCommon;
+    private int mIsCommon;
 
-    public Commodity(int id, String name, int cost, int idGroupCommodity, boolean isCommon) {
+    public Commodity(int id, String name, int cost, int idGroupCommodity, int isCommon) {
         mId = id;
         mName = name;
         mCost = cost;
@@ -18,7 +18,7 @@ public class Commodity {
         mIsCommon = isCommon;
     }
 
-    public Commodity(String name, int cost, int idGroupCommodity, boolean isCommon) {
+    public Commodity(String name, int cost, int idGroupCommodity, int isCommon) {
         mName = name;
         mCost = cost;
         mIdGroupCommodity = idGroupCommodity;
@@ -41,7 +41,7 @@ public class Commodity {
         return mIdGroupCommodity;
     }
 
-    public boolean isCommon() {
+    public int getIsCommon() {
         return mIsCommon;
     }
 }

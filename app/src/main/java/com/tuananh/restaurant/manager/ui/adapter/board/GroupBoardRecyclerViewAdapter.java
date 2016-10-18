@@ -46,7 +46,7 @@ public class GroupBoardRecyclerViewAdapter
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mOnClickGroupBoardItemListener.onClickItem(holder, position);
+                mOnClickGroupBoardItemListener.onClickItemBoard(holder, position);
             }
         });
     }

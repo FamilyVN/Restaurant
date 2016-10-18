@@ -89,8 +89,10 @@
     <GridView
         android:id="@+id/grid_view_commodity_board_activity"
         android:layout_width="@dimen/activity_sell_gird_view_width"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_high"
+        android:layout_weight="1"
         android:gravity="center"
         android:horizontalSpacing="@dimen/activity_sell_gird_view_horizontal_spacing"
         android:numColumns="2"

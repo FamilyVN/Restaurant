@@ -7,16 +7,19 @@ public class Board {
     private int mId;
     private int mIdGroup;
     private String mNameBoard;
+    private int mIsSave;
 
-    public Board(int id, int idGroup, String nameBoard) {
+    public Board(int id, int idGroup, String nameBoard, int isSave) {
         mId = id;
         mIdGroup = idGroup;
         mNameBoard = nameBoard;
+        mIsSave = isSave;
     }
 
-    public Board(int idGroup, String nameBoard) {
+    public Board(int idGroup, String nameBoard, int isSave) {
         mIdGroup = idGroup;
         mNameBoard = nameBoard;
+        mIsSave = isSave;
     }
 
     public int getId() {
@@ -29,5 +32,9 @@ public class Board {
 
     public int getIdGroup() {
         return mIdGroup;
+    }
+
+    public int getIsSave() {
+        return mIsSave;
     }
 }
