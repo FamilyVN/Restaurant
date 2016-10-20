@@ -25,11 +25,11 @@ public class GroupBoard {
         return mNameGroupBoard;
     }
 
-    public void setSelected(boolean selected) {
-        mIsSelected = selected;
-    }
-
     public boolean isSelected() {
         return mIsSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        mIsSelected = selected;
     }
 }

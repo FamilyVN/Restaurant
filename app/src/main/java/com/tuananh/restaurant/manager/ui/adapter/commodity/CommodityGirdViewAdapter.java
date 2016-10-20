@@ -47,17 +47,21 @@ public class CommodityGirdViewAdapter extends BaseAdapter {
     public View getView(final int position, View view, ViewGroup viewGroup) {
         final CommodityViewHolder commodityViewHolder;
         if (view == null) {
-            view = mLayoutInflater.inflate(R.layout.item_board, null);
+            view = mLayoutInflater.inflate(R.layout.item_commodity, null);
             commodityViewHolder = new CommodityViewHolder();
             commodityViewHolder.mTextViewNameCommodity =
-                (TextView) view.findViewById(R.id.text_number_board);
+                (TextView) view.findViewById(R.id.text_name_commodity);
+            commodityViewHolder.mTextViewCostCommodity =
+                (TextView) view.findViewById(R.id.text_cost_commodity);
             view.setTag(commodityViewHolder);
         } else {
             commodityViewHolder = (CommodityViewHolder) view.getTag();
         }
         Commodity commodity = mCommodityList.get(position);
         commodityViewHolder.mTextViewNameCommodity.setText(commodity.getName());
-        commodityViewHolder.mTextViewNameCommodity.setOnClickListener(new View.OnClickListener() {
+        commodityViewHolder.mTextViewCostCommodity.setText(new StringBuilder()
+            .append(String.valueOf(commodity.getCost())).append(" đ").toString());
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mOnClickCommodityItemListener.onClickItemCommodity(commodityViewHolder, position);
@@ -68,5 +72,6 @@ public class CommodityGirdViewAdapter extends BaseAdapter {
 
     public static class CommodityViewHolder {
         private TextView mTextViewNameCommodity;
+        private TextView mTextViewCostCommodity;
     }
 }

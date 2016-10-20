@@ -7,5 +7,5 @@ import com.tuananh.restaurant.manager.ui.adapter.board.GroupBoardRecyclerViewAda
  */
 public interface OnClickGroupBoardItemListener {
     void onClickItemBoard(GroupBoardRecyclerViewAdapter.GroupBoardViewHolder groupBoardViewHolder,
-                     int position);
+                          int position);
 }

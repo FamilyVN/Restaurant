@@ -72,6 +72,8 @@ public class DBTest {
             dbCommodity.addCommodity(new Commodity("Ostar", 7000, 4, COMMON));
             dbCommodity.addCommodity(new Commodity("Bim bim", 5000, 4, COMMON));
             dbCommodity.addCommodity(new Commodity("Vina", 20000, 5, COMMON));
+            dbCommodity.addCommodity(new Commodity("Ca nhân trần", 15000, 6, NOT_COMMON));
+            dbCommodity.addCommodity(new Commodity("Dừa nguyên quả", 25000, 3, COMMON));
             //
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean(Constants.UPDATE, false);

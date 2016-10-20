@@ -33,46 +33,26 @@
             android:layout_marginStart="@dimen/margin_small"
             android:text="@string/board_activity_board"/>
 
-        <TextView
-            android:id="@+id/text_board_activity_number_sell"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/text_board_activity_board"
-            android:layout_alignStart="@+id/text_board_activity_board"
-            android:layout_below="@+id/text_board_activity_board"
-            android:layout_marginTop="@dimen/margin_small"
-            android:text="@string/board_activity_number_sell"/>
-
-        <TextView
-            android:id="@+id/text_board_activity_total_money"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/text_board_activity_invoice"
-            android:layout_alignStart="@+id/text_board_activity_invoice"
-            android:layout_below="@+id/text_board_activity_invoice"
-            android:layout_marginTop="@dimen/margin_small"
-            android:text="@string/board_activity_total_money"/>
-
-        <TextView
-            android:id="@+id/text_board_activity_invoice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="@dimen/board_activity_text_margin_right"
-            android:layout_marginRight="@dimen/board_activity_text_margin_right"
-            android:text="@string/board_activity_invoice"/>
-
         <Button
             android:id="@+id/button_pay"
             style="@style/activity_board_button"
             android:text="@string/board_activity_pay"
             android:visibility="gone"/>
 
+        <TextView
+            android:id="@+id/text_board_activity_total_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/text_board_activity_board"
+            android:layout_alignStart="@+id/text_board_activity_board"
+            android:layout_centerVertical="true"
+            android:text="@string/board_activity_total_money"/>
+
         <Button
             android:id="@+id/button_save"
             style="@style/activity_board_button"
+            android:layout_below="@+id/text_board_activity_total_money"
+            android:layout_centerHorizontal="true"
             android:text="@string/board_activity_save"/>
     </RelativeLayout>
 

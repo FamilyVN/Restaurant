@@ -109,16 +109,24 @@ public class BoardActivity extends BaseActivity
         GroupCommodity groupCommodity = mGroupCommodityList.get(position);
         groupCommodity.setSelected(true);
         mGroupCommodityRecyclerViewAdapter.notifyDataSetChanged();
-//        int size = mCommodityList.size();
-//        mGroupCommodityList.addAll(mDBHelper.getDBGroupCommodity()
-//            .getCommodityAllByIdGroupCommodity(groupCommodity.getId()));
-//        mCommodityRecyclerViewAdapter.notifyDataSetChanged();
-//        int i = 0;
-//        while (i < size) {
-//            mCommodityList.remove(0);
-//            mCommodityRecyclerViewAdapter.notifyDataSetChanged();
-//            i++;
-//        }
+        //
+        int size = mCommodityList.size();
+        switch (position) {
+            case 0:
+                mCommodityList.addAll(mDBHelper.getDBCommodity().getCommodityAllCommon());
+                break;
+            default:
+                mCommodityList.addAll(mDBHelper.getDBCommodity()
+                    .getCommodityAllByIdGroupCommodity(position + 1));
+                break;
+        }
+        mCommodityGirdViewAdapter.notifyDataSetChanged();
+        int i = 0;
+        while (i < size) {
+            mCommodityList.remove(0);
+            mCommodityGirdViewAdapter.notifyDataSetChanged();
+            i++;
+        }
     }
 
     private void unSelected() {
@@ -130,5 +138,11 @@ public class BoardActivity extends BaseActivity
     @Override
     public void onClickItemCommodity(
         CommodityGirdViewAdapter.CommodityViewHolder commodityViewHolder, int position) {
+        switch (position) {
+            case 1:
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -35,7 +35,8 @@ public class DBCommodity {
 
     public List<Commodity> getCommodityAllByIdGroupCommodity(int idGroupCommodity) {
         List<Commodity> commodityList = new ArrayList<>();
-        String selectQuery = "SELECT * FROM " + Constants.TABLE_COMMODITY;
+        String selectQuery = "SELECT * FROM " + Constants.TABLE_COMMODITY + " WHERE " +
+            Constants.KEY_FOR_ID_GROUP_COMMODITY + " =?";
         SQLiteDatabase db = mSQLiteOpenHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, new String[]{"" + idGroupCommodity});
         if (cursor != null && cursor.moveToFirst()) {
@@ -58,7 +59,7 @@ public class DBCommodity {
     public List<Commodity> getCommodityAllCommon() {
         List<Commodity> commodityList = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + Constants.TABLE_COMMODITY
-            + " WHERE " + Constants.KEY_IS_COMMON_COMMODITY + "=?";
+            + " WHERE " + Constants.KEY_IS_COMMON_COMMODITY + " =?";
         SQLiteDatabase db = mSQLiteOpenHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, new String[]{"" + DBTest.COMMON});
         if (cursor != null && cursor.moveToFirst()) {

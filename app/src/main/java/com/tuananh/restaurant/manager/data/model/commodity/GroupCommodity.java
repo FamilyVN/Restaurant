@@ -25,11 +25,11 @@ public class GroupCommodity {
         return mNameGroupCommodity;
     }
 
-    public void setSelected(boolean selected) {
-        mSelected = selected;
-    }
-
     public boolean isSelected() {
         return mSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        mSelected = selected;
     }
 }
