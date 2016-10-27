@@ -11,7 +11,6 @@ import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.data.database.DBHelper;
 import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
-import com.tuananh.restaurant.manager.data.model.commodity.CommoditySelected;
 import com.tuananh.restaurant.manager.data.model.commodity.GroupCommodity;
 import com.tuananh.restaurant.manager.ui.adapter.commodity.CommodityGirdViewAdapter;
 import com.tuananh.restaurant.manager.ui.adapter.commodity.CommoditySelectedRecyclerViewAdapter;
@@ -27,7 +26,7 @@ public class BoardActivity extends BaseActivity
     private Button mButtonSave, mButtonPay;
     private CommoditySelectedRecyclerViewAdapter mCommoditySelectedRecyclerViewAdapter;
     private GroupCommodityRecyclerViewAdapter mGroupCommodityRecyclerViewAdapter;
-    private List<CommoditySelected> mCommoditySelectedList;
+    private List<Commodity> mCommoditySelectedList;
     private List<Commodity> mCommodityList;
     private List<GroupCommodity> mGroupCommodityList;
     private RecyclerView mRecyclerViewCommoditySelected;
@@ -138,11 +137,7 @@ public class BoardActivity extends BaseActivity
     @Override
     public void onClickItemCommodity(
         CommodityGirdViewAdapter.CommodityViewHolder commodityViewHolder, int position) {
-        switch (position) {
-            case 1:
-                break;
-            default:
-                break;
-        }
+        mCommoditySelectedList.add(mCommodityList.get(position));
+        mCommoditySelectedRecyclerViewAdapter.notifyItemInserted(position);
     }
 }

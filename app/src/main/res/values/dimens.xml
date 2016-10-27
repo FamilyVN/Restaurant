@@ -22,4 +22,6 @@
     <dimen name="board_activity_text_margin_right">110dp</dimen>
     <dimen name="margin_medium">10dp</dimen>
     <dimen name="board_activity_button_height">30dp</dimen>
+    <dimen name="text_view_number_commodity_selected_width">20dp</dimen>
+    <dimen name="text_view_name_commodity_selected_width">120dp</dimen>
 </resources>

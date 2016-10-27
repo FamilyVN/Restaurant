@@ -9,6 +9,7 @@ public class Commodity {
     private int mCost;
     private int mIdGroupCommodity;
     private int mIsCommon;
+    private int mNumber;
 
     public Commodity(int id, String name, int cost, int idGroupCommodity, int isCommon) {
         mId = id;
@@ -23,6 +24,28 @@ public class Commodity {
         mCost = cost;
         mIdGroupCommodity = idGroupCommodity;
         mIsCommon = isCommon;
+    }
+
+    public Commodity(int id, String name, int cost, int idGroupCommodity, int isCommon,
+                     int number) {
+        mId = id;
+        mName = name;
+        mCost = cost;
+        mIdGroupCommodity = idGroupCommodity;
+        mIsCommon = isCommon;
+        mNumber = number;
+    }
+
+    public Commodity(String name, int cost, int idGroupCommodity, int isCommon, int number) {
+        mName = name;
+        mCost = cost;
+        mIdGroupCommodity = idGroupCommodity;
+        mIsCommon = isCommon;
+        mNumber = number;
+    }
+
+    public void setNumber(int number) {
+        mNumber = number;
     }
 
     public int getId() {
@@ -43,5 +66,13 @@ public class Commodity {
 
     public int getIsCommon() {
         return mIsCommon;
+    }
+
+    public int getNumber() {
+        return mNumber;
+    }
+
+    public int getTotalCost() {
+        return mCost * mNumber;
     }
 }
