@@ -39,7 +39,7 @@ public class GroupCommodityRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(final GroupCommodityViewHolder holder, final int position) {
-        final GroupCommodity groupCommodity = mGroupCommodityList.get(position);
+        GroupCommodity groupCommodity = mGroupCommodityList.get(position);
         holder.mTextViewNameGroupCommodity.setText(groupCommodity.getNameGroupCommodity());
         holder.itemView
             .setBackground(ContextCompat.getDrawable(mContext, groupCommodity.isSelected()
@@ -47,7 +47,9 @@ public class GroupCommodityRecyclerViewAdapter extends
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mOnClickGroupCommodityItemListener.onClickItemGroupCommodity(holder, position);
+                if (mOnClickGroupCommodityItemListener != null) {
+                    mOnClickGroupCommodityItemListener.onClickItemGroupCommodity(holder, position);
+                }
             }
         });
     }
@@ -57,7 +59,7 @@ public class GroupCommodityRecyclerViewAdapter extends
         return mGroupCommodityList.isEmpty() ? 0 : mGroupCommodityList.size();
     }
 
-    public static class GroupCommodityViewHolder extends RecyclerView.ViewHolder {
+    public class GroupCommodityViewHolder extends RecyclerView.ViewHolder {
         private TextView mTextViewNameGroupCommodity;
 
         GroupCommodityViewHolder(View itemView) {

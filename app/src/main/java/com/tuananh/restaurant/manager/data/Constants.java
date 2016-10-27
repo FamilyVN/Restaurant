@@ -25,6 +25,7 @@ public class Constants {
     public final static String KEY_COST_COMMODITY = "cost_commodity";
     public final static String KEY_FOR_ID_GROUP_COMMODITY = "id_for_group_commodity";
     public final static String KEY_IS_COMMON_COMMODITY = "is_common_commodity";
+    public final static String KEY_NUMBER_COMMODITY = "number_commodity";
     //
     public final static int CHECK_ADD_TRUE = 0;
     public final static String SHARED_PREFERENCES = "restaurant_manager";

@@ -8,11 +8,16 @@
     android:orientation="vertical"
     tools:context="com.tuananh.restaurant.manager.ui.activity.BoardActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_board_activity_list_commodity_selected"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_small"/>
+        android:layout_height="@dimen/scroll_view_board_activity_height">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_board_activity_list_commodity_selected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small"/>
+    </ScrollView>
 
     <include layout="@layout/line_break"/>
 
@@ -22,38 +27,62 @@
         android:paddingBottom="@dimen/margin_small"
         android:paddingTop="@dimen/margin_small">
 
-        <TextView
-            android:id="@+id/text_board_activity_board"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="@dimen/margin_small"
-            android:layout_marginStart="@dimen/margin_small"
-            android:text="@string/board_activity_board"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_board_activity_board"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@string/board_activity_board"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_high"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_board_activity_total_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@string/board_activity_total_money"/>
+        </LinearLayout>
 
         <Button
             android:id="@+id/button_pay"
             style="@style/activity_board_button"
+            android:focusable="true"
             android:text="@string/board_activity_pay"
             android:visibility="gone"/>
-
-        <TextView
-            android:id="@+id/text_board_activity_total_money"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/text_board_activity_board"
-            android:layout_alignStart="@+id/text_board_activity_board"
-            android:layout_centerVertical="true"
-            android:text="@string/board_activity_total_money"/>
 
         <Button
             android:id="@+id/button_save"
             style="@style/activity_board_button"
-            android:layout_below="@+id/text_board_activity_total_money"
-            android:layout_centerHorizontal="true"
+            android:focusable="true"
             android:text="@string/board_activity_save"/>
+
+
+        <ImageView
+            android:id="@+id/image_up_down_board_activity"
+            android:layout_width="@dimen/image_view_up_down_width"
+            android:layout_height="@dimen/image_view_up_down_height"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="@dimen/image_view_up_down_margin_right"
+            android:layout_marginRight="@dimen/image_view_up_down_margin_right"
+            android:layout_marginTop="@dimen/image_view_up_down_margin_top"
+            android:src="@drawable/ic_double_arrow_up"/>
     </RelativeLayout>
 
     <include layout="@layout/line_break"/>
@@ -71,11 +100,10 @@
         android:layout_width="@dimen/activity_sell_gird_view_width"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_high"
+        android:layout_marginTop="@dimen/margin_medium"
         android:layout_weight="1"
         android:gravity="center"
         android:horizontalSpacing="@dimen/activity_sell_gird_view_horizontal_spacing"
         android:numColumns="2"
         android:verticalSpacing="@dimen/activity_sell_gird_view_vertical_spacing"/>
-
 </LinearLayout>

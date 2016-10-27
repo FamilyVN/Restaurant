@@ -29,6 +29,8 @@ public class DBCommodity {
         values.put(Constants.KEY_COST_COMMODITY, commodity.getCost());
         values.put(Constants.KEY_FOR_ID_GROUP_COMMODITY, commodity.getIdGroupCommodity());
         values.put(Constants.KEY_IS_COMMON_COMMODITY, commodity.getIsCommon());
+//        values.put(Constants.KEY_NUMBER_COMMODITY, commodity.getNumber());
+        values.put(Constants.KEY_NUMBER_COMMODITY, 1);
         db.insert(Constants.TABLE_COMMODITY, null, values);
         db.close();
     }
@@ -38,7 +40,7 @@ public class DBCommodity {
         String selectQuery = "SELECT * FROM " + Constants.TABLE_COMMODITY + " WHERE " +
             Constants.KEY_FOR_ID_GROUP_COMMODITY + " =?";
         SQLiteDatabase db = mSQLiteOpenHelper.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, new String[]{"" + idGroupCommodity});
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(idGroupCommodity)});
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 Commodity commodity =
@@ -47,7 +49,8 @@ public class DBCommodity {
                         cursor.getString(cursor.getColumnIndex(Constants.KEY_NAME_COMMODITY)),
                         cursor.getInt(cursor.getColumnIndex(Constants.KEY_COST_COMMODITY)),
                         cursor.getInt(cursor.getColumnIndex(Constants.KEY_FOR_ID_GROUP_COMMODITY)),
-                        cursor.getInt(cursor.getColumnIndex(Constants.KEY_IS_COMMON_COMMODITY))
+                        cursor.getInt(cursor.getColumnIndex(Constants.KEY_IS_COMMON_COMMODITY)),
+                        cursor.getInt(cursor.getColumnIndex(Constants.KEY_NUMBER_COMMODITY))
                     );
                 commodityList.add(commodity);
             } while (cursor.moveToNext());
@@ -70,7 +73,8 @@ public class DBCommodity {
                         cursor.getString(cursor.getColumnIndex(Constants.KEY_NAME_COMMODITY)),
                         cursor.getInt(cursor.getColumnIndex(Constants.KEY_COST_COMMODITY)),
                         cursor.getInt(cursor.getColumnIndex(Constants.KEY_FOR_ID_GROUP_COMMODITY)),
-                        cursor.getInt(cursor.getColumnIndex(Constants.KEY_IS_COMMON_COMMODITY))
+                        cursor.getInt(cursor.getColumnIndex(Constants.KEY_IS_COMMON_COMMODITY)),
+                        cursor.getInt(cursor.getColumnIndex(Constants.KEY_NUMBER_COMMODITY))
                     );
                 commodityList.add(commodity);
             } while (cursor.moveToNext());

@@ -46,7 +46,7 @@ public class DBBoard {
         String selectQuery = "SELECT * FROM " + Constants.TABLE_BOARD + " WHERE "
             + Constants.KEY_FOR_ID_GROUP_BOARD + " =?";
         SQLiteDatabase db = mSQLiteOpenHelper.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, new String[]{"" + idGroupBoard});
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(idGroupBoard)});
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 Board board = new Board(
@@ -60,5 +60,25 @@ public class DBBoard {
         }
         db.close();
         return boardList;
+    }
+
+    public Board getBoardById(int idBoard) {
+        Board board = null;
+        String selectQuery = "SELECT * FROM " + Constants.TABLE_BOARD + " WHERE "
+            + Constants.KEY_ID_BOARD + " =?";
+        SQLiteDatabase db = mSQLiteOpenHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(idBoard)});
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                board = new Board(
+                    cursor.getInt(cursor.getColumnIndex(Constants.KEY_ID_BOARD)),
+                    cursor.getInt(cursor.getColumnIndex(Constants.KEY_FOR_ID_GROUP_BOARD)),
+                    cursor.getString(cursor.getColumnIndex(Constants.KEY_NAME_BOARD)),
+                    cursor.getInt(cursor.getColumnIndex(Constants.KEY_IS_SAVE))
+                );
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return board;
     }
 }

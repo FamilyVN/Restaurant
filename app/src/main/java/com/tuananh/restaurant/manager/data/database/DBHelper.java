@@ -83,7 +83,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 + Constants.KEY_NAME_COMMODITY + " TEXT,"
                 + Constants.KEY_COST_COMMODITY + " INTEGER,"
                 + Constants.KEY_FOR_ID_GROUP_COMMODITY + " INTEGER,"
-                + Constants.KEY_IS_COMMON_COMMODITY + " INTEGER" + ")";
+                + Constants.KEY_IS_COMMON_COMMODITY + " INTEGER,"
+                + Constants.KEY_NUMBER_COMMODITY + " INTEGER" + ")";
         db.execSQL(CREATE_TABLE_BOARD);
         db.execSQL(CREATE_TABLE_GROUP_BOARD);
         db.execSQL(CREATE_TABLE_GROUP_COMMODITY);

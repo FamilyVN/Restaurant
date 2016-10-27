@@ -24,41 +24,46 @@ public class CommoditySelectedRecyclerViewAdapter extends
     private OnClickCommoditySelectedItemListener mOnClickCommoditySelectedItemListener;
 
     public CommoditySelectedRecyclerViewAdapter(Context context,
-                                                List<Commodity> commoditySelectedList) {
+                                                List<Commodity> commoditySelectedList,
+                                                OnClickCommoditySelectedItemListener onClickCommoditySelectedItemListener) {
         mContext = context;
         mCommoditySelectedList = commoditySelectedList;
+        mOnClickCommoditySelectedItemListener = onClickCommoditySelectedItemListener;
     }
 
     @Override
     public CommoditySelectedViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new CommoditySelectedViewHolder(LayoutInflater.from(mContext)
-            .inflate(R.layout.item_group_commodity, parent, false));
+            .inflate(R.layout.item_selected_commodity, parent, false));
     }
 
     @Override
     public void onBindViewHolder(final CommoditySelectedViewHolder holder, final int position) {
         Commodity commodity = mCommoditySelectedList.get(position);
-        holder.mImageViewReduce.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mOnClickCommoditySelectedItemListener.onClickReduce(holder, position);
-            }
-        });
-        holder.mImageViewUpAmount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mOnClickCommoditySelectedItemListener.onClickUpAmount(holder, position);
-            }
-        });
-        holder.mTextViewNumber.setText(commodity.getNumber());
+        holder.mTextViewNumber.setText(String.valueOf(commodity.getNumber()));
         holder.mTextViewName.setText(commodity.getName());
-        holder.mTextViewTotalCost.setText(commodity.getTotalCost());
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                return mOnClickCommoditySelectedItemListener.onLongClick(holder, position);
-            }
-        });
+        holder.mTextViewTotalCost.setText(
+            new StringBuilder().append(commodity.getTotalCost()).append(" đ").toString());
+        if (mOnClickCommoditySelectedItemListener != null) {
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    return mOnClickCommoditySelectedItemListener.onLongClick(holder, position);
+                }
+            });
+            holder.mImageViewReduce.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnClickCommoditySelectedItemListener.onClickReduce(holder, position);
+                }
+            });
+            holder.mImageViewUpAmount.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnClickCommoditySelectedItemListener.onClickUpAmount(holder, position);
+                }
+            });
+        }
     }
 
     @Override
@@ -66,7 +71,7 @@ public class CommoditySelectedRecyclerViewAdapter extends
         return mCommoditySelectedList == null ? 0 : mCommoditySelectedList.size();
     }
 
-    public static class CommoditySelectedViewHolder extends RecyclerView.ViewHolder {
+    public class CommoditySelectedViewHolder extends RecyclerView.ViewHolder {
         private ImageView mImageViewUpAmount, mImageViewReduce;
         private TextView mTextViewName, mTextViewNumber, mTextViewTotalCost;
 

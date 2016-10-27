@@ -46,7 +46,9 @@ public class GroupBoardRecyclerViewAdapter
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mOnClickGroupBoardItemListener.onClickItemBoard(holder, position);
+                if (mOnClickGroupBoardItemListener != null) {
+                    mOnClickGroupBoardItemListener.onClickItemBoard(holder, position);
+                }
             }
         });
     }
@@ -56,7 +58,7 @@ public class GroupBoardRecyclerViewAdapter
         return mGroupBoardList.isEmpty() ? 0 : mGroupBoardList.size();
     }
 
-    public static class GroupBoardViewHolder extends RecyclerView.ViewHolder {
+    public class GroupBoardViewHolder extends RecyclerView.ViewHolder {
         private TextView mTextViewNameGroupBoard;
 
         GroupBoardViewHolder(View itemView) {

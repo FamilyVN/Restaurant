@@ -6,23 +6,27 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.data.database.DBHelper;
+import com.tuananh.restaurant.manager.data.model.board.Board;
 import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.data.model.commodity.GroupCommodity;
 import com.tuananh.restaurant.manager.ui.adapter.commodity.CommodityGirdViewAdapter;
 import com.tuananh.restaurant.manager.ui.adapter.commodity.CommoditySelectedRecyclerViewAdapter;
 import com.tuananh.restaurant.manager.ui.adapter.commodity.GroupCommodityRecyclerViewAdapter;
 import com.tuananh.restaurant.manager.ui.listener.OnClickCommodityItemListener;
+import com.tuananh.restaurant.manager.ui.listener.OnClickCommoditySelectedItemListener;
 import com.tuananh.restaurant.manager.ui.listener.OnClickGroupCommodityItemListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BoardActivity extends BaseActivity
     implements View.OnClickListener, OnClickGroupCommodityItemListener,
-    OnClickCommodityItemListener {
+    OnClickCommodityItemListener, OnClickCommoditySelectedItemListener {
     private Button mButtonSave, mButtonPay;
     private CommoditySelectedRecyclerViewAdapter mCommoditySelectedRecyclerViewAdapter;
     private GroupCommodityRecyclerViewAdapter mGroupCommodityRecyclerViewAdapter;
@@ -34,6 +38,8 @@ public class BoardActivity extends BaseActivity
     private DBHelper mDBHelper;
     private CommodityGirdViewAdapter mCommodityGirdViewAdapter;
     private GridView mGridViewCommodity;
+    private TextView mTextViewNameBoard;
+    private Board mBoard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +51,19 @@ public class BoardActivity extends BaseActivity
     }
 
     private void loadData() {
-        int id = getIntent().getIntExtra(Constants.ID_BOARD_SELECTED, Constants.ID_BOARD_DEFAULT);
-        if (id != Constants.ID_BOARD_DEFAULT) {
-        }
         mDBHelper = new DBHelper(this);
+        mDBHelper.createDBBoard();
         mDBHelper.createDBGroupCommodity();
         mDBHelper.createDBCommodity();
+        //
         mGroupCommodityList = mDBHelper.getDBGroupCommodity().getGroupCommodityAll();
         mCommodityList = mDBHelper.getDBCommodity().getCommodityAllCommon();
+        mCommoditySelectedList = new ArrayList<>();
+        //
+        int id = getIntent().getIntExtra(Constants.ID_BOARD_SELECTED, Constants.ID_BOARD_DEFAULT);
+        if (id != Constants.ID_BOARD_DEFAULT) {
+            mBoard = mDBHelper.getDBBoard().getBoardById(id);
+        }
     }
 
     private void initOnListener() {
@@ -67,7 +78,7 @@ public class BoardActivity extends BaseActivity
         mRecyclerViewCommoditySelected =
             (RecyclerView) findViewById(R.id.recycler_view_board_activity_list_commodity_selected);
         mCommoditySelectedRecyclerViewAdapter = new CommoditySelectedRecyclerViewAdapter(this,
-            mCommoditySelectedList);
+            mCommoditySelectedList, this);
         mRecyclerViewCommoditySelected.setLayoutManager(
             new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerViewCommoditySelected.setAdapter(mCommoditySelectedRecyclerViewAdapter);
@@ -88,6 +99,13 @@ public class BoardActivity extends BaseActivity
         mGridViewCommodity = (GridView) findViewById(R.id.grid_view_commodity_board_activity);
         mCommodityGirdViewAdapter = new CommodityGirdViewAdapter(this, mCommodityList, this);
         mGridViewCommodity.setAdapter(mCommodityGirdViewAdapter);
+        //
+        mTextViewNameBoard = (TextView) findViewById(R.id.text_board_activity_board);
+        if (mBoard != null) {
+            mTextViewNameBoard.setText(new StringBuilder().append(
+                getString(R.string.board_activity_board)).append("     ").append(
+                mBoard.getNameBoard()).toString());
+        }
     }
 
     @Override
@@ -138,6 +156,25 @@ public class BoardActivity extends BaseActivity
     public void onClickItemCommodity(
         CommodityGirdViewAdapter.CommodityViewHolder commodityViewHolder, int position) {
         mCommoditySelectedList.add(mCommodityList.get(position));
-        mCommoditySelectedRecyclerViewAdapter.notifyItemInserted(position);
+        mCommoditySelectedRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClickReduce(
+        CommoditySelectedRecyclerViewAdapter.CommoditySelectedViewHolder commoditySelectedViewHolder,
+        int position) {
+    }
+
+    @Override
+    public void onClickUpAmount(
+        CommoditySelectedRecyclerViewAdapter.CommoditySelectedViewHolder commoditySelectedViewHolder,
+        int position) {
+    }
+
+    @Override
+    public boolean onLongClick(
+        CommoditySelectedRecyclerViewAdapter.CommoditySelectedViewHolder commoditySelectedViewHolder,
+        int position) {
+        return false;
     }
 }

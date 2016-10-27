@@ -64,13 +64,16 @@ public class CommodityGirdViewAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnClickCommodityItemListener.onClickItemCommodity(commodityViewHolder, position);
+                if (mOnClickCommodityItemListener != null) {
+                    mOnClickCommodityItemListener
+                        .onClickItemCommodity(commodityViewHolder, position);
+                }
             }
         });
         return view;
     }
 
-    public static class CommodityViewHolder {
+    public class CommodityViewHolder {
         private TextView mTextViewNameCommodity;
         private TextView mTextViewCostCommodity;
     }

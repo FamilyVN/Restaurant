@@ -55,7 +55,7 @@ public class BoardGirdViewAdapter extends BaseAdapter {
         return view;
     }
 
-    private static class BoardViewHolder {
+    private class BoardViewHolder {
         private TextView mTextViewName;
     }
 }
