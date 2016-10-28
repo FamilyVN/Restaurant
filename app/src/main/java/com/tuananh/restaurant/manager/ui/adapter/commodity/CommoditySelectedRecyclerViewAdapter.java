@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tuananh.restaurant.manager.R;
+import com.tuananh.restaurant.manager.data.Constants;
+import com.tuananh.restaurant.manager.data.model.board.Board;
 import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.ui.listener.OnClickCommoditySelectedItemListener;
 
@@ -22,13 +24,17 @@ public class CommoditySelectedRecyclerViewAdapter extends
     private List<Commodity> mCommoditySelectedList;
     private Context mContext;
     private OnClickCommoditySelectedItemListener mOnClickCommoditySelectedItemListener;
+    private Board mBoard;
 
     public CommoditySelectedRecyclerViewAdapter(Context context,
                                                 List<Commodity> commoditySelectedList,
-                                                OnClickCommoditySelectedItemListener onClickCommoditySelectedItemListener) {
+                                                OnClickCommoditySelectedItemListener
+                                                    onClickCommoditySelectedItemListener,
+                                                Board board) {
         mContext = context;
         mCommoditySelectedList = commoditySelectedList;
         mOnClickCommoditySelectedItemListener = onClickCommoditySelectedItemListener;
+        mBoard = board;
     }
 
     @Override
@@ -44,11 +50,15 @@ public class CommoditySelectedRecyclerViewAdapter extends
         holder.mTextViewName.setText(commodity.getName());
         holder.mTextViewTotalCost.setText(
             new StringBuilder().append(commodity.getTotalCost()).append(" đ").toString());
+        final boolean isSave = mBoard.getIsSave() == Constants.TRUE;
+        holder.mImageViewReduce.setVisibility(isSave ? View.GONE : View.VISIBLE);
+        holder.mImageViewUpAmount.setVisibility(isSave ? View.GONE : View.VISIBLE);
         if (mOnClickCommoditySelectedItemListener != null) {
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    return mOnClickCommoditySelectedItemListener.onLongClick(holder, position);
+                    return isSave &&
+                        mOnClickCommoditySelectedItemListener.onLongClick(holder, position);
                 }
             });
             holder.mImageViewReduce.setOnClickListener(new View.OnClickListener() {

@@ -37,4 +37,8 @@ public class Board {
     public int getIsSave() {
         return mIsSave;
     }
+
+    public void setIsSave(int isSave) {
+        mIsSave = isSave;
+    }
 }

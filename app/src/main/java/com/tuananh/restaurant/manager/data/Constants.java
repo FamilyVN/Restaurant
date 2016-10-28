@@ -33,4 +33,6 @@ public class Constants {
     public final static int ID_GROUP_DEFAULT = 1;
     public final static String ID_BOARD_SELECTED = "id_board_selected";
     public final static int ID_BOARD_DEFAULT = -1;
+    public final static int TRUE = 1;
+    public final static int FALSE = 0;
 }

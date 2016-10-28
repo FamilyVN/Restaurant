@@ -44,10 +44,6 @@ public class Commodity {
         mNumber = number;
     }
 
-    public void setNumber(int number) {
-        mNumber = number;
-    }
-
     public int getId() {
         return mId;
     }
@@ -70,6 +66,10 @@ public class Commodity {
 
     public int getNumber() {
         return mNumber;
+    }
+
+    public void setNumber(int number) {
+        mNumber = number;
     }
 
     public int getTotalCost() {

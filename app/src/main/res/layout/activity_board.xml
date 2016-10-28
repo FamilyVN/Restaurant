@@ -9,8 +9,10 @@
     tools:context="com.tuananh.restaurant.manager.ui.activity.BoardActivity">
 
     <ScrollView
+        android:id="@+id/scroll_view_selected_board_activity"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/scroll_view_board_activity_height">
+        android:layout_height="@dimen/scroll_view_board_activity_height"
+        android:paddingBottom="@dimen/padding_small">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_board_activity_list_commodity_selected"
@@ -34,12 +36,15 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/text_board_activity_board"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/text_view_board_activity_board_width"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_small"
                 android:layout_marginStart="@dimen/margin_small"
                 android:text="@string/board_activity_board"/>
+
+            <TextView
+                android:id="@+id/text_board_activity_board"
+                style="@style/text_view_total_cost"/>
 
         </LinearLayout>
 
@@ -50,12 +55,15 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/text_board_activity_total_money"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/text_view_board_activity_board_width"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_small"
                 android:layout_marginStart="@dimen/margin_small"
                 android:text="@string/board_activity_total_money"/>
+
+            <TextView
+                android:id="@+id/text_board_activity_total_money"
+                style="@style/text_view_total_cost"/>
         </LinearLayout>
 
         <Button
@@ -82,7 +90,7 @@
             android:layout_marginEnd="@dimen/image_view_up_down_margin_right"
             android:layout_marginRight="@dimen/image_view_up_down_margin_right"
             android:layout_marginTop="@dimen/image_view_up_down_margin_top"
-            android:src="@drawable/ic_double_arrow_up"/>
+            android:src="@drawable/ic_double_arrow_down"/>
     </RelativeLayout>
 
     <include layout="@layout/line_break"/>

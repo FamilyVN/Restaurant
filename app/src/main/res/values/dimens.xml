@@ -23,17 +23,18 @@
     <dimen name="margin_medium">10dp</dimen>
     <dimen name="board_activity_button_height">40dp</dimen>
     <dimen name="text_view_number_commodity_selected_width">40dp</dimen>
-    <dimen name="text_view_name_commodity_selected_width">120dp</dimen>
+    <dimen name="text_view_name_commodity_selected_width">150dp</dimen>
     <dimen name="item_selected_commodity_height">30dp</dimen>
     <dimen name="recycler_view_board_max_height">400dp</dimen>
     <dimen name="image_item_selected_commodity_width">20dp</dimen>
     <dimen name="image_item_selected_commodity_height">20dp</dimen>
     <dimen name="item_group_commodity_height">40dp</dimen>
     <dimen name="item_group_board_height">40dp</dimen>
-    <dimen name="button_activity_board">40dp</dimen>
+    <dimen name="button_activity_board_margin_top">50dp</dimen>
     <dimen name="scroll_view_board_activity_height">250dp</dimen>
     <dimen name="image_view_up_down_width">40dp</dimen>
     <dimen name="image_view_up_down_height">40dp</dimen>
     <dimen name="image_view_up_down_margin_right">10dp</dimen>
-    <dimen name="image_view_up_down_margin_top">60dp</dimen>
+    <dimen name="image_view_up_down_margin_top">50dp</dimen>
+    <dimen name="text_view_board_activity_board_width">50dp</dimen>
 </resources>

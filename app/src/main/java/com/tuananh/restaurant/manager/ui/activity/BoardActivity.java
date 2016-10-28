@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.tuananh.restaurant.manager.R;
@@ -38,8 +40,10 @@ public class BoardActivity extends BaseActivity
     private DBHelper mDBHelper;
     private CommodityGirdViewAdapter mCommodityGirdViewAdapter;
     private GridView mGridViewCommodity;
-    private TextView mTextViewNameBoard;
+    private TextView mTextViewNameBoard, mTextViewTotalCost;
     private Board mBoard;
+    private ImageView mImageViewUpDown;
+    private ScrollView mScrollViewSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +82,7 @@ public class BoardActivity extends BaseActivity
         mRecyclerViewCommoditySelected =
             (RecyclerView) findViewById(R.id.recycler_view_board_activity_list_commodity_selected);
         mCommoditySelectedRecyclerViewAdapter = new CommoditySelectedRecyclerViewAdapter(this,
-            mCommoditySelectedList, this);
+            mCommoditySelectedList, this, mBoard);
         mRecyclerViewCommoditySelected.setLayoutManager(
             new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerViewCommoditySelected.setAdapter(mCommoditySelectedRecyclerViewAdapter);
@@ -97,23 +101,42 @@ public class BoardActivity extends BaseActivity
         }
         // grid view commodity
         mGridViewCommodity = (GridView) findViewById(R.id.grid_view_commodity_board_activity);
-        mCommodityGirdViewAdapter = new CommodityGirdViewAdapter(this, mCommodityList, this);
+        mCommodityGirdViewAdapter =
+            new CommodityGirdViewAdapter(this, mCommodityList, this, mBoard);
         mGridViewCommodity.setAdapter(mCommodityGirdViewAdapter);
         //
         mTextViewNameBoard = (TextView) findViewById(R.id.text_board_activity_board);
         if (mBoard != null) {
-            mTextViewNameBoard.setText(new StringBuilder().append(
-                getString(R.string.board_activity_board)).append("     ").append(
-                mBoard.getNameBoard()).toString());
+            mTextViewNameBoard.setText(mBoard.getNameBoard());
         }
+        mTextViewTotalCost = (TextView) findViewById(R.id.text_board_activity_total_money);
+        //
+        mImageViewUpDown = (ImageView) findViewById(R.id.image_up_down_board_activity);
+        mImageViewUpDown.setOnClickListener(this);
+        mScrollViewSelected = (ScrollView) findViewById(R.id.scroll_view_selected_board_activity);
+        mScrollViewSelected.setVisibility(View.GONE);
+        updateTotalCost();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_save:
+                mButtonSave.setVisibility(View.GONE);
+                mButtonPay.setVisibility(View.VISIBLE);
+                mBoard.setIsSave(Constants.TRUE);
+                mCommoditySelectedRecyclerViewAdapter.notifyDataSetChanged();
                 break;
             case R.id.button_pay:
+                break;
+            case R.id.image_up_down_board_activity:
+                if (mScrollViewSelected.getVisibility() == View.VISIBLE) {
+                    mImageViewUpDown.setImageResource(R.drawable.ic_double_arrow_down);
+                    mScrollViewSelected.setVisibility(View.GONE);
+                } else {
+                    mImageViewUpDown.setImageResource(R.drawable.ic_double_arrow_up);
+                    mScrollViewSelected.setVisibility(View.VISIBLE);
+                }
                 break;
         }
     }
@@ -155,26 +178,74 @@ public class BoardActivity extends BaseActivity
     @Override
     public void onClickItemCommodity(
         CommodityGirdViewAdapter.CommodityViewHolder commodityViewHolder, int position) {
-        mCommoditySelectedList.add(mCommodityList.get(position));
+        if (mScrollViewSelected.getVisibility() == View.GONE) {
+            mScrollViewSelected.setVisibility(View.VISIBLE);
+            mImageViewUpDown.setImageResource(R.drawable.ic_double_arrow_up);
+        }
+        Commodity commoditySelectedNew = mCommodityList.get(position);
+        boolean isExit = false;
+        Commodity commodity = null;
+        int size = mCommoditySelectedList.size();
+        if (size == 0) {
+            mCommoditySelectedList.add(commoditySelectedNew);
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (mCommoditySelectedList.get(i).getId() == commoditySelectedNew.getId()) {
+                    isExit = true;
+                    commodity = mCommoditySelectedList.get(i);
+                }
+            }
+            if (isExit) {
+                commodity.setNumber(commodity.getNumber() + 1);
+            } else {
+                mCommoditySelectedList.add(commoditySelectedNew);
+            }
+        }
         mCommoditySelectedRecyclerViewAdapter.notifyDataSetChanged();
+        updateTotalCost();
+    }
+
+    private void updateTotalCost() {
+        int totalCost = 0;
+        for (Commodity commodity : mCommoditySelectedList) {
+            totalCost += commodity.getTotalCost();
+        }
+        mTextViewTotalCost.setText(new StringBuilder().append(totalCost).append(" đ").toString());
     }
 
     @Override
     public void onClickReduce(
         CommoditySelectedRecyclerViewAdapter.CommoditySelectedViewHolder commoditySelectedViewHolder,
         int position) {
+        Commodity commodity = mCommoditySelectedList.get(position);
+        int number = commodity.getNumber();
+        if (number - 1 > 0) {
+            commodity.setNumber(number - 1);
+        } else {
+            mCommoditySelectedList.remove(position);
+        }
+        mCommoditySelectedRecyclerViewAdapter.notifyDataSetChanged();
+        updateTotalCost();
     }
 
     @Override
     public void onClickUpAmount(
         CommoditySelectedRecyclerViewAdapter.CommoditySelectedViewHolder commoditySelectedViewHolder,
         int position) {
+        Commodity commodity = mCommoditySelectedList.get(position);
+        commodity.setNumber(commodity.getNumber() + 1);
+        mCommoditySelectedRecyclerViewAdapter.notifyDataSetChanged();
+        updateTotalCost();
     }
 
     @Override
     public boolean onLongClick(
         CommoditySelectedRecyclerViewAdapter.CommoditySelectedViewHolder commoditySelectedViewHolder,
         int position) {
+        mBoard.setIsSave(Constants.FALSE);
+        mCommoditySelectedRecyclerViewAdapter.notifyDataSetChanged();
+        mButtonSave.setVisibility(View.VISIBLE);
+        mButtonPay.setVisibility(View.GONE);
         return false;
     }
 }
