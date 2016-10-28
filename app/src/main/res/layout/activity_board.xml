@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:id="@+id/activity_board"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,75 +22,99 @@
 
     <include layout="@layout/line_break"/>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/margin_small"
-        android:paddingTop="@dimen/margin_small">
-
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            style="@style/layout_item_board_activity">
 
             <TextView
-                android:layout_width="@dimen/text_view_board_activity_board_width"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_small"
-                android:layout_marginStart="@dimen/margin_small"
+                style="@style/text_item_board_activity"
                 android:text="@string/board_activity_board"/>
 
             <TextView
                 android:id="@+id/text_board_activity_board"
-                style="@style/text_view_total_cost"/>
+                style="@style/text_item_board_activity"
+                android:textColor="@android:color/holo_red_light"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_high"
-            android:orientation="horizontal">
+            style="@style/layout_item_board_activity">
 
             <TextView
-                android:layout_width="@dimen/text_view_board_activity_board_width"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_small"
-                android:layout_marginStart="@dimen/margin_small"
+                style="@style/text_item_board_activity"
                 android:text="@string/board_activity_total_money"/>
 
             <TextView
                 android:id="@+id/text_board_activity_total_money"
-                style="@style/text_view_total_cost"/>
+                style="@style/text_item_board_activity"
+                android:textColor="@android:color/holo_red_light"/>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button_pay"
-            style="@style/activity_board_button"
-            android:focusable="true"
-            android:text="@string/board_activity_pay"
-            android:visibility="gone"/>
+        <LinearLayout
+            android:id="@+id/layout_customers_pay"
+            style="@style/layout_item_board_activity"
+            android:visibility="gone">
 
-        <Button
-            android:id="@+id/button_save"
-            style="@style/activity_board_button"
-            android:focusable="true"
-            android:text="@string/board_activity_save"/>
+            <TextView
+                style="@style/text_item_board_activity"
+                android:text="@string/text_view_customers_pay"/>
 
+            <EditText
+                style="@style/text_item_board_activity"
+                android:inputType="numberSigned"
+                android:maxLength="8"
+                android:paddingBottom="@dimen/edit_text_padding_bottom_payment"
+                android:textColor="@android:color/holo_red_light"/>
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/image_up_down_board_activity"
-            android:layout_width="@dimen/image_view_up_down_width"
-            android:layout_height="@dimen/image_view_up_down_height"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="@dimen/image_view_up_down_margin_right"
-            android:layout_marginRight="@dimen/image_view_up_down_margin_right"
-            android:layout_marginTop="@dimen/image_view_up_down_margin_top"
-            android:src="@drawable/ic_double_arrow_down"/>
-    </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/layout_refunds_to_customers"
+            style="@style/layout_item_board_activity"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/text_item_board_activity"
+                android:text="@string/text_view_refunds_to_customers"/>
+
+            <TextView
+                style="@style/text_item_board_activity"
+                android:textColor="@android:color/holo_red_light"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/button_pay"
+                style="@style/button_save_pay_board_activity"
+                android:text="@string/board_activity_pay"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/button_save"
+                style="@style/button_save_pay_board_activity"
+                android:text="@string/board_activity_save"/>
+
+            <ImageView
+                android:id="@+id/image_up_down_board_activity"
+                android:layout_width="@dimen/image_view_up_down_width"
+                android:layout_height="@dimen/image_view_up_down_height"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:src="@drawable/ic_double_arrow_down"/>
+        </RelativeLayout>
+    </LinearLayout>
 
     <include layout="@layout/line_break"/>
 

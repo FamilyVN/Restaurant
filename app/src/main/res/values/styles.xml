@@ -1,8 +1,6 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -37,19 +35,31 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="activity_board_button">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">@dimen/board_activity_button_height</item>
-        <item name="android:layout_marginTop">@dimen/button_activity_board_margin_top</item>
-        <item name="android:layout_below">@+id/text_board_activity_board</item>
+    <style name="button_save_pay_board_activity">
+        <item name="android:layout_width">@dimen/button_board_activity_width</item>
+        <item name="android:layout_height">@dimen/button_board_activity_height</item>
+        <item name="android:layout_alignParentTop">true</item>
         <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/margin_small</item>
+        <item name="android:layout_marginTop">@dimen/margin_medium</item>
         <item name="android:background">@android:color/holo_orange_light</item>
+        <item name="android:gravity">center</item>
     </style>
 
-    <style name="text_view_total_cost">
-        <item name="android:layout_width">wrap_content</item>
+    <style name="text_item_board_activity">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/board_activity_button_height</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/padding_small</item>
+        <item name="android:textSize">@dimen/text_size_board_activity</item>
+    </style>
+
+    <style name="layout_item_board_activity">
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">@dimen/margin_high</item>
-        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="android:weightSum">4</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 </resources>

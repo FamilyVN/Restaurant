@@ -1,7 +1,4 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="stroke_with">1dp</dimen>
     <dimen name="padding_small">5dp</dimen>
     <dimen name="margin_small">5dp</dimen>
@@ -11,30 +8,26 @@
     <dimen name="text_main_margin_top">140dp</dimen>
     <dimen name="line_break_height">1dp</dimen>
     <dimen name="card_view_item_group_board_width">100dp</dimen>
-    <dimen name="card_view_item_board_width">80dp</dimen>
-    <dimen name="card_view_item_board_height">80dp</dimen>
     <dimen name="activity_sell_gird_view_width">350dp</dimen>
     <dimen name="activity_sell_gird_view_margin_top">10dp</dimen>
     <dimen name="activity_sell_gird_view_horizontal_spacing">10dp</dimen>
     <dimen name="activity_sell_gird_view_vertical_spacing">10dp</dimen>
     <dimen name="padding_high">20dp</dimen>
     <dimen name="margin_high">20dp</dimen>
-    <dimen name="board_activity_text_margin_right">110dp</dimen>
     <dimen name="margin_medium">10dp</dimen>
-    <dimen name="board_activity_button_height">40dp</dimen>
+    <dimen name="board_activity_button_height">35dp</dimen>
     <dimen name="text_view_number_commodity_selected_width">40dp</dimen>
     <dimen name="text_view_name_commodity_selected_width">150dp</dimen>
     <dimen name="item_selected_commodity_height">30dp</dimen>
-    <dimen name="recycler_view_board_max_height">400dp</dimen>
     <dimen name="image_item_selected_commodity_width">20dp</dimen>
     <dimen name="image_item_selected_commodity_height">20dp</dimen>
     <dimen name="item_group_commodity_height">40dp</dimen>
     <dimen name="item_group_board_height">40dp</dimen>
-    <dimen name="button_activity_board_margin_top">50dp</dimen>
-    <dimen name="scroll_view_board_activity_height">250dp</dimen>
+    <dimen name="scroll_view_board_activity_height">160dp</dimen>
     <dimen name="image_view_up_down_width">40dp</dimen>
     <dimen name="image_view_up_down_height">40dp</dimen>
-    <dimen name="image_view_up_down_margin_right">10dp</dimen>
-    <dimen name="image_view_up_down_margin_top">50dp</dimen>
-    <dimen name="text_view_board_activity_board_width">50dp</dimen>
+    <dimen name="text_size_board_activity">15sp</dimen>
+    <dimen name="edit_text_padding_bottom_payment">7dp</dimen>
+    <dimen name="button_board_activity_width">150dp</dimen>
+    <dimen name="button_board_activity_height">40dp</dimen>
 </resources>

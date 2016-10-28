@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, SellActivity.class));
                 break;
             case R.id.item_menu_quick_payment:
-                // TODO: 11/09/2016  
                 break;
             case R.id.item_menu_settings:
                 startActivity(new Intent(this, SettingActivity.class));
