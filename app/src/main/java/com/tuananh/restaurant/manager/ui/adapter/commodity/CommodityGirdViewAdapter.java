@@ -52,7 +52,7 @@ public class CommodityGirdViewAdapter extends BaseAdapter {
     public View getView(final int position, View view, ViewGroup viewGroup) {
         final CommodityViewHolder commodityViewHolder;
         if (view == null) {
-            view = mLayoutInflater.inflate(R.layout.item_commodity, null);
+            view = mLayoutInflater.inflate(R.layout.item_commodity, viewGroup, false);
             commodityViewHolder = new CommodityViewHolder();
             commodityViewHolder.mTextViewNameCommodity =
                 (TextView) view.findViewById(R.id.text_name_commodity);

@@ -22,6 +22,7 @@ public class GroupBoardRecyclerViewAdapter
     private List<GroupBoard> mGroupBoardList;
     private OnClickGroupBoardItemListener mOnClickGroupBoardItemListener;
     private Context mContext;
+    private LayoutInflater mLayoutInflater;
 
     public GroupBoardRecyclerViewAdapter(Context context,
                                          List<GroupBoard> groupBoardList,
@@ -29,12 +30,13 @@ public class GroupBoardRecyclerViewAdapter
         mContext = context;
         mGroupBoardList = groupBoardList;
         mOnClickGroupBoardItemListener = onClickGroupBoardItemListener;
+        mLayoutInflater = LayoutInflater.from(context);
     }
 
     @Override
     public GroupBoardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new GroupBoardViewHolder(LayoutInflater.from(mContext)
-            .inflate(R.layout.item_group_board, parent, false));
+        return new GroupBoardViewHolder(
+            mLayoutInflater.inflate(R.layout.item_group_board, parent, false));
     }
 
     @Override

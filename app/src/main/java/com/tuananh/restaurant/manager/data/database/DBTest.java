@@ -3,15 +3,18 @@ package com.tuananh.restaurant.manager.data.database;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.data.controller.board.DBBoard;
 import com.tuananh.restaurant.manager.data.controller.board.DBGroupBoard;
 import com.tuananh.restaurant.manager.data.controller.commodity.DBCommodity;
 import com.tuananh.restaurant.manager.data.controller.commodity.DBGroupCommodity;
+import com.tuananh.restaurant.manager.data.controller.setting.DBSetting;
 import com.tuananh.restaurant.manager.data.model.board.Board;
 import com.tuananh.restaurant.manager.data.model.board.GroupBoard;
 import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.data.model.commodity.GroupCommodity;
+import com.tuananh.restaurant.manager.data.model.setting.Setting;
 
 /**
  * Created by framgia on 17/09/2016.
@@ -31,14 +34,15 @@ public class DBTest {
             dbHelper.createDBGroupBoard();
             dbHelper.createDBGroupCommodity();
             dbHelper.createDBCommodity();
-            //
+            dbHelper.createDBSetting();
+            //---
             DBGroupBoard dbGroupBoard = dbHelper.getDBGroupBoard();
             dbGroupBoard.addGroupBoard(new GroupBoard("Bàn 1-5"));
             dbGroupBoard.addGroupBoard(new GroupBoard("Bàn 6-10"));
             dbGroupBoard.addGroupBoard(new GroupBoard("Bàn 11-15"));
             dbGroupBoard.addGroupBoard(new GroupBoard("Bàn 16-20"));
             dbGroupBoard.addGroupBoard(new GroupBoard("Bàn 21-25"));
-            //
+            //---
             DBBoard dbBoard = dbHelper.getDBBoard();
             int idGroupBoard = 1;
             while (idGroupBoard < 6) {
@@ -48,7 +52,7 @@ public class DBTest {
                 }
                 idGroupBoard++;
             }
-            //
+            //---
             DBGroupCommodity dbGroupCommodity = dbHelper.getDBGroupCommodity();
             dbGroupCommodity.addGroupCommodity(new GroupCommodity("Phổ biến")); // 1
             dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nước mía")); // 2
@@ -105,6 +109,11 @@ public class DBTest {
             dbCommodity.addCommodity(new Commodity("Bật lửa", 2000, 8, COMMON));
             // nuoc ngam
             dbCommodity.addCommodity(new Commodity("Nước sấu", 10000, 9, COMMON));
+            //---
+            DBSetting dbSetting = dbHelper.getDBSetting();
+            dbSetting.addSetting(new Setting("Nhóm thực đơn", R.drawable.ic_group_foods));
+            dbSetting.addSetting(new Setting("Đồ uống, món ăn", R.drawable.ic_food));
+            dbSetting.addSetting(new Setting("Sơ đồ bàn", R.drawable.ic_map_table));
             //
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean(Constants.UPDATE, false);

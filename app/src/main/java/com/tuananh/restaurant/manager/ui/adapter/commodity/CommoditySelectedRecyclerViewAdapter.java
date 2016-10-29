@@ -22,25 +22,25 @@ import java.util.List;
 public class CommoditySelectedRecyclerViewAdapter extends
     RecyclerView.Adapter<CommoditySelectedRecyclerViewAdapter.CommoditySelectedViewHolder> {
     private List<Commodity> mCommoditySelectedList;
-    private Context mContext;
     private OnClickCommoditySelectedItemListener mOnClickCommoditySelectedItemListener;
     private Board mBoard;
+    private LayoutInflater mLayoutInflater;
 
     public CommoditySelectedRecyclerViewAdapter(Context context,
                                                 List<Commodity> commoditySelectedList,
                                                 OnClickCommoditySelectedItemListener
                                                     onClickCommoditySelectedItemListener,
                                                 Board board) {
-        mContext = context;
         mCommoditySelectedList = commoditySelectedList;
         mOnClickCommoditySelectedItemListener = onClickCommoditySelectedItemListener;
         mBoard = board;
+        mLayoutInflater = LayoutInflater.from(context);
     }
 
     @Override
     public CommoditySelectedViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new CommoditySelectedViewHolder(LayoutInflater.from(mContext)
-            .inflate(R.layout.item_selected_commodity, parent, false));
+        return new CommoditySelectedViewHolder(
+            mLayoutInflater.inflate(R.layout.item_selected_commodity, parent, false));
     }
 
     @Override

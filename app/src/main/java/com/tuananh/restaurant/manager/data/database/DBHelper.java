@@ -9,17 +9,20 @@ import com.tuananh.restaurant.manager.data.controller.board.DBBoard;
 import com.tuananh.restaurant.manager.data.controller.board.DBGroupBoard;
 import com.tuananh.restaurant.manager.data.controller.commodity.DBCommodity;
 import com.tuananh.restaurant.manager.data.controller.commodity.DBGroupCommodity;
+import com.tuananh.restaurant.manager.data.controller.setting.DBSetting;
 
 /**
  * Created by framgia on 16/09/2016.
  */
 public class DBHelper extends SQLiteOpenHelper {
     private final static String DATABASE_NAME = "restaurant";
+    private final static String DROP_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS";
     private final static int DATABASE_VERSION = 1;
     private DBBoard mDBBoard;
     private DBGroupBoard mDBGroupBoard;
     private DBGroupCommodity mDBGroupCommodity;
     private DBCommodity mDBCommodity;
+    private DBSetting mDBSetting;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -41,6 +44,10 @@ public class DBHelper extends SQLiteOpenHelper {
         mDBCommodity = new DBCommodity(this);
     }
 
+    public void createDBSetting() {
+        mDBSetting = new DBSetting(this);
+    }
+
     public DBBoard getDBBoard() {
         return mDBBoard;
     }
@@ -55,6 +62,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBCommodity getDBCommodity() {
         return mDBCommodity;
+    }
+
+    public DBSetting getDBSetting() {
+        return mDBSetting;
     }
 
     @Override
@@ -85,18 +96,25 @@ public class DBHelper extends SQLiteOpenHelper {
                 + Constants.KEY_FOR_ID_GROUP_COMMODITY + " INTEGER,"
                 + Constants.KEY_IS_COMMON_COMMODITY + " INTEGER,"
                 + Constants.KEY_NUMBER_COMMODITY + " INTEGER" + ")";
+        String CREATE_TABLE_SETTING =
+            "CREATE TABLE " + Constants.TABLE_SETTING + "("
+                + Constants.KEY_ID_SETTING + " INTEGER PRIMARY KEY,"
+                + Constants.KEY_NAME_SETTING + " TEXT,"
+                + Constants.KEY_ID_IMAGE_SETTING + " INTEGER" + ")";
         db.execSQL(CREATE_TABLE_BOARD);
         db.execSQL(CREATE_TABLE_GROUP_BOARD);
         db.execSQL(CREATE_TABLE_GROUP_COMMODITY);
         db.execSQL(CREATE_TABLE_COMMODITY);
+        db.execSQL(CREATE_TABLE_SETTING);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_BOARD);
-        db.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_GROUP_BOARD);
-        db.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_GROUP_COMMODITY);
-        db.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_COMMODITY);
+        db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_BOARD);
+        db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_GROUP_BOARD);
+        db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_GROUP_COMMODITY);
+        db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_COMMODITY);
+        db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_SETTING);
         onCreate(db);
     }
 }

@@ -43,7 +43,7 @@ public class BoardGirdViewAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
         BoardViewHolder boardViewHolder;
         if (view == null) {
-            view = mLayoutInflater.inflate(R.layout.item_board, null);
+            view = mLayoutInflater.inflate(R.layout.item_board, viewGroup, false);
             boardViewHolder = new BoardViewHolder();
             boardViewHolder.mTextViewName = (TextView) view.findViewById(R.id.text_number_board);
             view.setTag(boardViewHolder);
