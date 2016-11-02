@@ -22,6 +22,7 @@ import com.tuananh.restaurant.manager.ui.adapter.commodity.GroupCommodityRecycle
 import com.tuananh.restaurant.manager.ui.listener.OnClickCommodityItemListener;
 import com.tuananh.restaurant.manager.ui.listener.OnClickCommoditySelectedItemListener;
 import com.tuananh.restaurant.manager.ui.listener.OnClickGroupCommodityItemListener;
+import com.tuananh.restaurant.manager.ui.utility.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +60,7 @@ public class BoardActivity extends BaseActivity
         mDBHelper.createDBBoard();
         mDBHelper.createDBGroupCommodity();
         mDBHelper.createDBCommodity();
+        mDBHelper.createDBBoardCommodity();
         //
         mGroupCommodityList = mDBHelper.getDBGroupCommodity().getGroupCommodityAll();
         mCommodityList = mDBHelper.getDBCommodity().getCommodityAllCommon();
@@ -122,10 +124,15 @@ public class BoardActivity extends BaseActivity
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_save:
-                mButtonSave.setVisibility(View.GONE);
-                mButtonPay.setVisibility(View.VISIBLE);
-                mBoard.setIsSave(Constants.TRUE);
-                mCommoditySelectedRecyclerViewAdapter.notifyDataSetChanged();
+                if (mCommoditySelectedList.size() > 0) {
+                    mButtonSave.setVisibility(View.GONE);
+                    mButtonPay.setVisibility(View.VISIBLE);
+                    mBoard.setIsSave(Constants.TRUE);
+                    mCommoditySelectedRecyclerViewAdapter.notifyDataSetChanged();
+                    saveData();
+                } else {
+                    ToastUtils.showMessages(this, R.string.not_commodity_selected);
+                }
                 break;
             case R.id.button_pay:
                 break;
@@ -138,6 +145,13 @@ public class BoardActivity extends BaseActivity
                     mScrollViewSelected.setVisibility(View.VISIBLE);
                 }
                 break;
+        }
+    }
+
+    private void saveData() {
+        for (Commodity commodity : mCommoditySelectedList) {
+            mDBHelper.getDBBoardCommodity().addBoardCommodity(mBoard.getId(), commodity.getId(),
+                commodity.getNumber());
         }
     }
 

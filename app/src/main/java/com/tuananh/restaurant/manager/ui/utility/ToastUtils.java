@@ -7,16 +7,11 @@ import android.widget.Toast;
  * Created by framgia on 09/10/2016.
  */
 public class ToastUtils {
-    private static Context sContext;
-
-    public static void ToastUtils(Context context) {
-        sContext = context;
+    public static void showMessages(Context context, int resId) {
+        Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
     }
 
-    public static void showMessages(int resId) {
-        Toast.makeText(sContext, resId, Toast.LENGTH_SHORT);
-    }
-
-    public static void showMessages(String messages) {
+    public static void showMessages(Context context, String messages) {
+        Toast.makeText(context, messages, Toast.LENGTH_SHORT).show();;
     }
 }

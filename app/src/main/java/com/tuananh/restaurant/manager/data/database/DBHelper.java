@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.data.controller.board.DBBoard;
+import com.tuananh.restaurant.manager.data.controller.board.DBBoardCommodity;
 import com.tuananh.restaurant.manager.data.controller.board.DBGroupBoard;
 import com.tuananh.restaurant.manager.data.controller.commodity.DBCommodity;
 import com.tuananh.restaurant.manager.data.controller.commodity.DBGroupCommodity;
@@ -23,6 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private DBGroupCommodity mDBGroupCommodity;
     private DBCommodity mDBCommodity;
     private DBSetting mDBSetting;
+    private DBBoardCommodity mDBBoardCommodity;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -48,6 +50,10 @@ public class DBHelper extends SQLiteOpenHelper {
         mDBSetting = new DBSetting(this);
     }
 
+    public void createDBBoardCommodity() {
+        mDBBoardCommodity = new DBBoardCommodity(this);
+    }
+
     public DBBoard getDBBoard() {
         return mDBBoard;
     }
@@ -66,6 +72,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBSetting getDBSetting() {
         return mDBSetting;
+    }
+
+    public DBBoardCommodity getDBBoardCommodity() {
+        return mDBBoardCommodity;
     }
 
     @Override
@@ -101,11 +111,18 @@ public class DBHelper extends SQLiteOpenHelper {
                 + Constants.KEY_ID_SETTING + " INTEGER PRIMARY KEY,"
                 + Constants.KEY_NAME_SETTING + " TEXT,"
                 + Constants.KEY_ID_IMAGE_SETTING + " INTEGER" + ")";
+        String CREATE_TABLE_BOARD_COMMODITY =
+            "CREATE TABLE " + Constants.TABLE_BOARD_COMMODITY + "("
+                + Constants.KEY_ID_BOARD_COMMODITY + " INTEGER PRIMARY KEY,"
+                + Constants.KEY_ID_BOARD + " INTEGER,"
+                + Constants.KEY_NUMBER_COMMODITY_IN_BOARD + " INTEGER,"
+                + Constants.KEY_ID_COMMODITY + " INTEGER" + ")";
         db.execSQL(CREATE_TABLE_BOARD);
         db.execSQL(CREATE_TABLE_GROUP_BOARD);
         db.execSQL(CREATE_TABLE_GROUP_COMMODITY);
         db.execSQL(CREATE_TABLE_COMMODITY);
         db.execSQL(CREATE_TABLE_SETTING);
+        db.execSQL(CREATE_TABLE_BOARD_COMMODITY);
     }
 
     @Override
@@ -115,6 +132,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_GROUP_COMMODITY);
         db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_COMMODITY);
         db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_SETTING);
+        db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_BOARD_COMMODITY);
         onCreate(db);
     }
 }

@@ -31,6 +31,10 @@ public class Constants {
     public final static String KEY_ID_SETTING = "id_setting";
     public final static String KEY_NAME_SETTING = "name_setting";
     public final static String KEY_ID_IMAGE_SETTING = "id_image_setting";
+    // table board_commodity
+    public final static String TABLE_BOARD_COMMODITY = "board_commodity";
+    public final static String KEY_ID_BOARD_COMMODITY = "id_board_commodity";
+    public final static String KEY_NUMBER_COMMODITY_IN_BOARD = "number_commodity_in_board";
     //
     public final static int CHECK_ADD_TRUE = 0;
     public final static String SHARED_PREFERENCES = "restaurant_manager";
