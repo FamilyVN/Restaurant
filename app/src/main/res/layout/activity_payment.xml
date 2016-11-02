@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_payment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tuananh.restaurant.manager.ui.activity.PaymentActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/layout_item_board_activity">
+
+            <TextView
+                style="@style/text_item_board_activity"
+                android:text="@string/board_activity_board"/>
+
+            <TextView
+                android:id="@+id/text_board_activity_board"
+                style="@style/text_item_board_activity"
+                android:textColor="@android:color/holo_red_light"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/layout_item_board_activity">
+
+            <TextView
+                style="@style/text_item_board_activity"
+                android:text="@string/board_activity_total_money"/>
+
+            <TextView
+                android:id="@+id/text_board_activity_total_money"
+                style="@style/text_item_board_activity"
+                android:textColor="@android:color/holo_red_light"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_customers_pay"
+            style="@style/layout_item_board_activity">
+
+            <TextView
+                style="@style/text_item_board_activity"
+                android:text="@string/text_view_customers_pay"/>
+
+            <TextView
+                style="@style/text_item_board_activity"
+                android:textColor="@android:color/holo_red_light"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_refunds_to_customers"
+            style="@style/layout_item_board_activity">
+
+            <TextView
+                style="@style/text_item_board_activity"
+                android:text="@string/text_view_refunds_to_customers"/>
+
+            <TextView
+                style="@style/text_item_board_activity"
+                android:textColor="@android:color/holo_red_light"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include
+        layout="@layout/calender_item_custom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>

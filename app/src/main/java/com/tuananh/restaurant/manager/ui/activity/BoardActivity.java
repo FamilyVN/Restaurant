@@ -1,5 +1,6 @@
 package com.tuananh.restaurant.manager.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,8 +12,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.tuananh.restaurant.manager.R;
+import com.tuananh.restaurant.manager.controller.database.DBHelper;
 import com.tuananh.restaurant.manager.data.Constants;
-import com.tuananh.restaurant.manager.data.database.DBHelper;
 import com.tuananh.restaurant.manager.data.model.board.Board;
 import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.data.model.commodity.GroupCommodity;
@@ -22,7 +23,7 @@ import com.tuananh.restaurant.manager.ui.adapter.commodity.GroupCommodityRecycle
 import com.tuananh.restaurant.manager.ui.listener.OnClickCommodityItemListener;
 import com.tuananh.restaurant.manager.ui.listener.OnClickCommoditySelectedItemListener;
 import com.tuananh.restaurant.manager.ui.listener.OnClickGroupCommodityItemListener;
-import com.tuananh.restaurant.manager.ui.utility.ToastUtils;
+import com.tuananh.restaurant.manager.utility.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,6 +136,7 @@ public class BoardActivity extends BaseActivity
                 }
                 break;
             case R.id.button_pay:
+                startActivity(new Intent(this, PaymentActivity.class));
                 break;
             case R.id.image_up_down_board_activity:
                 if (mScrollViewSelected.getVisibility() == View.VISIBLE) {

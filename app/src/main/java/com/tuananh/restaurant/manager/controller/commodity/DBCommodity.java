@@ -1,4 +1,4 @@
-package com.tuananh.restaurant.manager.data.controller.commodity;
+package com.tuananh.restaurant.manager.controller.commodity;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.tuananh.restaurant.manager.data.Constants;
-import com.tuananh.restaurant.manager.data.database.DBTest;
+import com.tuananh.restaurant.manager.controller.database.DBTest;
 import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
 
 import java.util.ArrayList;
@@ -64,7 +64,7 @@ public class DBCommodity {
         String selectQuery = "SELECT * FROM " + Constants.TABLE_COMMODITY
             + " WHERE " + Constants.KEY_IS_COMMON_COMMODITY + " =?";
         SQLiteDatabase db = mSQLiteOpenHelper.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, new String[]{"" + DBTest.COMMON});
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(DBTest.COMMON)});
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 Commodity commodity =

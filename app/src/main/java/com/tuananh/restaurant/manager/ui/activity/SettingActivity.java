@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.tuananh.restaurant.manager.R;
-import com.tuananh.restaurant.manager.data.database.DBHelper;
+import com.tuananh.restaurant.manager.controller.database.DBHelper;
 import com.tuananh.restaurant.manager.data.model.setting.Setting;
 import com.tuananh.restaurant.manager.ui.adapter.setting.SettingRecyclerAdapter;
 import com.tuananh.restaurant.manager.ui.listener.OnClickSettingItemListener;

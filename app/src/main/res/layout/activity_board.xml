@@ -54,37 +54,6 @@
                 android:textColor="@android:color/holo_red_light"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/layout_customers_pay"
-            style="@style/layout_item_board_activity"
-            android:visibility="gone">
-
-            <TextView
-                style="@style/text_item_board_activity"
-                android:text="@string/text_view_customers_pay"/>
-
-            <EditText
-                style="@style/text_item_board_activity"
-                android:inputType="numberSigned"
-                android:maxLength="8"
-                android:paddingBottom="@dimen/edit_text_padding_bottom_payment"
-                android:textColor="@android:color/holo_red_light"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_refunds_to_customers"
-            style="@style/layout_item_board_activity"
-            android:visibility="gone">
-
-            <TextView
-                style="@style/text_item_board_activity"
-                android:text="@string/text_view_refunds_to_customers"/>
-
-            <TextView
-                style="@style/text_item_board_activity"
-                android:textColor="@android:color/holo_red_light"/>
-        </LinearLayout>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

@@ -1,4 +1,4 @@
-package com.tuananh.restaurant.manager.data.controller.commodity;
+package com.tuananh.restaurant.manager.controller.commodity;
 
 import android.content.ContentValues;
 import android.database.Cursor;

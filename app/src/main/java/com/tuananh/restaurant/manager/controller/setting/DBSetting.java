@@ -1,4 +1,4 @@
-package com.tuananh.restaurant.manager.data.controller.setting;
+package com.tuananh.restaurant.manager.controller.setting;
 
 import android.content.ContentValues;
 import android.database.Cursor;

@@ -10,7 +10,7 @@ import android.widget.GridView;
 
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.data.Constants;
-import com.tuananh.restaurant.manager.data.database.DBHelper;
+import com.tuananh.restaurant.manager.controller.database.DBHelper;
 import com.tuananh.restaurant.manager.data.model.board.Board;
 import com.tuananh.restaurant.manager.data.model.board.GroupBoard;
 import com.tuananh.restaurant.manager.ui.adapter.board.BoardGirdViewAdapter;
