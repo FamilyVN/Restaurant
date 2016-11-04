@@ -1,16 +1,16 @@
-package com.tuananh.restaurant.manager.data.database;
+package com.tuananh.restaurant.manager.controller.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.tuananh.restaurant.manager.controller.board.DBBoard;
+import com.tuananh.restaurant.manager.controller.board.DBBoardCommodity;
+import com.tuananh.restaurant.manager.controller.board.DBGroupBoard;
+import com.tuananh.restaurant.manager.controller.commodity.DBCommodity;
+import com.tuananh.restaurant.manager.controller.commodity.DBGroupCommodity;
+import com.tuananh.restaurant.manager.controller.setting.DBSetting;
 import com.tuananh.restaurant.manager.data.Constants;
-import com.tuananh.restaurant.manager.data.controller.board.DBBoard;
-import com.tuananh.restaurant.manager.data.controller.board.DBBoardCommodity;
-import com.tuananh.restaurant.manager.data.controller.board.DBGroupBoard;
-import com.tuananh.restaurant.manager.data.controller.commodity.DBCommodity;
-import com.tuananh.restaurant.manager.data.controller.commodity.DBGroupCommodity;
-import com.tuananh.restaurant.manager.data.controller.setting.DBSetting;
 
 /**
  * Created by framgia on 16/09/2016.

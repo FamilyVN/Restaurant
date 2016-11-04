@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.tuananh.restaurant.manager.R;
-import com.tuananh.restaurant.manager.data.database.DBTest;
+import com.tuananh.restaurant.manager.controller.database.DBTest;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Override
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, SellActivity.class));
                 break;
             case R.id.item_menu_quick_payment:
+                startActivity(new Intent(this, PaymentActivity.class));
                 break;
             case R.id.item_menu_settings:
                 startActivity(new Intent(this, SettingActivity.class));

@@ -1,4 +1,4 @@
-package com.tuananh.restaurant.manager.ui.utility;
+package com.tuananh.restaurant.manager.utility;
 
 import android.content.Context;
 import android.widget.Toast;
