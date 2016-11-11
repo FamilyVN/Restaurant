@@ -14,6 +14,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/layout_name_board_payment_activity"
             style="@style/layout_item_board_activity">
 
             <TextView
@@ -21,7 +22,7 @@
                 android:text="@string/board_activity_board"/>
 
             <TextView
-                android:id="@+id/text_board_activity_board"
+                android:id="@+id/text_name_board_payment_activity"
                 style="@style/text_item_board_activity"
                 android:textColor="@android:color/holo_red_light"/>
 
@@ -35,7 +36,7 @@
                 android:text="@string/board_activity_total_money"/>
 
             <TextView
-                android:id="@+id/text_board_activity_total_money"
+                android:id="@+id/text_total_money_payment_activity"
                 style="@style/text_item_board_activity"
                 android:textColor="@android:color/holo_red_light"/>
         </LinearLayout>
@@ -49,7 +50,10 @@
                 android:text="@string/text_view_customers_pay"/>
 
             <TextView
+                android:id="@+id/text_customers_pay_payment_activity"
                 style="@style/text_item_board_activity"
+                android:lines="1"
+                android:maxLength="7"
                 android:textColor="@android:color/holo_red_light"/>
         </LinearLayout>
 
@@ -62,6 +66,7 @@
                 android:text="@string/text_view_refunds_to_customers"/>
 
             <TextView
+                android:id="@+id/text_refunds_to_customers_payment_activity"
                 style="@style/text_item_board_activity"
                 android:textColor="@android:color/holo_red_light"/>
         </LinearLayout>

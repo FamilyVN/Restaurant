@@ -15,4 +15,13 @@
     <string name="text_view_customers_pay">Khách đưa:</string>
     <string name="text_view_refunds_to_customers">Tiền trả lại : </string>
     <string name="not_commodity_selected">Không có danh sách món gọi</string>
+    <string name="text_button_pay_number_1">1</string>
+    <string name="text_button_pay_number_2">2</string>
+    <string name="text_button_pay_number_3">3</string>
+    <string name="text_button_pay_number_4">4</string>
+    <string name="text_button_pay_number_5">5</string>
+    <string name="text_button_pay_number_6">6</string>
+    <string name="text_button_pay_number_7">7</string>
+    <string name="text_button_pay_number_8">8</string>
+    <string name="text_button_pay_number_9">9</string>
 </resources>

@@ -41,6 +41,5 @@ public class SettingActivity extends BaseActivity implements OnClickSettingItemL
     @Override
     public void onClickItem(SettingRecyclerAdapter.SettingViewHolder settingViewHolder,
                             int position) {
-
     }
 }

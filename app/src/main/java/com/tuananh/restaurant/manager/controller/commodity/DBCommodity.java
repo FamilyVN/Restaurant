@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.controller.database.DBTest;
+import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
 
 import java.util.ArrayList;
