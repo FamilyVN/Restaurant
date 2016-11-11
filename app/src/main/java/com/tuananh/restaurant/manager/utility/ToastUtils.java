@@ -12,6 +12,7 @@ public class ToastUtils {
     }
 
     public static void showMessages(Context context, String messages) {
-        Toast.makeText(context, messages, Toast.LENGTH_SHORT).show();;
+        Toast.makeText(context, messages, Toast.LENGTH_SHORT).show();
+        ;
     }
 }

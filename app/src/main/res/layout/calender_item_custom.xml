@@ -20,20 +20,23 @@
             android:weightSum="3">
 
             <Button
+                android:id="@+id/button_pay_number_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/calender_background_default"
-                android:text="1"/>
+                android:text="@string/text_button_pay_number_1"/>
 
             <Button
+                android:id="@+id/button_pay_number_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/calender_background_default"
-                android:text="2"/>
+                android:text="@string/text_button_pay_number_2"/>
 
             <Button
+                android:id="@+id/button_pay_number_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -49,6 +52,7 @@
             android:weightSum="3">
 
             <Button
+                android:id="@+id/button_pay_number_4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -56,6 +60,7 @@
                 android:text="4"/>
 
             <Button
+                android:id="@+id/button_pay_number_5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -63,6 +68,7 @@
                 android:text="5"/>
 
             <Button
+                android:id="@+id/button_pay_number_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -78,6 +84,7 @@
             android:weightSum="3">
 
             <Button
+                android:id="@+id/button_pay_number_7"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -85,6 +92,7 @@
                 android:text="7"/>
 
             <Button
+                android:id="@+id/button_pay_number_8"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -92,6 +100,7 @@
                 android:text="8"/>
 
             <Button
+                android:id="@+id/button_pay_number_9"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -136,6 +145,7 @@
             android:weightSum="3">
 
             <ImageButton
+                android:id="@+id/button_pay_number_delete"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -143,6 +153,7 @@
                 android:src="@drawable/ic_keyboard_backspace"/>
 
             <Button
+                android:id="@+id/button_pay_number_delete_all"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

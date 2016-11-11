@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.tuananh.restaurant.manager.R;
-import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.controller.board.DBBoard;
 import com.tuananh.restaurant.manager.controller.board.DBGroupBoard;
 import com.tuananh.restaurant.manager.controller.commodity.DBCommodity;
 import com.tuananh.restaurant.manager.controller.commodity.DBGroupCommodity;
 import com.tuananh.restaurant.manager.controller.setting.DBSetting;
+import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.data.model.board.Board;
 import com.tuananh.restaurant.manager.data.model.board.GroupBoard;
 import com.tuananh.restaurant.manager.data.model.commodity.Commodity;

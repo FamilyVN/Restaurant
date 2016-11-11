@@ -41,6 +41,9 @@ public class Constants {
     public final static String UPDATE = "update";
     public final static int ID_GROUP_DEFAULT = 1;
     public final static String ID_BOARD_SELECTED = "id_board_selected";
+    public final static String NAME_BOARD_SELECTED = "name_board_selected";
+    public final static String TOTAL_MONEY = "total_money";
+    public final static int TOTAL_MONEY_DEFAULT = 0;
     public final static int ID_BOARD_DEFAULT = -1;
     public final static int TRUE = 1;
     public final static int FALSE = 0;

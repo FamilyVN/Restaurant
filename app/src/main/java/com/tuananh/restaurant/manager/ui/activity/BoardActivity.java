@@ -70,6 +70,8 @@ public class BoardActivity extends BaseActivity
         int id = getIntent().getIntExtra(Constants.ID_BOARD_SELECTED, Constants.ID_BOARD_DEFAULT);
         if (id != Constants.ID_BOARD_DEFAULT) {
             mBoard = mDBHelper.getDBBoard().getBoardById(id);
+        } else {
+            mBoard = new Board();
         }
     }
 
@@ -151,9 +153,11 @@ public class BoardActivity extends BaseActivity
     }
 
     private void saveData() {
-        for (Commodity commodity : mCommoditySelectedList) {
-            mDBHelper.getDBBoardCommodity().addBoardCommodity(mBoard.getId(), commodity.getId(),
-                commodity.getNumber());
+        if (mBoard.getId() != Board.ID_DEFAULT) {
+            for (Commodity commodity : mCommoditySelectedList) {
+                mDBHelper.getDBBoardCommodity().addBoardCommodity(mBoard.getId(), commodity.getId(),
+                    commodity.getNumber());
+            }
         }
     }
 
