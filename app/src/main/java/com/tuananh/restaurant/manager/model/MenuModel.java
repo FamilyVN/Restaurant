@@ -7,6 +7,7 @@ public class MenuModel {
     private int mType;
     private int mIdColor;
     private int mTitle;
+    private int mIdImage;
 
     public int getType() {
         return mType;
@@ -18,5 +19,9 @@ public class MenuModel {
 
     public int getTitle() {
         return mTitle;
+    }
+
+    public int getIdImage() {
+        return mIdImage;
     }
 }

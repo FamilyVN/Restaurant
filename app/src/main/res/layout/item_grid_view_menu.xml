@@ -16,8 +16,8 @@
         <ImageView
             android:id="@+id/image_menu"
             style="@style/image_item_menu"
-            android:background="@android:color/holo_orange_light"
-            android:src="@drawable/img_sell"/>
+            android:background="@{viewModel.idColor}"
+            android:src="@{viewModel.idImage}"/>
 
         <TextView
             style="@style/text_item_menu"
