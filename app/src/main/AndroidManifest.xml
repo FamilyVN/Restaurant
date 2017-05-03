@@ -9,6 +9,7 @@
         android:theme="@style/AppTheme.ActionBar">
         <activity
             android:name=".view.activity.menu.MenuActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -26,5 +27,4 @@
             android:label="@string/title_board"/>
         <activity android:name=".ui.activity.PaymentActivity"/>
     </application>
-
 </manifest>

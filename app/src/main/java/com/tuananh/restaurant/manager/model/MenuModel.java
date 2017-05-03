@@ -9,6 +9,13 @@ public class MenuModel {
     private int mTitle;
     private int mIdImage;
 
+    public MenuModel(int type, int idColor, int title, int idImage) {
+        mType = type;
+        mIdColor = idColor;
+        mTitle = title;
+        mIdImage = idImage;
+    }
+
     public int getType() {
         return mType;
     }
