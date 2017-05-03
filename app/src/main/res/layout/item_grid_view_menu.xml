@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.tuananh.restaurant.manager.model.MenuModel"/>
-    </data>
-
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:id="@+id/item_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/margin_padding_10"
+        android:paddingTop="@dimen/margin_padding_10">
 
         <ImageView
             android:id="@+id/image_menu"
-            style="@style/image_item_menu"
-            android:background="@{viewModel.idColor}"
-            android:src="@{viewModel.idImage}"/>
+            style="@style/image_item_menu"/>
 
         <TextView
+            android:id="@+id/text_menu"
             style="@style/text_item_menu"
-            android:layout_alignTop="@+id/image_menu"
-            android:text="@{viewModel.title}"/>
+            android:layout_alignTop="@+id/image_menu"/>
     </RelativeLayout>
 </layout>

@@ -20,8 +20,10 @@
         android:orientation="vertical">
 
         <GridView
+            android:id="@+id/grid_view_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:numColumns="2"
             app:adapter="@{adapter}"/>
     </LinearLayout>
