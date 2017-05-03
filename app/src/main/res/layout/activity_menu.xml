@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="com.tuananh.restaurant.manager.view.activity.menu.MenuActivityViewModel"/>
+
+        <variable
             name="adapter"
             type="android.widget.BaseAdapter"/>
     </data>
