@@ -10,11 +10,11 @@ import com.tuananh.restaurant.manager.controller.commodity.DBCommodity;
 import com.tuananh.restaurant.manager.controller.commodity.DBGroupCommodity;
 import com.tuananh.restaurant.manager.controller.setting.DBSetting;
 import com.tuananh.restaurant.manager.data.Constants;
-import com.tuananh.restaurant.manager.data.model.board.Board;
-import com.tuananh.restaurant.manager.data.model.board.GroupBoard;
 import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.data.model.commodity.GroupCommodity;
 import com.tuananh.restaurant.manager.data.model.setting.Setting;
+import com.tuananh.restaurant.manager.model.board.Board;
+import com.tuananh.restaurant.manager.model.board.GroupBoard;
 
 /**
  * Created by framgia on 17/09/2016.

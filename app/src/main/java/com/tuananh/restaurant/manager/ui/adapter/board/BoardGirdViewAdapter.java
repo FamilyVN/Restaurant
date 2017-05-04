@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.tuananh.restaurant.manager.R;
-import com.tuananh.restaurant.manager.data.model.board.Board;
+import com.tuananh.restaurant.manager.model.board.Board;
 
 import java.util.List;
 

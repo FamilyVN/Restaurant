@@ -6,7 +6,7 @@
     <string name="text_menu_settings">CÀI ĐẶT</string>
     <string name="text_menu_help">GIÚP ĐỠ</string>
     <string name="title_sell">Bán hàng</string>
-    <string name="board_number">Bàn 1</string>
+    <string name="board_number">Bàn %d</string>
     <string name="board_activity_board">Bàn: </string>
     <string name="board_activity_total_money">Tổng: </string>
     <string name="board_activity_save">Lưu</string>
