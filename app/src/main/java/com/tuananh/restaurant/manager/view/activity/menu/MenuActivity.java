@@ -1,5 +1,7 @@
 package com.tuananh.restaurant.manager.view.activity.menu;
 
+import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -7,6 +9,9 @@ import com.restaurant.tuananh.mvvm.BaseActivityHeaderFooter;
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.databinding.ActivityMenuBinding;
 import com.tuananh.restaurant.manager.model.MenuModel;
+import com.tuananh.restaurant.manager.ui.activity.PaymentActivity;
+import com.tuananh.restaurant.manager.ui.activity.SettingActivity;
+import com.tuananh.restaurant.manager.view.activity.sell.SellActivity;
 import com.tuananh.restaurant.manager.view.adapter.MenuGridViewAdapter;
 
 import java.util.List;
@@ -28,19 +33,22 @@ public class MenuActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.d("TAG: ", "-------- position = " + position);
+        Intent intent;
         switch (position) {
             case MenuGridViewAdapter.POSITION_SELL:
-                // TODO: 03/05/2017
+                intent = new Intent(MenuActivity.this, SellActivity.class);
                 break;
             case MenuGridViewAdapter.POSITION_QUICK_PAYMENT:
-                // TODO: 03/05/2017
+                intent = new Intent(MenuActivity.this, PaymentActivity.class);
                 break;
             case MenuGridViewAdapter.POSITION_SETTINGS:
-                // TODO: 03/05/2017
+                intent = new Intent(MenuActivity.this, SettingActivity.class);
                 break;
-            case MenuGridViewAdapter.POSITION_HELP:
-                // TODO: 03/05/2017
+            default:
+                intent = new Intent(MenuActivity.this, SellActivity.class);
                 break;
         }
+        startActivity(intent);
     }
 }

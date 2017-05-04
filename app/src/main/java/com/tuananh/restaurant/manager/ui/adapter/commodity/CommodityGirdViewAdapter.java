@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.data.Constants;
-import com.tuananh.restaurant.manager.data.model.board.Board;
 import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
+import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.ui.listener.OnClickCommodityItemListener;
 
 import java.util.List;

@@ -1,31 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical"
-    tools:context="com.tuananh.restaurant.manager.ui.activity.SellActivity">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_sell_group"
+    <data>
+
+        <variable
+            name="adapter"
+            type="android.support.v7.widget.RecyclerView.Adapter"/>
+
+        <variable
+            name="adapterGridView"
+            type="android.widget.BaseAdapter"/>
+
+        <variable
+            name="viewModel"
+            type="com.tuananh.restaurant.manager.view.activity.sell.SellActivityViewModel"/>
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_small"/>
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        tools:context="com.tuananh.restaurant.manager.ui.activity.SellActivity">
 
-    <include layout="@layout/line_break"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_sell_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small"
+            app:adapter="@{adapter}"/>
 
-    <GridView
-        android:id="@+id/grid_view_sell_board"
-        android:layout_width="@dimen/activity_sell_gird_view_width"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/activity_sell_gird_view_margin_top"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:horizontalSpacing="@dimen/activity_sell_gird_view_horizontal_spacing"
-        android:numColumns="2"
-        android:verticalSpacing="@dimen/activity_sell_gird_view_vertical_spacing"/>
+        <include layout="@layout/line_break"/>
 
-</LinearLayout>
+        <GridView
+            android:id="@+id/grid_view_sell_board"
+            android:layout_width="@dimen/activity_sell_gird_view_width"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/activity_sell_gird_view_margin_top"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:horizontalSpacing="@dimen/activity_sell_gird_view_horizontal_spacing"
+            android:numColumns="2"
+            android:verticalSpacing="@dimen/activity_sell_gird_view_vertical_spacing"
+            app:adapter="@{adapterGridView}"/>
+    </LinearLayout>
+</layout>

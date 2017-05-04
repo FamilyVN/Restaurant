@@ -59,11 +59,6 @@ public class MenuGridViewAdapter extends BaseAdapter {
         } else {
             gridViewHolder = (GridViewHolder) convertView.getTag();
         }
-        gridViewHolder.mBinding.itemMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
         gridViewHolder.bind(menuModel);
         return convertView;
     }

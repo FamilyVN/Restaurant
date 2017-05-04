@@ -29,4 +29,5 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile project(path: ':databaseHelper')
     compile project(path: ':mvvm')
+    compile 'com.android.support:cardview-v7:25.3.1'
 }
