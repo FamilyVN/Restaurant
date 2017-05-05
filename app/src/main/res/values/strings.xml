@@ -24,4 +24,5 @@
     <string name="text_button_pay_number_7">7</string>
     <string name="text_button_pay_number_8">8</string>
     <string name="text_button_pay_number_9">9</string>
+    <string name="text_board_order">Chọn món</string>
 </resources>

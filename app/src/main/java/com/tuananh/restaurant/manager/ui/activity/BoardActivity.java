@@ -140,7 +140,7 @@ public class BoardActivity extends BaseActivity
             case R.id.button_pay:
                 startActivity(new Intent(this, PaymentActivity.class));
                 break;
-            case R.id.image_up_down_board_activity:
+            default:
                 if (mScrollViewSelected.getVisibility() == View.VISIBLE) {
                     mImageViewUpDown.setImageResource(R.drawable.ic_double_arrow_down);
                     mScrollViewSelected.setVisibility(View.GONE);
