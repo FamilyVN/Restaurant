@@ -1,6 +1,7 @@
 package com.tuananh.restaurant.manager.database;
 
 import com.tuananh.restaurant.manager.model.board.Board;
+import com.tuananh.restaurant.manager.model.board.GroupBoard;
 
 import java.util.List;
 
@@ -9,4 +10,5 @@ import java.util.List;
  */
 public interface DatabaseInterface {
     List<Board> getBoardAllByIdGroupBoard(int idGroupBoard);
+    List<GroupBoard> getGroupBoardAll();
 }
