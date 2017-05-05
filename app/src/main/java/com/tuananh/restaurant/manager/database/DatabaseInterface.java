@@ -11,4 +11,6 @@ import java.util.List;
 public interface DatabaseInterface {
     List<Board> getBoardAllByIdGroupBoard(int idGroupBoard);
     List<GroupBoard> getGroupBoardAll();
+    Board getBoardById(int idBoard);
+    void addBoardCommodity(int idBoard, int idCommodity, int number);
 }

@@ -26,5 +26,8 @@
         <activity
             android:name=".view.activity.sell.SellActivity"
             android:label="@string/title_sell"/>
+        <activity
+            android:name=".view.activity.board.BoardActivity"
+            android:label="@string/title_board"/>
     </application>
 </manifest>

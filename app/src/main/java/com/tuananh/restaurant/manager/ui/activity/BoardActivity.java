@@ -2,7 +2,6 @@ package com.tuananh.restaurant.manager.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -82,46 +81,46 @@ public class BoardActivity extends BaseActivity
     }
 
     private void initViews() {
-        mButtonSave = (Button) findViewById(R.id.button_save);
-        mButtonPay = (Button) findViewById(R.id.button_pay);
-        // list commodity selected
-        mRecyclerViewCommoditySelected =
-            (RecyclerView) findViewById(R.id.recycler_view_board_activity_list_commodity_selected);
-        mCommoditySelectedRecyclerViewAdapter = new CommoditySelectedRecyclerViewAdapter(this,
-            mCommoditySelectedList, this, mBoard);
-        mRecyclerViewCommoditySelected.setLayoutManager(
-            new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        mRecyclerViewCommoditySelected.setAdapter(mCommoditySelectedRecyclerViewAdapter);
-        // group commodity
-        mRecyclerViewGroupCommodity =
-            (RecyclerView) findViewById(R.id.recycler_view_board_activity_group_commodity);
-        mGroupCommodityRecyclerViewAdapter = new GroupCommodityRecyclerViewAdapter(
-            this, mGroupCommodityList, this);
-        mRecyclerViewGroupCommodity.setLayoutManager(new LinearLayoutManager(this,
-            LinearLayoutManager.HORIZONTAL, false));
-        mRecyclerViewGroupCommodity.setAdapter(mGroupCommodityRecyclerViewAdapter);
-        mRecyclerViewGroupCommodity.setHasFixedSize(true);
-        if (!mGroupCommodityList.isEmpty()) {
-            mGroupCommodityList.get(0).setSelected(true);
-            mGroupCommodityRecyclerViewAdapter.notifyItemChanged(Constant.ID_GROUP_DEFAULT);
-        }
-        // grid view commodity
-        mGridViewCommodity = (GridView) findViewById(R.id.grid_view_commodity_board_activity);
-        mCommodityGirdViewAdapter =
-            new CommodityGirdViewAdapter(this, mCommodityList, this, mBoard);
-        mGridViewCommodity.setAdapter(mCommodityGirdViewAdapter);
-        //
-        mTextViewNameBoard = (TextView) findViewById(R.id.text_board_activity_board);
-        if (mBoard != null) {
-            mTextViewNameBoard.setText(mBoard.getNameBoard());
-        }
-        mTextViewTotalCost = (TextView) findViewById(R.id.text_board_activity_total_money);
-        //
-        mImageViewUpDown = (ImageView) findViewById(R.id.image_up_down_board_activity);
-        mImageViewUpDown.setOnClickListener(this);
-        mScrollViewSelected = (ScrollView) findViewById(R.id.scroll_view_selected_board_activity);
-        mScrollViewSelected.setVisibility(View.GONE);
-        updateTotalCost();
+//        mButtonSave = (Button) findViewById(R.id.button_save);
+//        mButtonPay = (Button) findViewById(R.id.button_pay);
+//        // list commodity selected
+//        mRecyclerViewCommoditySelected =
+//            (RecyclerView) findViewById(R.id.recycler_view_board_activity_list_commodity_selected);
+//        mCommoditySelectedRecyclerViewAdapter = new CommoditySelectedRecyclerViewAdapter(this,
+//            mCommoditySelectedList, this, mBoard);
+//        mRecyclerViewCommoditySelected.setLayoutManager(
+//            new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+//        mRecyclerViewCommoditySelected.setAdapter(mCommoditySelectedRecyclerViewAdapter);
+//        // group commodity
+//        mRecyclerViewGroupCommodity =
+//            (RecyclerView) findViewById(R.id.recycler_view_board_activity_group_commodity);
+//        mGroupCommodityRecyclerViewAdapter = new GroupCommodityRecyclerViewAdapter(
+//            this, mGroupCommodityList, this);
+//        mRecyclerViewGroupCommodity.setLayoutManager(new LinearLayoutManager(this,
+//            LinearLayoutManager.HORIZONTAL, false));
+//        mRecyclerViewGroupCommodity.setAdapter(mGroupCommodityRecyclerViewAdapter);
+//        mRecyclerViewGroupCommodity.setHasFixedSize(true);
+//        if (!mGroupCommodityList.isEmpty()) {
+//            mGroupCommodityList.get(0).setSelected(true);
+//            mGroupCommodityRecyclerViewAdapter.notifyItemChanged(Constant.ID_GROUP_DEFAULT);
+//        }
+//        // grid view commodity
+//        mGridViewCommodity = (GridView) findViewById(R.id.grid_view_commodity_board_activity);
+//        mCommodityGirdViewAdapter =
+//            new CommodityGirdViewAdapter(this, mCommodityList, this, mBoard);
+//        mGridViewCommodity.setAdapter(mCommodityGirdViewAdapter);
+//        //
+//        mTextViewNameBoard = (TextView) findViewById(R.id.text_board_activity_board);
+//        if (mBoard != null) {
+//            mTextViewNameBoard.setText(mBoard.getNameBoard());
+//        }
+//        mTextViewTotalCost = (TextView) findViewById(R.id.text_board_activity_total_money);
+//        //
+//        mImageViewUpDown = (ImageView) findViewById(R.id.image_up_down_board_activity);
+//        mImageViewUpDown.setOnClickListener(this);
+//        mScrollViewSelected = (ScrollView) findViewById(R.id.scroll_view_selected_board_activity);
+//        mScrollViewSelected.setVisibility(View.GONE);
+//        updateTotalCost();
     }
 
     @Override

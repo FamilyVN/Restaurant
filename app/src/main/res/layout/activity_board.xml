@@ -1,109 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.tuananh.restaurant.manager.ui.activity.BoardActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.tuananh.restaurant.manager.ui.activity.BoardActivity">
 
-    <ScrollView
-        android:id="@+id/scroll_view_selected_board_activity"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/scroll_view_board_activity_height"
-        android:paddingBottom="@dimen/padding_small">
+    <data>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_board_activity_list_commodity_selected"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/padding_small"/>
-    </ScrollView>
+        <variable
+            name="viewModel"
+            type="com.tuananh.restaurant.manager.view.activity.board.BoardActivityViewModel"/>
 
-    <include layout="@layout/line_break"/>
+        <variable
+            name="listener"
+            type="com.tuananh.restaurant.manager.view.activity.board.BoardActivity.BoardListener"/>
+
+        <variable
+            name="commoditySelectedAdapter"
+            type="android.support.v7.widget.RecyclerView.Adapter"/>
+
+        <variable
+            name="commoditySelectedLayoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager"/>
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            style="@style/layout_item_board_activity">
+        <!--<ScrollView-->
+        <!--android:id="@+id/scroll_view_selected_board_activity"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/scroll_view_board_activity_height"-->
+        <!--android:paddingBottom="@dimen/padding_small">-->
 
-            <TextView
-                style="@style/text_item_board_activity"
-                android:text="@string/board_activity_board"/>
-
-            <TextView
-                android:id="@+id/text_board_activity_board"
-                style="@style/text_item_board_activity"
-                android:textColor="@android:color/holo_red_light"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/layout_item_board_activity">
-
-            <TextView
-                style="@style/text_item_board_activity"
-                android:text="@string/board_activity_total_money"/>
-
-            <TextView
-                android:id="@+id/text_board_activity_total_money"
-                style="@style/text_item_board_activity"
-                android:textColor="@android:color/holo_red_light"/>
-        </LinearLayout>
-
-        <RelativeLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_list_commodity_selected"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="200dp"
+            android:padding="@dimen/padding_small"/>
+        <!--</ScrollView>-->
+
+        <include layout="@layout/line_break"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/layout_item_board_activity">
+
+                <TextView
+                    style="@style/text_item_board_activity"
+                    android:text="@string/board_activity_board"/>
+
+                <TextView
+                    android:id="@+id/text_board_activity_board"
+                    style="@style/text_item_board_activity"
+                    android:textColor="@android:color/holo_red_light"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/layout_item_board_activity">
+
+                <TextView
+                    style="@style/text_item_board_activity"
+                    android:text="@string/board_activity_total_money"/>
+
+                <TextView
+                    android:id="@+id/text_board_activity_total_money"
+                    style="@style/text_item_board_activity"
+                    android:textColor="@android:color/holo_red_light"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_padding_10">
+
+                <Button
+                    android:id="@+id/button_pay"
+                    style="@style/button_save_pay_board_activity"
+                    android:onClick="@{() -> listener.onPay()}"
+                    android:text="@string/board_activity_pay"
+                    android:visibility="gone"/>
+
+                <Button
+                    android:id="@+id/button_save"
+                    style="@style/button_save_pay_board_activity"
+                    android:onClick="@{() -> listener.onSave()}"
+                    android:text="@string/board_activity_save"/>
+
+                <ImageView
+                    android:id="@+id/image_up_down_board_activity"
+                    android:layout_width="@dimen/image_view_up_down_width"
+                    android:layout_height="@dimen/image_view_up_down_height"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_small"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:src="@drawable/ic_double_arrow_down"/>
+            </RelativeLayout>
 
             <Button
-                android:id="@+id/button_pay"
-                style="@style/button_save_pay_board_activity"
-                android:text="@string/board_activity_pay"
-                android:visibility="gone"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/holo_orange_dark"
+                android:text="Chọn món"/>
+        </LinearLayout>
 
-            <Button
-                android:id="@+id/button_save"
-                style="@style/button_save_pay_board_activity"
-                android:text="@string/board_activity_save"/>
+        <!--<include layout="@layout/line_break"/>-->
 
-            <ImageView
-                android:id="@+id/image_up_down_board_activity"
-                android:layout_width="@dimen/image_view_up_down_width"
-                android:layout_height="@dimen/image_view_up_down_height"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/margin_small"
-                android:layout_marginEnd="@dimen/margin_small"
-                android:layout_marginRight="@dimen/margin_small"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:src="@drawable/ic_double_arrow_down"/>
-        </RelativeLayout>
+        <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/recycler_view_board_activity_group_commodity"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:padding="@dimen/padding_small"/>-->
+
+        <!--<include layout="@layout/line_break"/>-->
+
+        <!--<GridView-->
+        <!--android:id="@+id/grid_view_commodity_board_activity"-->
+        <!--android:layout_width="@dimen/activity_sell_gird_view_width"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginTop="@dimen/margin_medium"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center"-->
+        <!--android:horizontalSpacing="@dimen/activity_sell_gird_view_horizontal_spacing"-->
+        <!--android:numColumns="2"-->
+        <!--android:verticalSpacing="@dimen/activity_sell_gird_view_vertical_spacing"/>-->
     </LinearLayout>
-
-    <include layout="@layout/line_break"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_board_activity_group_commodity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_small"/>
-
-    <include layout="@layout/line_break"/>
-
-    <GridView
-        android:id="@+id/grid_view_commodity_board_activity"
-        android:layout_width="@dimen/activity_sell_gird_view_width"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:horizontalSpacing="@dimen/activity_sell_gird_view_horizontal_spacing"
-        android:numColumns="2"
-        android:verticalSpacing="@dimen/activity_sell_gird_view_vertical_spacing"/>
-</LinearLayout>
+</layout>

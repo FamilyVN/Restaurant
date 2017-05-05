@@ -12,8 +12,8 @@ import com.tuananh.restaurant.manager.databinding.ActivitySellBinding;
 import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.model.board.GroupBoard;
-import com.tuananh.restaurant.manager.ui.activity.BoardActivity;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
+import com.tuananh.restaurant.manager.view.activity.board.BoardActivity;
 
 import java.util.List;
 
