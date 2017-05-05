@@ -39,6 +39,10 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
         return !CommonUtils.isEmptyList(mCommoditySelectedList);
     }
 
+    public String getNameBoard() {
+        return mBoard.getNameBoard();
+    }
+
     public void saveData() {
         if (mBoard.getId() != Board.ID_DEFAULT) {
             for (Commodity commodity : mCommoditySelectedList) {
