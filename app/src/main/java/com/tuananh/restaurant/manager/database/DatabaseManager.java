@@ -1,10 +1,11 @@
 package com.tuananh.restaurant.manager.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.tuananh.databasehelper.queryhelper.QueryHelper;
-import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.model.board.GroupBoard;
 
@@ -39,10 +40,10 @@ public class DatabaseManager implements DatabaseInterface {
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 Board board = new Board(
-                    cursor.getInt(cursor.getColumnIndex(Constants.KEY_ID_BOARD)),
-                    cursor.getInt(cursor.getColumnIndex(Constants.KEY_FOR_ID_GROUP_BOARD)),
-                    cursor.getString(cursor.getColumnIndex(Constants.KEY_NAME_BOARD)),
-                    cursor.getInt(cursor.getColumnIndex(Constants.KEY_IS_SAVE))
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_BOARD)),
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_FOR_ID_GROUP_BOARD)),
+                    cursor.getString(cursor.getColumnIndex(DBConstant.KEY_NAME_BOARD)),
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE))
                 );
                 boardList.add(board);
             } while (cursor.moveToNext());
@@ -58,14 +59,44 @@ public class DatabaseManager implements DatabaseInterface {
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                GroupBoard groupBoard =
-                    new GroupBoard(
-                        cursor.getInt(cursor.getColumnIndex(Constants.KEY_ID_GROUP_BOARD)),
-                        cursor.getString(cursor.getColumnIndex(Constants.KEY_NAME_GROUP_BOARD))
-                    );
+                GroupBoard groupBoard = new GroupBoard(
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_GROUP_BOARD)),
+                    cursor.getString(cursor.getColumnIndex(DBConstant.KEY_NAME_GROUP_BOARD))
+                );
                 groupBoardList.add(groupBoard);
             } while (cursor.moveToNext());
         }
         return groupBoardList;
+    }
+
+    @Override
+    public Board getBoardById(int idBoard) {
+        Board board = null;
+        QueryHelper queryHelper = new QueryHelper();
+        queryHelper.setTableName(DBConstant.TABLE_BOARD)
+            .addCondition(DBConstant.KEY_ID_BOARD, idBoard);
+        Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                board = new Board(
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_BOARD)),
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_FOR_ID_GROUP_BOARD)),
+                    cursor.getString(cursor.getColumnIndex(DBConstant.KEY_NAME_BOARD)),
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE))
+                );
+            } while (cursor.moveToNext());
+        }
+        return board;
+    }
+
+    @Override
+    public void addBoardCommodity(int idBoard, int idCommodity, int number) {
+        SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DBConstant.KEY_ID_BOARD, idBoard);
+        values.put(DBConstant.KEY_ID_COMMODITY, idCommodity);
+        values.put(DBConstant.KEY_NUMBER_COMMODITY_IN_BOARD, number);
+        db.insert(DBConstant.TABLE_BOARD_COMMODITY, null, values);
+        db.close();
     }
 }
