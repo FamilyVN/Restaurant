@@ -6,6 +6,7 @@ import android.database.Cursor;
 import com.tuananh.databasehelper.queryhelper.QueryHelper;
 import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.model.board.Board;
+import com.tuananh.restaurant.manager.model.board.GroupBoard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,5 +48,24 @@ public class DatabaseManager implements DatabaseInterface {
             } while (cursor.moveToNext());
         }
         return boardList;
+    }
+
+    @Override
+    public List<GroupBoard> getGroupBoardAll() {
+        List<GroupBoard> groupBoardList = new ArrayList<>();
+        QueryHelper queryHelper = new QueryHelper();
+        queryHelper.setTableName(DBConstant.TABLE_GROUP_BOARD);
+        Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                GroupBoard groupBoard =
+                    new GroupBoard(
+                        cursor.getInt(cursor.getColumnIndex(Constants.KEY_ID_GROUP_BOARD)),
+                        cursor.getString(cursor.getColumnIndex(Constants.KEY_NAME_GROUP_BOARD))
+                    );
+                groupBoardList.add(groupBoard);
+            } while (cursor.moveToNext());
+        }
+        return groupBoardList;
     }
 }

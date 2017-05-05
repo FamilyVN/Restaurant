@@ -16,6 +16,7 @@ import com.tuananh.restaurant.manager.controller.database.DBHelper;
 import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.data.model.commodity.GroupCommodity;
+import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.ui.adapter.commodity.CommodityGirdViewAdapter;
 import com.tuananh.restaurant.manager.ui.adapter.commodity.CommoditySelectedRecyclerViewAdapter;
@@ -67,8 +68,8 @@ public class BoardActivity extends BaseActivity
         mCommodityList = mDBHelper.getDBCommodity().getCommodityAllCommon();
         mCommoditySelectedList = new ArrayList<>();
         //
-        int id = getIntent().getIntExtra(Constants.ID_BOARD_SELECTED, Constants.ID_BOARD_DEFAULT);
-        if (id != Constants.ID_BOARD_DEFAULT) {
+        int id = getIntent().getIntExtra(Constants.ID_BOARD_SELECTED, Constant.ID_BOARD_DEFAULT);
+        if (id != Constant.ID_BOARD_DEFAULT) {
             mBoard = mDBHelper.getDBBoard().getBoardById(id);
         } else {
             mBoard = new Board();
@@ -102,7 +103,7 @@ public class BoardActivity extends BaseActivity
         mRecyclerViewGroupCommodity.setHasFixedSize(true);
         if (!mGroupCommodityList.isEmpty()) {
             mGroupCommodityList.get(0).setSelected(true);
-            mGroupCommodityRecyclerViewAdapter.notifyItemChanged(Constants.ID_GROUP_DEFAULT);
+            mGroupCommodityRecyclerViewAdapter.notifyItemChanged(Constant.ID_GROUP_DEFAULT);
         }
         // grid view commodity
         mGridViewCommodity = (GridView) findViewById(R.id.grid_view_commodity_board_activity);
@@ -130,7 +131,7 @@ public class BoardActivity extends BaseActivity
                 if (mCommoditySelectedList.size() > 0) {
                     mButtonSave.setVisibility(View.GONE);
                     mButtonPay.setVisibility(View.VISIBLE);
-                    mBoard.setIsSave(Constants.TRUE);
+                    mBoard.setIsSave(Constant.TRUE);
                     mCommoditySelectedRecyclerViewAdapter.notifyDataSetChanged();
                     saveData();
                 } else {
@@ -262,7 +263,7 @@ public class BoardActivity extends BaseActivity
     public boolean onLongClick(
         CommoditySelectedRecyclerViewAdapter.CommoditySelectedViewHolder commoditySelectedViewHolder,
         int position) {
-        mBoard.setIsSave(Constants.FALSE);
+        mBoard.setIsSave(Constant.FALSE);
         mCommoditySelectedRecyclerViewAdapter.notifyDataSetChanged();
         mButtonSave.setVisibility(View.VISIBLE);
         mButtonPay.setVisibility(View.GONE);

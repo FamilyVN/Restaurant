@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.data.Constants;
+import com.tuananh.restaurant.manager.model.Constant;
 
 public class PaymentActivity extends BaseActivity implements View.OnClickListener {
     private String mNameBoard;
@@ -31,7 +32,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
         if (intent == null) return;
         mTotalMoney = intent.getIntExtra(Constants.TOTAL_MONEY, Constants.TOTAL_MONEY_DEFAULT);
         mNameBoard = intent.getStringExtra(Constants.NAME_BOARD_SELECTED);
-        mIdBoard = intent.getIntExtra(Constants.ID_BOARD_SELECTED, Constants.ID_BOARD_DEFAULT);
+        mIdBoard = intent.getIntExtra(Constants.ID_BOARD_SELECTED, Constant.ID_BOARD_DEFAULT);
         mTotalMoney = intent.getIntExtra(Constants.TOTAL_MONEY, Constants.TOTAL_MONEY_DEFAULT);
     }
 

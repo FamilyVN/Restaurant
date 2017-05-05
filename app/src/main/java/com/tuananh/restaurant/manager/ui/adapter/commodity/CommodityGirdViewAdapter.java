@@ -8,8 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.tuananh.restaurant.manager.R;
-import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
+import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.ui.listener.OnClickCommodityItemListener;
 
@@ -70,7 +70,7 @@ public class CommodityGirdViewAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (mOnClickCommodityItemListener != null &&
-                    mBoard.getIsSave() == Constants.FALSE) {
+                    mBoard.getIsSave() == Constant.FALSE) {
                     mOnClickCommodityItemListener
                         .onClickItemCommodity(commodityViewHolder, position);
                 }

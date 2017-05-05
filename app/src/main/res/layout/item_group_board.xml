@@ -5,13 +5,23 @@
 
         <variable
             name="viewModel"
-            type="com.tuananh.restaurant.manager.model.board.Board"/>
+            type="com.tuananh.restaurant.manager.model.board.GroupBoard"/>
+
+        <variable
+            name="listener"
+            type="com.tuananh.restaurant.manager.view.activity.sell.SellActivity.SelectedGroupBoardListener"/>
+
+        <variable
+            name="position"
+            type="int"/>
     </data>
 
     <android.support.v7.widget.CardView
         android:layout_width="@dimen/card_view_item_group_board_width"
         android:layout_height="@dimen/item_group_board_height"
         android:layout_margin="@dimen/margin_small"
+        android:background="@{viewModel.selected ? @drawable/surround_item_selected : @drawable/surround_item}"
+        android:onClick="@{() -> listener.onClickItemGroupBoard(position)}"
         android:orientation="vertical">
 
         <TextView

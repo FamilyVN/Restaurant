@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.tuananh.restaurant.manager.ui.activity.SellActivity">
 
     <data>
 
         <variable
-            name="adapter"
+            name="groupBoardAdapter"
             type="android.support.v7.widget.RecyclerView.Adapter"/>
 
         <variable
-            name="adapterGridView"
-            type="android.widget.BaseAdapter"/>
+            name="boardAdapter"
+            type="android.support.v7.widget.RecyclerView.Adapter"/>
+
+        <variable
+            name="groupBoardLayoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager"/>
+
+        <variable
+            name="boardLayoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager"/>
 
         <variable
             name="viewModel"
@@ -17,34 +28,28 @@
     </data>
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        android:orientation="vertical"
-        tools:context="com.tuananh.restaurant.manager.ui.activity.SellActivity">
+        android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_sell_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_small"
-            app:adapter="@{adapter}"/>
+            app:adapter="@{groupBoardAdapter}"
+            app:layoutManager="@{groupBoardLayoutManager}"/>
 
         <include layout="@layout/line_break"/>
 
-        <GridView
-            android:id="@+id/grid_view_sell_board"
-            android:layout_width="@dimen/activity_sell_gird_view_width"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_sell_board"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/activity_sell_gird_view_margin_top"
             android:layout_weight="1"
-            android:gravity="center"
-            android:horizontalSpacing="@dimen/activity_sell_gird_view_horizontal_spacing"
-            android:numColumns="2"
-            android:verticalSpacing="@dimen/activity_sell_gird_view_vertical_spacing"
-            app:adapter="@{adapterGridView}"/>
+            android:padding="@dimen/padding_small"
+            app:adapter="@{boardAdapter}"
+            app:layoutManager="@{boardLayoutManager}"/>
     </LinearLayout>
 </layout>

@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tuananh.restaurant.manager.R;
-import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
+import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.ui.listener.OnClickCommoditySelectedItemListener;
 
@@ -50,7 +50,7 @@ public class CommoditySelectedRecyclerViewAdapter extends
         holder.mTextViewName.setText(commodity.getName());
         holder.mTextViewTotalCost.setText(
             new StringBuilder().append(commodity.getTotalCost()).append(" đ").toString());
-        final boolean isSave = mBoard.getIsSave() == Constants.TRUE;
+        final boolean isSave = mBoard.getIsSave() == Constant.TRUE;
         holder.mImageViewReduce.setVisibility(isSave ? View.GONE : View.VISIBLE);
         holder.mImageViewUpAmount.setVisibility(isSave ? View.GONE : View.VISIBLE);
         if (mOnClickCommoditySelectedItemListener != null) {
