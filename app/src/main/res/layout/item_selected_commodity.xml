@@ -1,46 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/item_selected_commodity_height"
-    android:orientation="horizontal"
-    android:paddingLeft="@dimen/padding_small"
-    android:paddingRight="@dimen/padding_small">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        android:id="@+id/image_view_reduce"
-        android:layout_width="@dimen/image_item_selected_commodity_width"
-        android:layout_height="@dimen/image_item_selected_commodity_height"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_reduce"/>
+    <data>
 
-    <TextView
-        android:id="@+id/text_view_number_commodity_selected"
-        android:layout_width="@dimen/text_view_number_commodity_selected_width"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal"/>
+        <variable
+            name="viewModel"
+            type="com.tuananh.restaurant.manager.model.commodity.Commodity"/>
 
-    <TextView
-        android:id="@+id/text_view_name_commodity_selected"
-        android:layout_width="@dimen/text_view_name_commodity_selected_width"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingLeft="@dimen/padding_small"/>
+        <variable
+            name="listener"
+            type="com.tuananh.restaurant.manager.view.activity.board.BoardActivity.SelectedCommodityListener"/>
 
-    <TextView
-        android:id="@+id/text_view_total_cost_commodity_selected"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:textColor="@android:color/holo_red_light"/>
+        <variable
+            name="position"
+            type="int"/>
+    </data>
 
-    <ImageView
-        android:id="@+id/image_view_up_amount"
-        android:layout_width="@dimen/image_item_selected_commodity_width"
-        android:layout_height="@dimen/image_item_selected_commodity_height"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_up_amount"/>
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_selected_commodity_height"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/padding_small"
+        android:paddingRight="@dimen/padding_small">
+
+        <ImageView
+            android:id="@+id/image_view_reduce"
+            android:layout_width="@dimen/image_item_selected_commodity_width"
+            android:layout_height="@dimen/image_item_selected_commodity_height"
+            android:layout_gravity="center"
+            android:onClick="@{() -> listener.onReduce(viewModel, position)}"
+            android:src="@drawable/ic_reduce"/>
+
+        <TextView
+            android:id="@+id/text_view_number_commodity_selected"
+            android:layout_width="@dimen/text_view_number_commodity_selected_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/text_view_name_commodity_selected"
+            android:layout_width="@dimen/text_view_name_commodity_selected_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="@dimen/padding_small"/>
+
+        <TextView
+            android:id="@+id/text_view_total_cost_commodity_selected"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/holo_red_light"/>
+
+        <ImageView
+            android:id="@+id/image_view_up_amount"
+            android:layout_width="@dimen/image_item_selected_commodity_width"
+            android:layout_height="@dimen/image_item_selected_commodity_height"
+            android:layout_gravity="center"
+            android:onClick="@{() -> listener.onUpAmount(viewModel)}"
+            android:src="@drawable/ic_up_amount"/>
+    </LinearLayout>
+</layout>
