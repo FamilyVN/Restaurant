@@ -1,4 +1,4 @@
-package com.tuananh.restaurant.manager.data.model.commodity;
+package com.tuananh.restaurant.manager.model.commodity;
 
 /**
  * Created by framgia on 09/10/2016.

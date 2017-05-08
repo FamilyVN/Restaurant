@@ -1,11 +1,11 @@
 package com.tuananh.restaurant.manager.view.activity.board;
 
 import com.restaurant.tuananh.mvvm.BaseViewModel;
-import com.tuananh.restaurant.manager.data.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.database.DatabaseManager;
 import com.tuananh.restaurant.manager.databinding.ActivityBoardBinding;
 import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.Board;
+import com.tuananh.restaurant.manager.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.utils.CommonUtils;
 
 import java.util.ArrayList;

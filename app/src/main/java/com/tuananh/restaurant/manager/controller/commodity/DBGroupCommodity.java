@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.tuananh.restaurant.manager.data.Constants;
-import com.tuananh.restaurant.manager.data.model.commodity.GroupCommodity;
+import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tuananh.restaurant.manager.R;
-import com.tuananh.restaurant.manager.data.model.commodity.GroupCommodity;
+import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
 import com.tuananh.restaurant.manager.ui.listener.OnClickGroupCommodityItemListener;
 
 import java.util.List;
