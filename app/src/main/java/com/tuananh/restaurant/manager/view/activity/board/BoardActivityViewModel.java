@@ -25,6 +25,7 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
         mBoard = id != Constant.ID_BOARD_DEFAULT ?
             DatabaseManager.getInstance(getContext()).getBoardById(id) : new Board();
         getView().showCommoditySelectedList(mCommoditySelectedList);
+        updateTotalCost();
     }
 
     public void updateTotalCost() {
