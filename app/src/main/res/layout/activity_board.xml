@@ -94,6 +94,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/margin_padding_20"
                 android:background="@android:color/holo_red_dark"
+                android:onClick="@{() -> listener.onOrder()}"
                 android:text="@string/text_board_order"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_14"/>

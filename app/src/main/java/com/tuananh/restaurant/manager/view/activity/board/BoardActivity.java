@@ -62,6 +62,9 @@ public class BoardActivity
 
         public void onPay() {
         }
+
+        public void onOrder() {
+        }
     }
 
     public class SelectedCommodityListener implements BaseViewAdapter.Presenter {
