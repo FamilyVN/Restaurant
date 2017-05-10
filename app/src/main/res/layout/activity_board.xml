@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         tools:context="com.tuananh.restaurant.manager.ui.activity.BoardActivity">
 
@@ -20,84 +21,156 @@
         <variable
             name="commoditySelectedLayoutManager"
             type="android.support.v7.widget.RecyclerView.LayoutManager"/>
+
+        <variable
+            name="groupCommodityAdapter"
+            type="android.support.v7.widget.RecyclerView.Adapter"/>
+
+        <variable
+            name="groupCommodityLayoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager"/>
+
+        <variable
+            name="commodityAdapter"
+            type="android.support.v7.widget.RecyclerView.Adapter"/>
+
+        <variable
+            name="commodityLayoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager"/>
     </data>
 
-    <LinearLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_list_commodity_selected"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:padding="@dimen/padding_small"/>
-
-        <include layout="@layout/line_break"/>
+        android:fitsSystemWindows="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
-                style="@style/layout_item_board_activity">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_list_commodity_selected"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="@dimen/padding_small"/>
 
-                <TextView
-                    style="@style/text_item_board_activity"
-                    android:text="@string/board_activity_board"/>
-
-                <TextView
-                    android:id="@+id/text_board_activity_board"
-                    style="@style/text_item_board_activity"
-                    android:text="@{viewModel.nameBoard}"
-                    android:textColor="@android:color/holo_red_light"/>
-
-            </LinearLayout>
+            <include layout="@layout/line_break"/>
 
             <LinearLayout
-                style="@style/layout_item_board_activity">
-
-                <TextView
-                    style="@style/text_item_board_activity"
-                    android:text="@string/board_activity_total_money"/>
-
-                <TextView
-                    android:id="@+id/text_board_activity_total_money"
-                    style="@style/text_item_board_activity"
-                    android:textColor="@android:color/holo_red_light"/>
-            </LinearLayout>
-
-            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_padding_10">
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/layout_item_board_activity">
+
+                    <TextView
+                        style="@style/text_item_board_activity"
+                        android:text="@string/board_activity_board"/>
+
+                    <TextView
+                        android:id="@+id/text_board_activity_board"
+                        style="@style/text_item_board_activity"
+                        android:text="@{viewModel.nameBoard}"
+                        android:textColor="@android:color/holo_red_light"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/layout_item_board_activity">
+
+                    <TextView
+                        style="@style/text_item_board_activity"
+                        android:text="@string/board_activity_total_money"/>
+
+                    <TextView
+                        android:id="@+id/text_board_activity_total_money"
+                        style="@style/text_item_board_activity"
+                        android:textColor="@android:color/holo_red_light"/>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_padding_10">
+
+                    <Button
+                        android:id="@+id/button_pay"
+                        style="@style/button_save_pay_board_activity"
+                        android:onClick="@{() -> listener.onPay()}"
+                        android:text="@string/board_activity_pay"
+                        android:visibility="gone"/>
+
+                    <Button
+                        android:id="@+id/button_save"
+                        style="@style/button_save_pay_board_activity"
+                        android:onClick="@{() -> listener.onSave()}"
+                        android:text="@string/board_activity_save"/>
+                </RelativeLayout>
 
                 <Button
-                    android:id="@+id/button_pay"
-                    style="@style/button_save_pay_board_activity"
-                    android:onClick="@{() -> listener.onPay()}"
-                    android:text="@string/board_activity_pay"
-                    android:visibility="gone"/>
-
-                <Button
-                    android:id="@+id/button_save"
-                    style="@style/button_save_pay_board_activity"
-                    android:onClick="@{() -> listener.onSave()}"
-                    android:text="@string/board_activity_save"/>
-            </RelativeLayout>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/button_board_activity_height"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="@dimen/margin_padding_20"
-                android:background="@android:color/holo_red_dark"
-                android:onClick="@{() -> listener.onOrder()}"
-                android:text="@string/text_board_order"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_14"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_board_activity_height"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/margin_padding_20"
+                    android:background="@android:color/holo_red_dark"
+                    android:onClick="@{() -> listener.onOrder()}"
+                    android:text="@string/text_board_order"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_size_14"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:background="@android:color/white"
+            android:clipToPadding="true"
+            android:orientation="vertical"
+            app:behavior_hideable="true"
+            app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_padding_10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@android:color/holo_red_dark"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/margin_padding_10"
+                    android:src="@drawable/ic_close"
+                    android:tint="@android:color/black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:adapter="@{groupCommodityAdapter}"
+                    app:layoutManager="@{groupCommodityLayoutManager}"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:adapter="@{commodityAdapter}"
+                    app:layoutManager="@{commodityLayoutManager}"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
 </layout>

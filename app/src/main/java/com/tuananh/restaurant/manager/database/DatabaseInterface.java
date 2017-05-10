@@ -2,6 +2,8 @@ package com.tuananh.restaurant.manager.database;
 
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.model.board.GroupBoard;
+import com.tuananh.restaurant.manager.model.commodity.Commodity;
+import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
 
 import java.util.List;
 
@@ -13,4 +15,6 @@ public interface DatabaseInterface {
     List<GroupBoard> getGroupBoardAll();
     Board getBoardById(int idBoard);
     void addBoardCommodity(int idBoard, int idCommodity, int number);
+    List<GroupCommodity> getGroupCommodityAll();
+    List<Commodity> getCommodityAllCommon();
 }

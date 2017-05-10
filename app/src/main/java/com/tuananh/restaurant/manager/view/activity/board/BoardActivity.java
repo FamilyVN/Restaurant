@@ -1,5 +1,6 @@
 package com.tuananh.restaurant.manager.view.activity.board;
 
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -20,11 +21,14 @@ public class BoardActivity
     extends BaseActivityRestaurant<ActivityBoardBinding, BoardActivityViewModel> {
     private static final int DELTA_UP_REDUCE = 1;
     private SingleTypeAdapter<Commodity> mCommoditySelectedAdapter;
+    private BottomSheetBehavior mBottomSheetBehavior;
 
     @Override
     protected void onViewCreated() {
         super.onViewCreated();
         getBinding().setListener(new BoardListener());
+        mBottomSheetBehavior = BottomSheetBehavior.from(getBinding().bottomSheet);
+        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
     }
 
     @Override
@@ -64,6 +68,7 @@ public class BoardActivity
         }
 
         public void onOrder() {
+            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         }
     }
 
