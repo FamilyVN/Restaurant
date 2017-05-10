@@ -6,8 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.tuananh.databasehelper.queryhelper.QueryHelper;
+import com.tuananh.restaurant.manager.controller.database.DBTest;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.model.board.GroupBoard;
+import com.tuananh.restaurant.manager.model.commodity.Commodity;
+import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,5 +101,48 @@ public class DatabaseManager implements DatabaseInterface {
         values.put(DBConstant.KEY_NUMBER_COMMODITY_IN_BOARD, number);
         db.insert(DBConstant.TABLE_BOARD_COMMODITY, null, values);
         db.close();
+    }
+
+    @Override
+    public List<GroupCommodity> getGroupCommodityAll() {
+        List<GroupCommodity> groupCommodityList = new ArrayList<>();
+        QueryHelper queryHelper = new QueryHelper();
+        queryHelper.setTableName(DBConstant.TABLE_GROUP_COMMODITY);
+        Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                GroupCommodity groupCommodity =
+                    new GroupCommodity(
+                        cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_GROUP_COMMODITY)),
+                        cursor.getString(cursor.getColumnIndex(DBConstant.KEY_NAME_GROUP_COMMODITY))
+                    );
+                groupCommodityList.add(groupCommodity);
+            } while (cursor.moveToNext());
+        }
+        return groupCommodityList;
+    }
+
+    @Override
+    public List<Commodity> getCommodityAllCommon() {
+        List<Commodity> commodityList = new ArrayList<>();
+        QueryHelper queryHelper = new QueryHelper();
+        queryHelper.setTableName(DBConstant.TABLE_COMMODITY)
+            .addCondition(DBConstant.KEY_IS_COMMON_COMMODITY, DBTest.COMMON);
+        Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                Commodity commodity =
+                    new Commodity(
+                        cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_COMMODITY)),
+                        cursor.getString(cursor.getColumnIndex(DBConstant.KEY_NAME_COMMODITY)),
+                        cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_COST_COMMODITY)),
+                        cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_FOR_ID_GROUP_COMMODITY)),
+                        cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_COMMON_COMMODITY)),
+                        cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_NUMBER_COMMODITY))
+                    );
+                commodityList.add(commodity);
+            } while (cursor.moveToNext());
+        }
+        return commodityList;
     }
 }

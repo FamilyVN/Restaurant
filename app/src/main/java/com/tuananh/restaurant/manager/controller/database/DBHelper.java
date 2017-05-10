@@ -10,7 +10,7 @@ import com.tuananh.restaurant.manager.controller.board.DBGroupBoard;
 import com.tuananh.restaurant.manager.controller.commodity.DBCommodity;
 import com.tuananh.restaurant.manager.controller.commodity.DBGroupCommodity;
 import com.tuananh.restaurant.manager.controller.setting.DBSetting;
-import com.tuananh.restaurant.manager.data.Constants;
+import com.tuananh.restaurant.manager.database.DBConstant;
 
 /**
  * Created by framgia on 16/09/2016.
@@ -85,38 +85,38 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private void onCreateTable(SQLiteDatabase db) {
         String CREATE_TABLE_BOARD =
-            "CREATE TABLE " + Constants.TABLE_BOARD + "("
-                + Constants.KEY_ID_BOARD + " INTEGER PRIMARY KEY,"
-                + Constants.KEY_NAME_BOARD + " TEXT,"
-                + Constants.KEY_FOR_ID_GROUP_BOARD + " INTEGER,"
-                + Constants.KEY_IS_SAVE + " INTEGER" + ")";
+            "CREATE TABLE " + DBConstant.TABLE_BOARD + "("
+                + DBConstant.KEY_ID_BOARD + " INTEGER PRIMARY KEY,"
+                + DBConstant.KEY_NAME_BOARD + " TEXT,"
+                + DBConstant.KEY_FOR_ID_GROUP_BOARD + " INTEGER,"
+                + DBConstant.KEY_IS_SAVE + " INTEGER" + ")";
         String CREATE_TABLE_GROUP_BOARD =
-            "CREATE TABLE " + Constants.TABLE_GROUP_BOARD + "("
-                + Constants.KEY_ID_GROUP_BOARD + " INTEGER PRIMARY KEY,"
-                + Constants.KEY_NAME_GROUP_BOARD + " TEXT" + ")";
+            "CREATE TABLE " + DBConstant.TABLE_GROUP_BOARD + "("
+                + DBConstant.KEY_ID_GROUP_BOARD + " INTEGER PRIMARY KEY,"
+                + DBConstant.KEY_NAME_GROUP_BOARD + " TEXT" + ")";
         String CREATE_TABLE_GROUP_COMMODITY =
-            "CREATE TABLE " + Constants.TABLE_GROUP_COMMODITY + "("
-                + Constants.KEY_ID_GROUP_COMMODITY + " INTEGER PRIMARY KEY,"
-                + Constants.KEY_NAME_GROUP_COMMODITY + " TEXT" + ")";
+            "CREATE TABLE " + DBConstant.TABLE_GROUP_COMMODITY + "("
+                + DBConstant.KEY_ID_GROUP_COMMODITY + " INTEGER PRIMARY KEY,"
+                + DBConstant.KEY_NAME_GROUP_COMMODITY + " TEXT" + ")";
         String CREATE_TABLE_COMMODITY =
-            "CREATE TABLE " + Constants.TABLE_COMMODITY + "("
-                + Constants.KEY_ID_COMMODITY + " INTEGER PRIMARY KEY,"
-                + Constants.KEY_NAME_COMMODITY + " TEXT,"
-                + Constants.KEY_COST_COMMODITY + " INTEGER,"
-                + Constants.KEY_FOR_ID_GROUP_COMMODITY + " INTEGER,"
-                + Constants.KEY_IS_COMMON_COMMODITY + " INTEGER,"
-                + Constants.KEY_NUMBER_COMMODITY + " INTEGER" + ")";
+            "CREATE TABLE " + DBConstant.TABLE_COMMODITY + "("
+                + DBConstant.KEY_ID_COMMODITY + " INTEGER PRIMARY KEY,"
+                + DBConstant.KEY_NAME_COMMODITY + " TEXT,"
+                + DBConstant.KEY_COST_COMMODITY + " INTEGER,"
+                + DBConstant.KEY_FOR_ID_GROUP_COMMODITY + " INTEGER,"
+                + DBConstant.KEY_IS_COMMON_COMMODITY + " INTEGER,"
+                + DBConstant.KEY_NUMBER_COMMODITY + " INTEGER" + ")";
         String CREATE_TABLE_SETTING =
-            "CREATE TABLE " + Constants.TABLE_SETTING + "("
-                + Constants.KEY_ID_SETTING + " INTEGER PRIMARY KEY,"
-                + Constants.KEY_NAME_SETTING + " TEXT,"
-                + Constants.KEY_ID_IMAGE_SETTING + " INTEGER" + ")";
+            "CREATE TABLE " + DBConstant.TABLE_SETTING + "("
+                + DBConstant.KEY_ID_SETTING + " INTEGER PRIMARY KEY,"
+                + DBConstant.KEY_NAME_SETTING + " TEXT,"
+                + DBConstant.KEY_ID_IMAGE_SETTING + " INTEGER" + ")";
         String CREATE_TABLE_BOARD_COMMODITY =
-            "CREATE TABLE " + Constants.TABLE_BOARD_COMMODITY + "("
-                + Constants.KEY_ID_BOARD_COMMODITY + " INTEGER PRIMARY KEY,"
-                + Constants.KEY_ID_BOARD + " INTEGER,"
-                + Constants.KEY_NUMBER_COMMODITY_IN_BOARD + " INTEGER,"
-                + Constants.KEY_ID_COMMODITY + " INTEGER" + ")";
+            "CREATE TABLE " + DBConstant.TABLE_BOARD_COMMODITY + "("
+                + DBConstant.KEY_ID_BOARD_COMMODITY + " INTEGER PRIMARY KEY,"
+                + DBConstant.KEY_ID_BOARD + " INTEGER,"
+                + DBConstant.KEY_NUMBER_COMMODITY_IN_BOARD + " INTEGER,"
+                + DBConstant.KEY_ID_COMMODITY + " INTEGER" + ")";
         db.execSQL(CREATE_TABLE_BOARD);
         db.execSQL(CREATE_TABLE_GROUP_BOARD);
         db.execSQL(CREATE_TABLE_GROUP_COMMODITY);
@@ -127,12 +127,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_BOARD);
-        db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_GROUP_BOARD);
-        db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_GROUP_COMMODITY);
-        db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_COMMODITY);
-        db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_SETTING);
-        db.execSQL(DROP_TABLE_IF_EXISTS + Constants.TABLE_BOARD_COMMODITY);
+        db.execSQL(DROP_TABLE_IF_EXISTS + DBConstant.TABLE_BOARD);
+        db.execSQL(DROP_TABLE_IF_EXISTS + DBConstant.TABLE_GROUP_BOARD);
+        db.execSQL(DROP_TABLE_IF_EXISTS + DBConstant.TABLE_GROUP_COMMODITY);
+        db.execSQL(DROP_TABLE_IF_EXISTS + DBConstant.TABLE_COMMODITY);
+        db.execSQL(DROP_TABLE_IF_EXISTS + DBConstant.TABLE_SETTING);
+        db.execSQL(DROP_TABLE_IF_EXISTS + DBConstant.TABLE_BOARD_COMMODITY);
         onCreate(db);
     }
 }
