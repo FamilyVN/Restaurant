@@ -3,11 +3,15 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.tuananh.restaurant.manager.model.commodity.Commodity"/>
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_padding_10"
         android:background="@drawable/surround_item"
         android:orientation="vertical">
 
@@ -15,7 +19,9 @@
             android:id="@+id/text_name_commodity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="@{viewModel.name}"/>
 
         <TextView
             android:id="@+id/text_cost_commodity"
@@ -23,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingTop="@dimen/padding_small"
+            android:text="@{viewModel.stringCost}"
             android:textColor="@android:color/holo_red_light"/>
     </LinearLayout>
 </layout>

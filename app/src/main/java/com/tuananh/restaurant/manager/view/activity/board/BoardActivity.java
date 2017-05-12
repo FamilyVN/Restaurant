@@ -1,6 +1,7 @@
 package com.tuananh.restaurant.manager.view.activity.board;
 
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -9,6 +10,7 @@ import com.restaurant.tuananh.mvvm.recycler.SingleTypeAdapter;
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.databinding.ActivityBoardBinding;
 import com.tuananh.restaurant.manager.model.commodity.Commodity;
+import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
 import com.tuananh.restaurant.manager.utility.ToastUtils;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
 
@@ -20,7 +22,10 @@ import java.util.List;
 public class BoardActivity
     extends BaseActivityRestaurant<ActivityBoardBinding, BoardActivityViewModel> {
     private static final int DELTA_UP_REDUCE = 1;
+    private static final int NUMBER_ROW = 3;
     private SingleTypeAdapter<Commodity> mCommoditySelectedAdapter;
+    private SingleTypeAdapter<GroupCommodity> mGroupCommodityAdapter;
+    private SingleTypeAdapter<Commodity> mCommodityAdapter;
     private BottomSheetBehavior mBottomSheetBehavior;
 
     @Override
@@ -50,6 +55,38 @@ public class BoardActivity
 
     public void showTotalCost(int totalCost) {
         getBinding().textBoardActivityTotalMoney.setText(String.format("%d đ", totalCost));
+    }
+
+    public void showGroupCommodityList(List<GroupCommodity> groupCommodityList) {
+        if (mGroupCommodityAdapter != null) {
+            mGroupCommodityAdapter.clear();
+            mGroupCommodityAdapter.addAll(groupCommodityList);
+        }
+        mGroupCommodityAdapter = new SingleTypeAdapter<>(this, R.layout.item_group_commodity);
+        mGroupCommodityAdapter.addAll(groupCommodityList);
+        mGroupCommodityAdapter.setPresenter(new GroupCommodityListener());
+        getBinding().setGroupCommodityAdapter(mGroupCommodityAdapter);
+        getBinding().setGroupCommodityLayoutManager(
+            new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+    }
+
+    public void showCommodityList(List<Commodity> commodityList) {
+        if (mCommodityAdapter != null) {
+            mCommodityAdapter.clear();
+            mCommodityAdapter.addAll(commodityList);
+        }
+        mCommodityAdapter = new SingleTypeAdapter<>(this, R.layout.item_commodity);
+        mCommodityAdapter.addAll(commodityList);
+        mCommodityAdapter.setPresenter(new GroupCommodityListener());
+        getBinding().setCommodityAdapter(mCommodityAdapter);
+        getBinding().setCommodityLayoutManager(new GridLayoutManager(this, NUMBER_ROW));
+    }
+
+    public class GroupCommodityListener implements BaseViewAdapter.Presenter {
+        public void onSelected(int position) {
+            getViewModel().loadDataGroupCommodityList(position);
+            mGroupCommodityAdapter.notifyDataSetChanged();
+        }
     }
 
     public class BoardListener {
