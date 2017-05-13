@@ -9,8 +9,8 @@ import com.restaurant.tuananh.mvvm.BaseActivityHeaderFooter;
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.databinding.ActivityMenuBinding;
 import com.tuananh.restaurant.manager.model.MenuModel;
-import com.tuananh.restaurant.manager.ui.activity.PaymentActivity;
 import com.tuananh.restaurant.manager.ui.activity.SettingActivity;
+import com.tuananh.restaurant.manager.view.activity.payment.PaymentActivity;
 import com.tuananh.restaurant.manager.view.activity.sell.SellActivity;
 import com.tuananh.restaurant.manager.view.adapter.MenuGridViewAdapter;
 

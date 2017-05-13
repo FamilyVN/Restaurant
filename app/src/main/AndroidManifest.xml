@@ -22,12 +22,16 @@
         <activity
             android:name=".ui.activity.BoardActivity"
             android:label="@string/title_board"/>
-        <activity android:name=".ui.activity.PaymentActivity"/>
+        <activity
+            android:name=".view.activity.payment.PaymentActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.sell.SellActivity"
-            android:label="@string/title_sell"/>
+            android:label="@string/title_sell"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.board.BoardActivity"
-            android:label="@string/title_board"/>
+            android:label="@string/title_board"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>
