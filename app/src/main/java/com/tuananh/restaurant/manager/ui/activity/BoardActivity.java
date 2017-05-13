@@ -24,6 +24,7 @@ import com.tuananh.restaurant.manager.ui.listener.OnClickCommodityItemListener;
 import com.tuananh.restaurant.manager.ui.listener.OnClickCommoditySelectedItemListener;
 import com.tuananh.restaurant.manager.ui.listener.OnClickGroupCommodityItemListener;
 import com.tuananh.restaurant.manager.utility.ToastUtils;
+import com.tuananh.restaurant.manager.view.activity.payment.PaymentActivity;
 
 import java.util.ArrayList;
 import java.util.List;
