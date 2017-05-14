@@ -29,26 +29,21 @@
                 android:weightSum="3">
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
                     android:onClick="@{() -> listener.onPay(@string/text_button_pay_number_1)}"
                     android:text="@string/text_button_pay_number_1"/>
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
-                    android:onClick="@{() -> listener.onPay(text_button_pay_number_2)}"
+                    android:onClick="@{() -> listener.onPay(@string/text_button_pay_number_2)}"
                     android:text="@string/text_button_pay_number_2"/>
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
+                    android:onClick="@{() -> listener.onPay(@string/text_button_pay_number_3)}"
                     android:text="@string/text_button_pay_number_3"/>
             </LinearLayout>
 
@@ -60,24 +55,21 @@
                 android:weightSum="3">
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
+                    android:onClick="@{() -> listener.onPay(@string/text_button_pay_number_4)}"
                     android:text="@string/text_button_pay_number_4"/>
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
+                    android:onClick="@{() -> listener.onPay(@string/text_button_pay_number_5)}"
                     android:text="@string/text_button_pay_number_5"/>
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
+                    android:onClick="@{() -> listener.onPay(@string/text_button_pay_number_6)}"
                     android:text="@string/text_button_pay_number_6"/>
             </LinearLayout>
 
@@ -89,24 +81,21 @@
                 android:weightSum="3">
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
+                    android:onClick="@{() -> listener.onPay(@string/text_button_pay_number_7)}"
                     android:text="@string/text_button_pay_number_7"/>
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
+                    android:onClick="@{() -> listener.onPay(@string/text_button_pay_number_8)}"
                     android:text="@string/text_button_pay_number_8"/>
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
+                    android:onClick="@{() -> listener.onPay(@string/text_button_pay_number_9)}"
                     android:text="@string/text_button_pay_number_9"/>
             </LinearLayout>
 
@@ -118,24 +107,21 @@
                 android:weightSum="3">
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
+                    android:onClick="@{() -> listener.onPay(@string/text_button_pay_number_0)}"
                     android:text="@string/text_button_pay_number_0"/>
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
+                    android:onClick="@{() -> listener.onPay(@string/text_button_pay_number_00)}"
                     android:text="@string/text_button_pay_number_00"/>
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
+                    android:onClick="@{() -> listener.onPay(@string/text_button_pay_number_000)}"
                     android:text="@string/text_button_pay_number_000"/>
             </LinearLayout>
 
@@ -147,33 +133,29 @@
                 android:weightSum="3">
 
                 <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
+                    android:onClick="@{() -> listener.onPay(@string/text_button_pay_back)}"
                     android:src="@drawable/ic_keyboard_backspace"/>
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
+                    android:onClick="@{() -> listener.onPay(@string/text_button_pay_clear_all)}"
                     android:text="@string/text_button_pay_clear_all"/>
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    style="@style/button_pay_custom"
                     android:background="@drawable/calender_background_default"
+                    android:onClick="@{() -> listener.onPay(@string/text_button_pay_exactly)}"
                     android:text="@string/text_button_pay_exactly"/>
             </LinearLayout>
         </LinearLayout>
 
         <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            style="@style/button_pay_custom"
             android:background="@android:color/holo_red_light"
+            android:onClick="@{() -> listener.onPay(@string/text_button_pay)}"
             android:text="@string/text_button_pay"
             android:textColor="@android:color/white"/>
     </LinearLayout>
