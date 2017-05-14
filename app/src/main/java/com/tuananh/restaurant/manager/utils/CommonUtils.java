@@ -62,4 +62,12 @@ public class CommonUtils {
     public static boolean isEmptyList(List objectList) {
         return !(objectList != null && objectList.size() > 0);
     }
+
+    public static String convertListToString(List<String> stringList) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String string : stringList) {
+            stringBuilder.append(string);
+        }
+        return stringBuilder.toString();
+    }
 }
