@@ -26,6 +26,7 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
         super.onAttached(isFirst);
         loadData();
         getView().showCommoditySelectedList(mCommoditySelectedList);
+        getView().showGroupCommodityList(mGroupCommodityList);
         updateTotalCost();
     }
 
@@ -33,6 +34,8 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
         int id = getIntent().getIntExtra(Constant.KEY_BOARD_ID, Constant.ID_BOARD_DEFAULT);
         mBoard = id != Constant.ID_BOARD_DEFAULT ?
             DatabaseManager.getInstance(getContext()).getBoardById(id) : new Board();
+        mGroupCommodityList = DatabaseManager.getInstance(getContext()).getGroupCommodityAll();
+        loadDataGroupCommodityList(Constant.ID_GROUP_COMMODITY);
     }
 
     public void updateTotalCost() {
@@ -58,6 +61,27 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
                     .addBoardCommodity(mBoard.getId(), commodity.getId(), commodity.getNumber());
             }
             mBoard.setIsSave(Constant.TRUE);
+        }
+    }
+
+    public void loadDataGroupCommodityList(int position) {
+        unSelectedGroupCommodity();
+        GroupCommodity groupCommodity = mGroupCommodityList.get(position);
+        groupCommodity.setSelected(true);
+        mCommodityList.clear();
+        if (position != 0) {
+            mCommodityList.addAll(DatabaseManager.getInstance(getContext())
+                .getCommodityAllByIdGroupCommodity(groupCommodity.getId()));
+        } else {
+            mCommodityList.addAll(DatabaseManager.getInstance(getContext())
+                .getCommodityAllCommon());
+        }
+        getView().showCommodityList(mCommodityList);
+    }
+
+    public void unSelectedGroupCommodity() {
+        for (GroupCommodity groupCommodity : mGroupCommodityList) {
+            groupCommodity.setSelected(false);
         }
     }
 }

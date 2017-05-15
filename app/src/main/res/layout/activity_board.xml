@@ -159,11 +159,17 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
+                <include layout="@layout/line_break"/>
+
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_padding_5"
+                    android:layout_marginTop="@dimen/margin_padding_5"
                     app:adapter="@{groupCommodityAdapter}"
                     app:layoutManager="@{groupCommodityLayoutManager}"/>
+
+                <include layout="@layout/line_break"/>
 
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"

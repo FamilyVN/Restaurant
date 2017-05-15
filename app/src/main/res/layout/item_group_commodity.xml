@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    android:layout_width="@dimen/card_view_item_group_board_width"
-                                    android:layout_height="@dimen/item_group_commodity_height"
-                                    android:layout_margin="@dimen/margin_small"
-                                    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/text_number_group_commodity"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/board_number"/>
-</android.support.v7.widget.CardView>
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.tuananh.restaurant.manager.model.commodity.GroupCommodity"/>
+
+        <variable
+            name="listener"
+            type="com.tuananh.restaurant.manager.view.activity.board.BoardActivity.GroupCommodityListener"/>
+
+        <variable
+            name="position"
+            type="int"/>
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="@dimen/card_view_item_group_board_width"
+        android:layout_height="@dimen/item_group_commodity_height"
+        android:layout_margin="@dimen/margin_small"
+        android:background="@{viewModel.selected ? @drawable/surround_item_selected : @drawable/surround_item}"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_number_group_commodity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onSelected(position)}"
+            android:text="@{viewModel.nameGroupCommodity}"/>
+    </android.support.v7.widget.CardView>
+</layout>

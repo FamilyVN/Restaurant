@@ -56,6 +56,10 @@ public class Commodity {
         return mCost;
     }
 
+    public String getStringCost() {
+        return String.format("%d đ", mCost);
+    }
+
     public int getIdGroupCommodity() {
         return mIdGroupCommodity;
     }
