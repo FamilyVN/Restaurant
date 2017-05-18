@@ -79,4 +79,8 @@ public class Commodity {
     public int getTotalCost() {
         return mCost * mNumber;
     }
+
+    public String getStringTotalCost() {
+        return String.format("%d đ", getTotalCost());
+    }
 }

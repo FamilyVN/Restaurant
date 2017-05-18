@@ -1,6 +1,5 @@
 package com.tuananh.restaurant.manager.view.activity.board;
 
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -13,6 +12,8 @@ import com.tuananh.restaurant.manager.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
 import com.tuananh.restaurant.manager.utility.ToastUtils;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
+import com.tuananh.restaurant.manager.view.custom.BottomSheetBehaviorRecyclerManager;
+import com.tuananh.restaurant.manager.view.custom.BottomSheetBehaviorV2;
 
 import java.util.List;
 
@@ -26,14 +27,20 @@ public class BoardActivity
     private SingleTypeAdapter<Commodity> mCommoditySelectedAdapter;
     private SingleTypeAdapter<GroupCommodity> mGroupCommodityAdapter;
     private SingleTypeAdapter<Commodity> mCommodityAdapter;
-    private BottomSheetBehavior mBottomSheetBehavior;
+    private BottomSheetBehaviorV2 mBottomSheetBehavior;
 
     @Override
     protected void onViewCreated() {
         super.onViewCreated();
         getBinding().setListener(new BoardListener());
-        mBottomSheetBehavior = BottomSheetBehavior.from(getBinding().bottomSheet);
-        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        mBottomSheetBehavior = BottomSheetBehaviorV2.from(getBinding().bottomSheet);
+        mBottomSheetBehavior.setState(BottomSheetBehaviorV2.STATE_HIDDEN);
+        BottomSheetBehaviorRecyclerManager manager =
+            new BottomSheetBehaviorRecyclerManager(getBinding().parentContainer,
+                mBottomSheetBehavior, getBinding().bottomSheet);
+        manager.addControl(getBinding().recyclerGroupCommodity);
+        manager.addControl(getBinding().recyclerCommodity);
+        manager.create();
     }
 
     @Override
@@ -45,6 +52,7 @@ public class BoardActivity
         if (mCommoditySelectedAdapter != null) {
             mCommoditySelectedAdapter.clear();
             mCommoditySelectedAdapter.addAll(commoditySelectedList);
+            return;
         }
         mCommoditySelectedAdapter = new SingleTypeAdapter<>(this, R.layout.item_selected_commodity);
         mCommoditySelectedAdapter.addAll(commoditySelectedList);
@@ -61,6 +69,7 @@ public class BoardActivity
         if (mGroupCommodityAdapter != null) {
             mGroupCommodityAdapter.clear();
             mGroupCommodityAdapter.addAll(groupCommodityList);
+            return;
         }
         mGroupCommodityAdapter = new SingleTypeAdapter<>(this, R.layout.item_group_commodity);
         mGroupCommodityAdapter.addAll(groupCommodityList);
@@ -74,10 +83,11 @@ public class BoardActivity
         if (mCommodityAdapter != null) {
             mCommodityAdapter.clear();
             mCommodityAdapter.addAll(commodityList);
+            return;
         }
         mCommodityAdapter = new SingleTypeAdapter<>(this, R.layout.item_commodity);
         mCommodityAdapter.addAll(commodityList);
-        mCommodityAdapter.setPresenter(new GroupCommodityListener());
+        mCommodityAdapter.setPresenter(new CommodityListener());
         getBinding().setCommodityAdapter(mCommodityAdapter);
         getBinding().setCommodityLayoutManager(new GridLayoutManager(this, NUMBER_ROW));
     }
@@ -105,7 +115,11 @@ public class BoardActivity
         }
 
         public void onOrder() {
-            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            mBottomSheetBehavior.setState(BottomSheetBehaviorV2.STATE_EXPANDED);
+        }
+
+        public void onClose() {
+            mBottomSheetBehavior.setState(BottomSheetBehaviorV2.STATE_HIDDEN);
         }
     }
 
@@ -115,12 +129,22 @@ public class BoardActivity
             if (number - DELTA_UP_REDUCE > 0) {
                 commodity.setNumber(number - DELTA_UP_REDUCE);
             } else {
-                mCommoditySelectedAdapter.remove(position);
+                getViewModel().removeSelectedList(position);
             }
+            mCommoditySelectedAdapter.notifyDataSetChanged();
+            getViewModel().updateTotalCost();
         }
 
         public void onUpAmount(Commodity commodity) {
             commodity.setNumber(commodity.getNumber() + DELTA_UP_REDUCE);
+            mCommoditySelectedAdapter.notifyDataSetChanged();
+            getViewModel().updateTotalCost();
+        }
+    }
+
+    public class CommodityListener implements BaseViewAdapter.Presenter {
+        public void onSelected(int position) {
+            getViewModel().updateSelectedList(position);
             mCommoditySelectedAdapter.notifyDataSetChanged();
             getViewModel().updateTotalCost();
         }

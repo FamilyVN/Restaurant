@@ -32,5 +32,6 @@
     <string name="text_button_pay_back">Xóa cuối</string>
     <string name="text_button_pay">Thanh toán</string>
     <string name="text_board_order">Chọn món</string>
+    <string name="text_board_order_bottom">Chọn món</string>
 
 </resources>

@@ -4,15 +4,17 @@ package com.tuananh.restaurant.manager.model;
  * Created by TuanAnh on 3/29/2017.
  */
 public class Constant {
-    public final static int ID_GROUP_DEFAULT = 0;
-    public final static int ID_BOARD_DEFAULT = -1;
-    public final static int ID_GROUP_COMMODITY = 0;
-    public final static int TRUE = 1;
-    public final static int FALSE = 0;
+    public static final int ID_GROUP_DEFAULT = 0;
+    public static final int ID_BOARD_DEFAULT = -1;
+    public static final int ID_GROUP_COMMODITY = 0;
+    public static final int TRUE = 1;
+    public static final int FALSE = 0;
+    public static final int KEY_NOT_FOUND = -1;
+    public static final int ADD_NUMBER = 1;
     // string
-    public final static String KEY_BOARD_ID = "board_id";
+    public static final String KEY_BOARD_ID = "board_id";
     // flag
-    public final static int FLAG_SELECTED_BOARD = 200;
+    public static final int FLAG_SELECTED_BOARD = 200;
     //
     public static final int TYPE_ADD = 1;
     public static final int TYPE_REMOVE = 2;
