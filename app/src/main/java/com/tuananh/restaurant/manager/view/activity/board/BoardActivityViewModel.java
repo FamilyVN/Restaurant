@@ -84,4 +84,31 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
             groupCommodity.setSelected(false);
         }
     }
+
+    public int searchCommodity(Commodity commoditySearch, List<Commodity> commodityList) {
+        int index = Constant.KEY_NOT_FOUND;
+        for (Commodity commodity : commodityList) {
+            if (commodity.getId() == commoditySearch.getId()) {
+                index = commodityList.indexOf(commodity);
+            }
+        }
+        return index;
+    }
+
+    public void removeSelectedList(int position) {
+        mCommoditySelectedList.remove(position);
+        getView().showCommoditySelectedList(mCommoditySelectedList);
+    }
+
+    public void updateSelectedList(int position) {
+        Commodity commodity = mCommodityList.get(position);
+        int index = searchCommodity(commodity, mCommoditySelectedList);
+        if (index != Constant.KEY_NOT_FOUND) {
+            Commodity commoditySelected = mCommoditySelectedList.get(index);
+            commoditySelected.setNumber(commoditySelected.getNumber() + Constant.ADD_NUMBER);
+        } else {
+            mCommoditySelectedList.add(commodity);
+        }
+        getView().showCommoditySelectedList(mCommoditySelectedList);
+    }
 }

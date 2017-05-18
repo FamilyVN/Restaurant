@@ -6,13 +6,22 @@
         <variable
             name="viewModel"
             type="com.tuananh.restaurant.manager.model.commodity.Commodity"/>
+
+        <variable
+            name="listener"
+            type="com.tuananh.restaurant.manager.view.activity.board.BoardActivity.CommodityListener"/>
+
+        <variable
+            name="position"
+            type="int"/>
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_padding_10"
-        android:background="@drawable/surround_item"
+        android:layout_margin="@dimen/margin_padding_5"
+        android:background="@drawable/selector_item_commodity"
+        android:onClick="@{() -> listener.onSelected(position)}"
         android:orientation="vertical">
 
         <TextView

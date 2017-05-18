@@ -1,7 +1,6 @@
 package com.tuananh.restaurant.manager.view.activity.menu;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -33,7 +32,6 @@ public class MenuActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d("TAG: ", "-------- position = " + position);
         Intent intent;
         switch (position) {
             case MenuGridViewAdapter.POSITION_SELL:
