@@ -1,5 +1,6 @@
 package com.tuananh.restaurant.manager.view.activity.board;
 
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -8,10 +9,12 @@ import com.restaurant.tuananh.mvvm.recycler.BaseViewAdapter;
 import com.restaurant.tuananh.mvvm.recycler.SingleTypeAdapter;
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.databinding.ActivityBoardBinding;
+import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
 import com.tuananh.restaurant.manager.utility.ToastUtils;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
+import com.tuananh.restaurant.manager.view.activity.payment.PaymentActivity;
 import com.tuananh.restaurant.manager.view.custom.BottomSheetBehaviorRecyclerManager;
 import com.tuananh.restaurant.manager.view.custom.BottomSheetBehaviorV2;
 
@@ -112,6 +115,10 @@ public class BoardActivity
         }
 
         public void onPay() {
+            Intent intent = new Intent(BoardActivity.this, PaymentActivity.class);
+            intent.putExtra(Constant.KEY_NAME_BOARD, getViewModel().getNameBoard());
+            intent.putExtra(Constant.KEY_TOTAL_MONEY, getViewModel().getTotalCost());
+            startActivity(intent);
         }
 
         public void onOrder() {

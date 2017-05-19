@@ -13,6 +13,8 @@ import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
  */
 public class PaymentActivity
     extends BaseActivityRestaurant<ActivityPaymentBinding, PaymentActivityViewModel> {
+    private int mTotalMoney;
+
     @Override
     protected void onViewCreated() {
         super.onViewCreated();
@@ -25,8 +27,8 @@ public class PaymentActivity
         if (intent == null) return;
         getBinding().textNameBoardPaymentActivity
             .setText(intent.getStringExtra(Constant.KEY_NAME_BOARD));
-        getBinding().textTotalMoneyPaymentActivity
-            .setText(intent.getStringExtra(Constant.KEY_TOTAL_MONEY));
+        mTotalMoney = intent.getIntExtra(Constant.KEY_TOTAL_MONEY, 0);
+        getBinding().textTotalMoneyPaymentActivity.setText(String.format("%s đ", mTotalMoney));
     }
 
     @Override

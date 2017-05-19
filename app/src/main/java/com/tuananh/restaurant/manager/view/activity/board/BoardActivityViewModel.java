@@ -39,11 +39,7 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
     }
 
     public void updateTotalCost() {
-        int totalCost = 0;
-        for (Commodity commodity : mCommoditySelectedList) {
-            totalCost += commodity.getTotalCost();
-        }
-        getView().showTotalCost(totalCost);
+        getView().showTotalCost(getTotalCost());
     }
 
     public boolean isSelectedCommodity() {
@@ -52,6 +48,14 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
 
     public String getNameBoard() {
         return mBoard.getNameBoard();
+    }
+
+    public int getTotalCost() {
+        int totalCost = 0;
+        for (Commodity commodity : mCommoditySelectedList) {
+            totalCost += commodity.getTotalCost();
+        }
+        return totalCost;
     }
 
     public void saveData() {
