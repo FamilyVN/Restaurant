@@ -12,7 +12,7 @@ import com.tuananh.restaurant.manager.databinding.ActivityBoardBinding;
 import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
-import com.tuananh.restaurant.manager.utility.ToastUtils;
+import com.tuananh.restaurant.manager.utils.ToastUtils;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
 import com.tuananh.restaurant.manager.view.activity.payment.PaymentActivity;
 import com.tuananh.restaurant.manager.view.custom.BottomSheetBehaviorRecyclerManager;

@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.tuananh.restaurant.manager.ui.activity.SettingActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.tuananh.restaurant.manager.view.activity.settings.SettingActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_setting_activity"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.tuananh.restaurant.manager.view.activity.settings.SettingActivityViewModel"/>
+    </data>
+
+    <ScrollView
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_small"/>
-</ScrollView>
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_setting_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small"/>
+    </ScrollView>
+</layout>

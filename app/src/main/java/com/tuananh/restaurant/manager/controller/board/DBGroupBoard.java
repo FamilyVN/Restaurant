@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.database.DBConstant;
+import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.GroupBoard;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class DBGroupBoard {
             db.update(DBConstant.TABLE_GROUP_BOARD, values, DBConstant.KEY_ID_GROUP_BOARD + " = ?",
                 new String[]{String.valueOf(groupBoard.getId())});
         db.close();
-        return checkUpdate >= Constants.CHECK_ADD_TRUE;
+        return checkUpdate >= Constant.CHECK_ADD_TRUE;
     }
 
     public List<GroupBoard> getGroupBoardAll() {
