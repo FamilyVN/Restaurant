@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.tuananh.restaurant.manager.data.Constants;
 import com.tuananh.restaurant.manager.database.DBConstant;
+import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.Board;
 
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class DBBoard {
             db.update(DBConstant.TABLE_BOARD, values, DBConstant.KEY_ID_BOARD + " = ?",
                 new String[]{String.valueOf(board.getId())});
         db.close();
-        return checkUpdate >= Constants.CHECK_ADD_TRUE;
+        return checkUpdate >= Constant.CHECK_ADD_TRUE;
     }
 
     public List<Board> getBoardAllByIdGroupBoard(int idGroupBoard) {

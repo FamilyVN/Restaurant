@@ -9,12 +9,12 @@ import com.tuananh.restaurant.manager.controller.board.DBGroupBoard;
 import com.tuananh.restaurant.manager.controller.commodity.DBCommodity;
 import com.tuananh.restaurant.manager.controller.commodity.DBGroupCommodity;
 import com.tuananh.restaurant.manager.controller.setting.DBSetting;
-import com.tuananh.restaurant.manager.data.Constants;
-import com.tuananh.restaurant.manager.data.model.setting.Setting;
+import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.model.board.GroupBoard;
 import com.tuananh.restaurant.manager.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
+import com.tuananh.restaurant.manager.model.setting.Setting;
 
 /**
  * Created by framgia on 17/09/2016.
@@ -27,8 +27,8 @@ public class DBTest {
 
     public static void createDB(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(
-            Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
-        if (sharedPreferences.getBoolean(Constants.UPDATE, true)) {
+            Constant.SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        if (sharedPreferences.getBoolean(Constant.UPDATE, true)) {
             DBHelper dbHelper = new DBHelper(context);
             dbHelper.createDBBoard();
             dbHelper.createDBGroupBoard();
@@ -116,7 +116,7 @@ public class DBTest {
             dbSetting.addSetting(new Setting("Sơ đồ bàn", R.drawable.ic_map_table));
             //
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean(Constants.UPDATE, false);
+            editor.putBoolean(Constant.UPDATE, false);
             editor.apply();
         }
     }

@@ -17,11 +17,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.SettingActivity"
+            android:name=".view.activity.settings.SettingActivity"
             android:label="@string/title_settings"/>
-        <activity
-            android:name=".ui.activity.BoardActivity"
-            android:label="@string/title_board"/>
         <activity
             android:name=".view.activity.payment.PaymentActivity"
             android:screenOrientation="portrait"/>
