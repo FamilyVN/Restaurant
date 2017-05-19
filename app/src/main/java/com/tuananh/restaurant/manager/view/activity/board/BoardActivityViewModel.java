@@ -31,11 +31,13 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
     }
 
     private void loadData() {
-        int id = getIntent().getIntExtra(Constant.KEY_BOARD_ID, Constant.ID_BOARD_DEFAULT);
-        mBoard = id != Constant.ID_BOARD_DEFAULT ?
-            DatabaseManager.getInstance(getContext()).getBoardById(id) : new Board();
+        int idBoard = getIntent().getIntExtra(Constant.KEY_BOARD_ID, Constant.ID_BOARD_DEFAULT);
+        mBoard = idBoard != Constant.ID_BOARD_DEFAULT ?
+            DatabaseManager.getInstance(getContext()).getBoardById(idBoard) : new Board();
         mGroupCommodityList = DatabaseManager.getInstance(getContext()).getGroupCommodityAll();
         loadDataGroupCommodityList(Constant.ID_GROUP_COMMODITY);
+        mCommoditySelectedList.addAll(
+            DatabaseManager.getInstance(getContext()).getCommoditySelectedInBoardList(idBoard));
     }
 
     public void updateTotalCost() {
