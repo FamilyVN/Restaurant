@@ -18,4 +18,5 @@ public interface DatabaseInterface {
     List<GroupCommodity> getGroupCommodityAll();
     List<Commodity> getCommodityAllCommon();
     List<Commodity> getCommodityAllByIdGroupCommodity(int idGroupCommodity);
+    List<Commodity> getCommoditySelectedInBoardList(int idBoard);
 }

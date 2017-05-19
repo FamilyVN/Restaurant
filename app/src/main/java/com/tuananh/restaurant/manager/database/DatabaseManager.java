@@ -37,7 +37,8 @@ public class DatabaseManager implements DatabaseInterface {
     public List<Board> getBoardAllByIdGroupBoard(int idGroupBoard) {
         List<Board> boardList = new ArrayList<>();
         QueryHelper queryHelper = new QueryHelper();
-        queryHelper.setTableName(DBConstant.TABLE_BOARD)
+        queryHelper
+            .setTableName(DBConstant.TABLE_BOARD)
             .addCondition(DBConstant.KEY_FOR_ID_GROUP_BOARD, idGroupBoard);
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
@@ -76,7 +77,8 @@ public class DatabaseManager implements DatabaseInterface {
     public Board getBoardById(int idBoard) {
         Board board = null;
         QueryHelper queryHelper = new QueryHelper();
-        queryHelper.setTableName(DBConstant.TABLE_BOARD)
+        queryHelper
+            .setTableName(DBConstant.TABLE_BOARD)
             .addCondition(DBConstant.KEY_ID_BOARD, idBoard);
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
@@ -126,7 +128,8 @@ public class DatabaseManager implements DatabaseInterface {
     public List<Commodity> getCommodityAllCommon() {
         List<Commodity> commodityList = new ArrayList<>();
         QueryHelper queryHelper = new QueryHelper();
-        queryHelper.setTableName(DBConstant.TABLE_COMMODITY)
+        queryHelper
+            .setTableName(DBConstant.TABLE_COMMODITY)
             .addCondition(DBConstant.KEY_IS_COMMON_COMMODITY, DBTest.COMMON);
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
@@ -149,7 +152,8 @@ public class DatabaseManager implements DatabaseInterface {
     public List<Commodity> getCommodityAllByIdGroupCommodity(int idGroupCommodity) {
         List<Commodity> commodityList = new ArrayList<>();
         QueryHelper queryHelper = new QueryHelper();
-        queryHelper.setTableName(DBConstant.TABLE_COMMODITY)
+        queryHelper
+            .setTableName(DBConstant.TABLE_COMMODITY)
             .addCondition(DBConstant.KEY_FOR_ID_GROUP_COMMODITY, idGroupCommodity);
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
@@ -167,5 +171,33 @@ public class DatabaseManager implements DatabaseInterface {
             } while (cursor.moveToNext());
         }
         return commodityList;
+    }
+
+    @Override
+    public List<Commodity> getCommoditySelectedInBoardList(int idBoard) {
+        List<Commodity> commoditySelectedList = new ArrayList<>();
+        QueryHelper queryHelper = new QueryHelper();
+        queryHelper
+            .setJoinTable(DBConstant.TABLE_BOARD_COMMODITY, DBConstant.TABLE_COMMODITY,
+                DBConstant.TABLE_BOARD_COMMODITY + "." + DBConstant.KEY_ID_COMMODITY,
+                DBConstant.TABLE_COMMODITY + "." + DBConstant.KEY_ID_COMMODITY)
+            .addCondition(DBConstant.KEY_ID_BOARD, idBoard);
+        Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                Commodity commodity =
+                    new Commodity(
+                        cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_COMMODITY)),
+                        cursor.getString(cursor.getColumnIndex(DBConstant.KEY_NAME_COMMODITY)),
+                        cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_COST_COMMODITY)),
+                        cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_FOR_ID_GROUP_COMMODITY)),
+                        cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_COMMON_COMMODITY)),
+                        cursor
+                            .getInt(cursor.getColumnIndex(DBConstant.KEY_NUMBER_COMMODITY_IN_BOARD))
+                    );
+                commoditySelectedList.add(commodity);
+            } while (cursor.moveToNext());
+        }
+        return commoditySelectedList;
     }
 }
