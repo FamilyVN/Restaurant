@@ -95,6 +95,11 @@ public class BoardActivity
         getBinding().setCommodityLayoutManager(new GridLayoutManager(this, NUMBER_ROW));
     }
 
+    private void updateButton(boolean isSave) {
+        getBinding().buttonPay.setVisibility(isSave ? View.GONE : View.VISIBLE);
+        getBinding().buttonSave.setVisibility(isSave ? View.VISIBLE : View.GONE);
+    }
+
     public class GroupCommodityListener implements BaseViewAdapter.Presenter {
         public void onSelected(int position) {
             getViewModel().loadDataGroupCommodityList(position);
@@ -105,8 +110,7 @@ public class BoardActivity
     public class BoardListener {
         public void onSave() {
             if (getViewModel().isSelectedCommodity()) {
-                getBinding().buttonSave.setVisibility(View.GONE);
-                getBinding().buttonPay.setVisibility(View.VISIBLE);
+                updateButton(false);
                 getViewModel().saveData();
                 mCommoditySelectedAdapter.notifyDataSetChanged();
             } else {
@@ -132,6 +136,7 @@ public class BoardActivity
 
     public class SelectedCommodityListener implements BaseViewAdapter.Presenter {
         public void onReduce(Commodity commodity, int position) {
+            updateButton(true);
             int number = commodity.getNumber();
             if (number - DELTA_UP_REDUCE > 0) {
                 commodity.setNumber(number - DELTA_UP_REDUCE);
@@ -143,6 +148,7 @@ public class BoardActivity
         }
 
         public void onUpAmount(Commodity commodity) {
+            updateButton(true);
             commodity.setNumber(commodity.getNumber() + DELTA_UP_REDUCE);
             mCommoditySelectedAdapter.notifyDataSetChanged();
             getViewModel().updateTotalCost();
@@ -151,6 +157,7 @@ public class BoardActivity
 
     public class CommodityListener implements BaseViewAdapter.Presenter {
         public void onSelected(int position) {
+            updateButton(true);
             getViewModel().updateSelectedList(position);
             mCommoditySelectedAdapter.notifyDataSetChanged();
             getViewModel().updateTotalCost();

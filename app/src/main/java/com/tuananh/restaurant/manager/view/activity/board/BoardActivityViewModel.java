@@ -1,5 +1,7 @@
 package com.tuananh.restaurant.manager.view.activity.board;
 
+import android.util.Log;
+
 import com.restaurant.tuananh.mvvm.BaseViewModel;
 import com.tuananh.restaurant.manager.database.DatabaseManager;
 import com.tuananh.restaurant.manager.databinding.ActivityBoardBinding;
@@ -62,11 +64,21 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
 
     public void saveData() {
         if (mBoard.getId() != Board.ID_DEFAULT) {
-            for (Commodity commodity : mCommoditySelectedList) {
-                DatabaseManager.getInstance(getContext())
-                    .addBoardCommodity(mBoard.getId(), commodity.getId(), commodity.getNumber());
+            Log.d("TAG:", "isSave = " + mBoard.getIsSave());
+            if (mBoard.getIsSave() == Constant.FALSE) {
+                for (Commodity commodity : mCommoditySelectedList) {
+                    DatabaseManager.getInstance(getContext())
+                        .addBoardCommodity(mBoard.getId(), commodity.getId(),
+                            commodity.getNumber());
+                }
+                mBoard.setIsSave(Constant.TRUE);
+            } else {
+                for (Commodity commodity : mCommoditySelectedList) {
+                    DatabaseManager.getInstance(getContext())
+                        .updateBoardCommodity(mBoard.getId(), commodity.getId(),
+                            commodity.getNumber());
+                }
             }
-            mBoard.setIsSave(Constant.TRUE);
         }
     }
 

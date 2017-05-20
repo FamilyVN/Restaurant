@@ -11,6 +11,7 @@ public class Constant {
     public static final int FALSE = 0;
     public static final int KEY_NOT_FOUND = -1;
     public static final int ADD_NUMBER = 1;
+    public static final int UPDATE_SUCCESS = 1;
     // string
     public static final String KEY_BOARD_ID = "board_id";
     // flag
