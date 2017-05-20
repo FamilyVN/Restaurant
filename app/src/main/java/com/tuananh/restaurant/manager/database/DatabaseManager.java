@@ -4,9 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.tuananh.databasehelper.queryhelper.QueryHelper;
 import com.tuananh.restaurant.manager.controller.database.DBTest;
+import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.model.board.GroupBoard;
 import com.tuananh.restaurant.manager.model.commodity.Commodity;
@@ -103,6 +105,27 @@ public class DatabaseManager implements DatabaseInterface {
         values.put(DBConstant.KEY_NUMBER_COMMODITY_IN_BOARD, number);
         db.insert(DBConstant.TABLE_BOARD_COMMODITY, null, values);
         db.close();
+    }
+
+    @Override
+    public boolean updateBoardCommodity(int idBoard, int idCommodity, int number) {
+        Log.d("TAG:", "updateBoardCommodity");
+        SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DBConstant.KEY_ID_BOARD_COMMODITY, 1);
+        values.put(DBConstant.KEY_ID_BOARD, idBoard);
+        values.put(DBConstant.KEY_NUMBER_COMMODITY_IN_BOARD, number);
+        values.put(DBConstant.KEY_ID_COMMODITY, idCommodity);
+        int checkUpdate = 0;
+        try {
+            checkUpdate = db.update(DBConstant.TABLE_BOARD_COMMODITY, values,
+                DBConstant.KEY_ID_COMMODITY + "= ?",
+                new String[]{String.valueOf(idCommodity)});
+        } catch (Exception e) {
+        } finally {
+            db.close();
+        }
+        return checkUpdate >= Constant.UPDATE_SUCCESS;
     }
 
     @Override
