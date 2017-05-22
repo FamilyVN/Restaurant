@@ -26,10 +26,9 @@ public class PaymentActivity
     private void setupBoardInformation() {
         Intent intent = getIntent();
         if (intent == null) return;
-        getBinding().textNameBoardPaymentActivity
-            .setText(intent.getStringExtra(Constant.KEY_NAME_BOARD));
+        getViewModel().setNameBoard(intent.getStringExtra(Constant.KEY_NAME_BOARD));
         mTotalMoney = intent.getLongExtra(Constant.KEY_TOTAL_MONEY, 0L);
-        getBinding().textTotalMoneyPaymentActivity.setText(String.format(Constant.FORMAT_MONEY,
+        getViewModel().setTotalCustomerPay(String.format(Constant.FORMAT_MONEY,
             CommonUtils.convertToMoney(mTotalMoney.toString())));
     }
 
@@ -55,9 +54,8 @@ public class PaymentActivity
     }
 
     public void updateTextCustomersPay(String customersPay, boolean isPayExactly) {
-        getBinding().textCustomersPayPaymentActivity.setText(
-            String.format(Constant.FORMAT_MONEY, CommonUtils.convertToMoney(
-                isPayExactly ? mTotalMoney.toString() : customersPay)));
+        getViewModel().setCustomersPay(String.format(Constant.FORMAT_MONEY,
+            CommonUtils.convertToMoney(isPayExactly ? mTotalMoney.toString() : customersPay)));
     }
 
     public void updateTextRefundsToCustomer(String customersPay, boolean isPayExactly) {
@@ -68,8 +66,7 @@ public class PaymentActivity
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        getBinding().textRefundsToCustomersPaymentActivity.setText(
-            String.format(Constant.FORMAT_MONEY, isPayExactly ? "0" :
-                CommonUtils.convertToMoney(refundsToCustomer.toString())));
+        getViewModel().setRefundsToCustomers(String.format(Constant.FORMAT_MONEY,
+            isPayExactly ? "0" : CommonUtils.convertToMoney(refundsToCustomer.toString())));
     }
 }

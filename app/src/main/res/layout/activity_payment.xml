@@ -20,70 +20,35 @@
         android:id="@+id/activity_payment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="@dimen/margin_padding_5">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_padding_5"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/layout_name_board_payment_activity"
-                style="@style/layout_item_board_activity">
+            <include
+                layout="@layout/include_item_board_activity"
+                app:content="@={viewModel.nameBoard}"
+                app:title="@{@string/board_activity_board}"/>
 
-                <TextView
-                    style="@style/text_item_board_activity"
-                    android:text="@string/board_activity_board"/>
+            <include
+                layout="@layout/include_item_board_activity"
+                app:content="@={viewModel.totalCustomerPay}"
+                app:title="@{@string/board_activity_total_money}"/>
 
-                <TextView
-                    android:id="@+id/text_name_board_payment_activity"
-                    style="@style/text_item_board_activity_right"
-                    android:textColor="@android:color/holo_red_light"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/layout_item_board_activity">
-
-                <TextView
-                    style="@style/text_item_board_activity"
-                    android:text="@string/board_activity_total_money"/>
-
-                <TextView
-                    android:id="@+id/text_total_money_payment_activity"
-                    style="@style/text_item_board_activity_right"
-                    android:textColor="@android:color/holo_red_light"/>
-            </LinearLayout>
-
-            <LinearLayout
+            <include
                 android:id="@+id/layout_customers_pay"
-                style="@style/layout_item_board_activity">
+                layout="@layout/include_item_board_activity"
+                app:content="@={viewModel.customersPay}"
+                app:title="@{@string/text_view_customers_pay}"/>
 
-                <TextView
-                    style="@style/text_item_board_activity"
-                    android:text="@string/text_view_customers_pay"/>
-
-                <TextView
-                    android:id="@+id/text_customers_pay_payment_activity"
-                    style="@style/text_item_board_activity_right"
-                    android:lines="1"
-                    android:textColor="@android:color/holo_red_light"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_refunds_to_customers"
-                style="@style/layout_item_board_activity">
-
-                <TextView
-                    style="@style/text_item_board_activity"
-                    android:text="@string/text_view_refunds_to_customers"/>
-
-                <TextView
-                    android:id="@+id/text_refunds_to_customers_payment_activity"
-                    style="@style/text_item_board_activity_right"
-                    android:lines="1"
-                    android:textColor="@android:color/holo_red_light"/>
-            </LinearLayout>
+            <include
+                layout="@layout/include_item_board_activity"
+                app:content="@={viewModel.refundsToCustomers}"
+                app:title="@{@string/text_view_refunds_to_customers}"/>
         </LinearLayout>
 
         <include

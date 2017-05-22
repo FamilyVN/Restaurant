@@ -8,7 +8,7 @@ import com.restaurant.tuananh.mvvm.BaseActivityHeaderFooter;
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.databinding.ActivityMenuBinding;
 import com.tuananh.restaurant.manager.model.MenuModel;
-import com.tuananh.restaurant.manager.view.activity.payment.PaymentActivity;
+import com.tuananh.restaurant.manager.view.activity.board.BoardActivity;
 import com.tuananh.restaurant.manager.view.activity.sell.SellActivity;
 import com.tuananh.restaurant.manager.view.activity.settings.SettingActivity;
 import com.tuananh.restaurant.manager.view.adapter.MenuGridViewAdapter;
@@ -38,7 +38,7 @@ public class MenuActivity
                 intent = new Intent(MenuActivity.this, SellActivity.class);
                 break;
             case MenuGridViewAdapter.POSITION_QUICK_PAYMENT:
-                intent = new Intent(MenuActivity.this, PaymentActivity.class);
+                intent = new Intent(MenuActivity.this, BoardActivity.class);
                 break;
             case MenuGridViewAdapter.POSITION_SETTINGS:
                 intent = new Intent(MenuActivity.this, SettingActivity.class);
