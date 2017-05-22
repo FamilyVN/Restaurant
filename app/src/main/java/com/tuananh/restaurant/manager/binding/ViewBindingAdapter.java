@@ -2,6 +2,8 @@ package com.tuananh.restaurant.manager.binding;
 
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 
@@ -23,5 +25,10 @@ public class ViewBindingAdapter {
     @BindingAdapter("adapter")
     public static void setAdapter(GridView gridView, BaseAdapter adapter) {
         gridView.setAdapter(adapter);
+    }
+
+    @BindingAdapter("visibility")
+    public static void setVisibility(View view, String text) {
+        view.setVisibility(TextUtils.isEmpty(text) ? View.GONE : View.VISIBLE);
     }
 }

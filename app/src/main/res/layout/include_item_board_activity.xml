@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="title"
+            type="String"/>
+
+        <variable
+            name="content"
+            type="String"/>
+    </data>
+
+    <LinearLayout
+        style="@style/layout_item_board_activity"
+        app:visibility="@{content}">
+
+        <TextView
+            style="@style/text_item_board_activity"
+            android:text="@{title}"/>
+
+        <TextView
+            android:id="@+id/text_content"
+            style="@style/text_item_board_activity_right"
+            android:gravity="center_vertical|right"
+            android:paddingRight="@dimen/margin_padding_20"
+            android:text="@{content}"
+            android:textColor="@android:color/holo_red_light"/>
+    </LinearLayout>
+</layout>

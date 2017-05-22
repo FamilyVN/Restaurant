@@ -27,11 +27,13 @@
     <string name="text_button_pay_number_7">7</string>
     <string name="text_button_pay_number_8">8</string>
     <string name="text_button_pay_number_9">9</string>
-    <string name="text_button_pay_clear_all">Xóa bỏ</string>
+    <string name="text_button_pay_clear_all">Nhập lại tiền</string>
     <string name="text_button_pay_exactly">Chính xác</string>
     <string name="text_button_pay_back">Xóa cuối</string>
     <string name="text_button_pay">Thanh toán</string>
     <string name="text_board_order">Chọn món</string>
     <string name="text_board_order_bottom">Chọn món</string>
+    <string name="msg_user_not_edit_money">Khách hàng chưa trả tiền</string>
+
 
 </resources>
