@@ -58,6 +58,10 @@
         <item name="android:textSize">@dimen/text_size_board_activity</item>
     </style>
 
+    <style name="text_item_board_activity_right" parent="text_item_board_activity">
+        <item name="android:layout_weight">3</item>
+    </style>
+
     <style name="layout_item_board_activity">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

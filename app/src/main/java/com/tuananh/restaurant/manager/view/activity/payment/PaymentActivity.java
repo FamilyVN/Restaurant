@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.databinding.ActivityPaymentBinding;
 import com.tuananh.restaurant.manager.model.Constant;
+import com.tuananh.restaurant.manager.utils.CommonUtils;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
 
 /**
@@ -13,7 +14,7 @@ import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
  */
 public class PaymentActivity
     extends BaseActivityRestaurant<ActivityPaymentBinding, PaymentActivityViewModel> {
-    private int mTotalMoney;
+    private Long mTotalMoney;
 
     @Override
     protected void onViewCreated() {
@@ -27,8 +28,9 @@ public class PaymentActivity
         if (intent == null) return;
         getBinding().textNameBoardPaymentActivity
             .setText(intent.getStringExtra(Constant.KEY_NAME_BOARD));
-        mTotalMoney = intent.getIntExtra(Constant.KEY_TOTAL_MONEY, 0);
-        getBinding().textTotalMoneyPaymentActivity.setText(String.format("%s đ", mTotalMoney));
+        mTotalMoney = intent.getLongExtra(Constant.KEY_TOTAL_MONEY, 0L);
+        getBinding().textTotalMoneyPaymentActivity.setText(String.format(Constant.FORMAT_MONEY,
+            CommonUtils.convertToMoney(mTotalMoney.toString())));
     }
 
     @Override
@@ -37,18 +39,37 @@ public class PaymentActivity
     }
 
     public void onPay(String values) {
+        int type;
         if (TextUtils.equals(values, getString(R.string.text_button_pay))) {
+            type = Constant.TYPE_PAY;
         } else if (TextUtils.equals(values, getString(R.string.text_button_pay_exactly))) {
+            type = Constant.TYPE_PAY_EXACTLY;
         } else if (TextUtils.equals(values, getString(R.string.text_button_pay_clear_all))) {
-            getViewModel().updatePay(values, Constant.TYPE_CLEAR_ALL);
+            type = Constant.TYPE_CLEAR_ALL;
         } else if (TextUtils.equals(values, getString(R.string.text_button_pay_back))) {
-            getViewModel().updatePay(values, Constant.TYPE_REMOVE);
+            type = Constant.TYPE_REMOVE;
         } else {
-            getViewModel().updatePay(values, Constant.TYPE_ADD);
+            type = Constant.TYPE_ADD;
         }
+        getViewModel().updatePay(values, type);
     }
 
-    public void updateTextCustomersPay(String customersPay) {
-        getBinding().textCustomersPayPaymentActivity.setText(customersPay);
+    public void updateTextCustomersPay(String customersPay, boolean isPayExactly) {
+        getBinding().textCustomersPayPaymentActivity.setText(
+            String.format(Constant.FORMAT_MONEY, CommonUtils.convertToMoney(
+                isPayExactly ? mTotalMoney.toString() : customersPay)));
+    }
+
+    public void updateTextRefundsToCustomer(String customersPay, boolean isPayExactly) {
+        Long refundsToCustomer = 0L;
+        try {
+            refundsToCustomer =
+                (TextUtils.isEmpty(customersPay) ? 0L : Long.parseLong(customersPay)) - mTotalMoney;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        getBinding().textRefundsToCustomersPaymentActivity.setText(
+            String.format(Constant.FORMAT_MONEY, isPayExactly ? "0" :
+                CommonUtils.convertToMoney(refundsToCustomer.toString())));
     }
 }

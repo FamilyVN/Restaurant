@@ -12,6 +12,7 @@ import com.tuananh.restaurant.manager.databinding.ActivityBoardBinding;
 import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
+import com.tuananh.restaurant.manager.utils.CommonUtils;
 import com.tuananh.restaurant.manager.utils.ToastUtils;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
 import com.tuananh.restaurant.manager.view.activity.payment.PaymentActivity;
@@ -64,8 +65,9 @@ public class BoardActivity
         getBinding().setCommoditySelectedLayoutManager(new LinearLayoutManager(this));
     }
 
-    public void showTotalCost(int totalCost) {
-        getBinding().textBoardActivityTotalMoney.setText(String.format("%d đ", totalCost));
+    public void showTotalCost(Long totalCost) {
+        getBinding().textBoardActivityTotalMoney.setText(String
+            .format(Constant.FORMAT_MONEY, CommonUtils.convertToMoney(totalCost.toString())));
     }
 
     public void showGroupCommodityList(List<GroupCommodity> groupCommodityList) {

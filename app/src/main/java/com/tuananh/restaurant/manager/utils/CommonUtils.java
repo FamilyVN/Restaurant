@@ -1,6 +1,7 @@
 package com.tuananh.restaurant.manager.utils;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +68,21 @@ public class CommonUtils {
         StringBuilder stringBuilder = new StringBuilder();
         for (String string : stringList) {
             stringBuilder.append(string);
+        }
+        return stringBuilder.toString();
+    }
+
+    public static String convertToMoney(String string) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (TextUtils.isEmpty(string)) return "";
+        int length = string.length();
+        for (int i = 0; i < length; i++) {
+            stringBuilder.append(string.charAt(i));
+            if ((length > 3 && i == length - 4) ||
+                (length > 6 && i == length - 7) ||
+                (length > 9 && i == length - 10)) {
+                stringBuilder.append(".");
+            }
         }
         return stringBuilder.toString();
     }

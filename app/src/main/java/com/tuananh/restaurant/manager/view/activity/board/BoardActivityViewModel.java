@@ -54,8 +54,8 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
         return mBoard.getNameBoard();
     }
 
-    public int getTotalCost() {
-        int totalCost = 0;
+    public Long getTotalCost() {
+        Long totalCost = 0L;
         for (Commodity commodity : mCommoditySelectedList) {
             totalCost += commodity.getTotalCost();
         }

@@ -20,14 +20,14 @@ public class Constant {
     public static final int TYPE_ADD = 1;
     public static final int TYPE_REMOVE = 2;
     public static final int TYPE_CLEAR_ALL = 3;
+    public static final int TYPE_PAY = 4;
+    public static final int TYPE_PAY_EXACTLY = 5;
     //
     public static final String KEY_NAME_BOARD = "name_board";
     public static final String KEY_TOTAL_MONEY = "total_money";
-    public final static int CHECK_ADD_TRUE = 0;
-    public final static String SHARED_PREFERENCES = "restaurant_manager";
-    public final static String UPDATE = "update";
-    public final static String ID_BOARD_SELECTED = "id_board_selected";
-    public final static String NAME_BOARD_SELECTED = "name_board_selected";
-    public final static String TOTAL_MONEY = "total_money";
-    public final static int TOTAL_MONEY_DEFAULT = 0;
+    public static final int CHECK_ADD_TRUE = 0;
+    public static final String SHARED_PREFERENCES = "restaurant_manager";
+    public static final String UPDATE = "update";
+    // format
+    public static final String FORMAT_MONEY = "%s đ";
 }
