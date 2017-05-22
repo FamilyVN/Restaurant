@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.tuananh.restaurant.manager.controller.board.DBBoard;
-import com.tuananh.restaurant.manager.controller.board.DBBoardCommodity;
 import com.tuananh.restaurant.manager.controller.board.DBGroupBoard;
 import com.tuananh.restaurant.manager.controller.commodity.DBCommodity;
 import com.tuananh.restaurant.manager.controller.commodity.DBGroupCommodity;
@@ -24,7 +23,6 @@ public class DBHelper extends SQLiteOpenHelper {
     private DBGroupCommodity mDBGroupCommodity;
     private DBCommodity mDBCommodity;
     private DBSetting mDBSetting;
-    private DBBoardCommodity mDBBoardCommodity;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -50,10 +48,6 @@ public class DBHelper extends SQLiteOpenHelper {
         mDBSetting = new DBSetting(this);
     }
 
-    public void createDBBoardCommodity() {
-        mDBBoardCommodity = new DBBoardCommodity(this);
-    }
-
     public DBBoard getDBBoard() {
         return mDBBoard;
     }
@@ -72,10 +66,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBSetting getDBSetting() {
         return mDBSetting;
-    }
-
-    public DBBoardCommodity getDBBoardCommodity() {
-        return mDBBoardCommodity;
     }
 
     @Override

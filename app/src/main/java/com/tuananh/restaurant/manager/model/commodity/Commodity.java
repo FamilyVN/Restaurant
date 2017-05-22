@@ -1,5 +1,7 @@
 package com.tuananh.restaurant.manager.model.commodity;
 
+import com.tuananh.restaurant.manager.utils.CommonUtils;
+
 /**
  * Created by framgia on 09/10/2016.
  */
@@ -76,11 +78,11 @@ public class Commodity {
         mNumber = number;
     }
 
-    public int getTotalCost() {
-        return mCost * mNumber;
+    public Long getTotalCost() {
+        return (long) (mCost * mNumber);
     }
 
     public String getStringTotalCost() {
-        return String.format("%d đ", getTotalCost());
+        return CommonUtils.convertToMoney(getTotalCost().toString()) + " đ";
     }
 }
