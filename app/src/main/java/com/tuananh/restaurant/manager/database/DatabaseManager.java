@@ -97,6 +97,24 @@ public class DatabaseManager implements DatabaseInterface {
     }
 
     @Override
+    public boolean updateBoard(Board board) {
+        SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DBConstant.KEY_NAME_BOARD, board.getNameBoard());
+        values.put(DBConstant.KEY_FOR_ID_GROUP_BOARD, board.getIdGroup());
+        values.put(DBConstant.KEY_IS_SAVE, board.getIsSave());
+        int checkUpdate = 0;
+        try {
+            checkUpdate = db.update(DBConstant.TABLE_BOARD, values,
+                DBConstant.KEY_ID_BOARD + "= ?", new String[]{String.valueOf(board.getId())});
+        } catch (Exception e) {
+        } finally {
+            db.close();
+        }
+        return checkUpdate >= Constant.UPDATE_SUCCESS;
+    }
+
+    @Override
     public void addBoardCommodity(int idBoard, int idCommodity, int number) {
         SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -109,22 +127,21 @@ public class DatabaseManager implements DatabaseInterface {
 
     @Override
     public boolean updateBoardCommodity(int idBoard, int idCommodity, int number) {
-        Log.d("TAG:", "updateBoardCommodity");
         SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(DBConstant.KEY_ID_BOARD_COMMODITY, 1);
         values.put(DBConstant.KEY_ID_BOARD, idBoard);
-        values.put(DBConstant.KEY_NUMBER_COMMODITY_IN_BOARD, number);
         values.put(DBConstant.KEY_ID_COMMODITY, idCommodity);
+        values.put(DBConstant.KEY_NUMBER_COMMODITY_IN_BOARD, number);
         int checkUpdate = 0;
         try {
             checkUpdate = db.update(DBConstant.TABLE_BOARD_COMMODITY, values,
-                DBConstant.KEY_ID_COMMODITY + "= ?",
-                new String[]{String.valueOf(idCommodity)});
+                DBConstant.KEY_ID_COMMODITY + "= ? AND " + DBConstant.KEY_ID_BOARD + "= ?",
+                new String[]{String.valueOf(idCommodity), String.valueOf(idBoard)});
         } catch (Exception e) {
         } finally {
             db.close();
         }
+        Log.d("TAG", "checkUpdate = " + checkUpdate);
         return checkUpdate >= Constant.UPDATE_SUCCESS;
     }
 

@@ -14,6 +14,7 @@ public interface DatabaseInterface {
     List<Board> getBoardAllByIdGroupBoard(int idGroupBoard);
     List<GroupBoard> getGroupBoardAll();
     Board getBoardById(int idBoard);
+    boolean updateBoard(Board board);
     void addBoardCommodity(int idBoard, int idCommodity, int number);
     boolean updateBoardCommodity(int idBoard, int idCommodity, int number);
     List<GroupCommodity> getGroupCommodityAll();

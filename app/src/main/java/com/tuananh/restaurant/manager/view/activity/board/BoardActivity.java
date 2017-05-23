@@ -97,7 +97,7 @@ public class BoardActivity
         getBinding().setCommodityLayoutManager(new GridLayoutManager(this, NUMBER_ROW));
     }
 
-    private void updateButton(boolean isSave) {
+    public void updateButton(boolean isSave) {
         getBinding().buttonPay.setVisibility(isSave ? View.GONE : View.VISIBLE);
         getBinding().buttonSave.setVisibility(isSave ? View.VISIBLE : View.GONE);
     }
@@ -121,10 +121,14 @@ public class BoardActivity
         }
 
         public void onPay() {
-            Intent intent = new Intent(BoardActivity.this, PaymentActivity.class);
-            intent.putExtra(Constant.KEY_NAME_BOARD, getViewModel().getNameBoard());
-            intent.putExtra(Constant.KEY_TOTAL_MONEY, getViewModel().getTotalCost());
-            startActivity(intent);
+            if (getViewModel().isSelectedCommodity()) {
+                Intent intent = new Intent(BoardActivity.this, PaymentActivity.class);
+                intent.putExtra(Constant.KEY_NAME_BOARD, getViewModel().getNameBoard());
+                intent.putExtra(Constant.KEY_TOTAL_MONEY, getViewModel().getTotalCost());
+                startActivity(intent);
+            } else {
+                ToastUtils.showMessages(BoardActivity.this, R.string.not_commodity_selected);
+            }
         }
 
         public void onOrder() {
@@ -138,7 +142,7 @@ public class BoardActivity
 
     public class SelectedCommodityListener implements BaseViewAdapter.Presenter {
         public void onReduce(Commodity commodity, int position) {
-            updateButton(true);
+            updateButton(!getViewModel().isQuickPay());
             int number = commodity.getNumber();
             if (number - DELTA_UP_REDUCE > 0) {
                 commodity.setNumber(number - DELTA_UP_REDUCE);
@@ -150,7 +154,7 @@ public class BoardActivity
         }
 
         public void onUpAmount(Commodity commodity) {
-            updateButton(true);
+            updateButton(!getViewModel().isQuickPay());
             commodity.setNumber(commodity.getNumber() + DELTA_UP_REDUCE);
             mCommoditySelectedAdapter.notifyDataSetChanged();
             getViewModel().updateTotalCost();
@@ -159,7 +163,7 @@ public class BoardActivity
 
     public class CommodityListener implements BaseViewAdapter.Presenter {
         public void onSelected(int position) {
-            updateButton(true);
+            updateButton(!getViewModel().isQuickPay());
             getViewModel().updateSelectedList(position);
             mCommoditySelectedAdapter.notifyDataSetChanged();
             getViewModel().updateTotalCost();
