@@ -22,6 +22,7 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
     private List<GroupCommodity> mGroupCommodityList = new ArrayList<>();
     private List<Commodity> mCommodityList = new ArrayList<>();
     private Board mBoard;
+    private boolean mIsQuickPay;
 
     @Override
     public void onAttached(boolean isFirst) {
@@ -34,8 +35,12 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
 
     private void loadData() {
         int idBoard = getIntent().getIntExtra(Constant.KEY_BOARD_ID, Constant.ID_BOARD_DEFAULT);
-        mBoard = idBoard != Constant.ID_BOARD_DEFAULT ?
+        mIsQuickPay = idBoard == Constant.ID_BOARD_DEFAULT;
+        mBoard = !mIsQuickPay ?
             DatabaseManager.getInstance(getContext()).getBoardById(idBoard) : new Board();
+        if (mIsQuickPay) {
+            getView().updateButton(false);
+        }
         mGroupCommodityList = DatabaseManager.getInstance(getContext()).getGroupCommodityAll();
         loadDataGroupCommodityList(Constant.ID_GROUP_COMMODITY);
         mCommoditySelectedList.addAll(
@@ -62,16 +67,20 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
         return totalCost;
     }
 
+    public boolean isQuickPay() {
+        return mIsQuickPay;
+    }
+
     public void saveData() {
         if (mBoard.getId() != Board.ID_DEFAULT) {
-            Log.d("TAG:", "isSave = " + mBoard.getIsSave());
+            Log.d("TAG", "isSave = " + mBoard.getIsSave());
             if (mBoard.getIsSave() == Constant.FALSE) {
                 for (Commodity commodity : mCommoditySelectedList) {
-                    DatabaseManager.getInstance(getContext())
-                        .addBoardCommodity(mBoard.getId(), commodity.getId(),
-                            commodity.getNumber());
+                    DatabaseManager.getInstance(getContext()).addBoardCommodity(
+                        mBoard.getId(), commodity.getId(), commodity.getNumber());
                 }
                 mBoard.setIsSave(Constant.TRUE);
+                DatabaseManager.getInstance(getContext()).updateBoard(mBoard);
             } else {
                 for (Commodity commodity : mCommoditySelectedList) {
                     DatabaseManager.getInstance(getContext())
