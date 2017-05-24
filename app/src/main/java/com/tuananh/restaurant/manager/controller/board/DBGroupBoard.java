@@ -36,7 +36,7 @@ public class DBGroupBoard {
         values.put(DBConstant.KEY_NAME_GROUP_BOARD, groupBoard.getNameGroupBoard());
         int checkUpdate =
             db.update(DBConstant.TABLE_GROUP_BOARD, values, DBConstant.KEY_ID_GROUP_BOARD + " = ?",
-                new String[]{String.valueOf(groupBoard.getId())});
+                new String[]{String.valueOf(groupBoard.getIdGroupBoard())});
         db.close();
         return checkUpdate >= Constant.CHECK_ADD_TRUE;
     }

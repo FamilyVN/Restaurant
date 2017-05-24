@@ -1,85 +1,89 @@
 package com.tuananh.restaurant.manager.model.commodity;
 
+import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.utils.CommonUtils;
 
 /**
  * Created by framgia on 09/10/2016.
  */
 public class Commodity {
-    private int mId;
-    private String mName;
-    private int mCost;
-    private int mIdGroupCommodity;
-    private int mIsCommon;
-    private int mNumber;
+    private int mIdCommodity;
+    private String mNameCommodity;
+    private int mCostCommodity;
+    private int mIdForGroupCommodity;
+    private int mIsCommonCommodity;
+    private int mNumberCommodity;
 
-    public Commodity(int id, String name, int cost, int idGroupCommodity, int isCommon) {
-        mId = id;
-        mName = name;
-        mCost = cost;
-        mIdGroupCommodity = idGroupCommodity;
-        mIsCommon = isCommon;
+    public Commodity(int idCommodity, String nameCommodity, int costCommodity,
+                     int idForGroupCommodity, int isCommonCommodity, int numberCommodity) {
+        mIdCommodity = idCommodity;
+        mNameCommodity = nameCommodity;
+        mCostCommodity = costCommodity;
+        mIdForGroupCommodity = idForGroupCommodity;
+        mIsCommonCommodity = isCommonCommodity;
+        mNumberCommodity = numberCommodity;
     }
 
-    public Commodity(String name, int cost, int idGroupCommodity, int isCommon) {
-        mName = name;
-        mCost = cost;
-        mIdGroupCommodity = idGroupCommodity;
-        mIsCommon = isCommon;
+    public Commodity(int idCommodity, String nameCommodity, int costCommodity,
+                     int idForGroupCommodity, int isCommonCommodity) {
+        mIdCommodity = idCommodity;
+        mNameCommodity = nameCommodity;
+        mCostCommodity = costCommodity;
+        mIdForGroupCommodity = idForGroupCommodity;
+        mIsCommonCommodity = isCommonCommodity;
     }
 
-    public Commodity(int id, String name, int cost, int idGroupCommodity, int isCommon,
-                     int number) {
-        mId = id;
-        mName = name;
-        mCost = cost;
-        mIdGroupCommodity = idGroupCommodity;
-        mIsCommon = isCommon;
-        mNumber = number;
+    public Commodity(String nameCommodity, int costCommodity, int idForGroupCommodity,
+                     int isCommonCommodity) {
+        mNameCommodity = nameCommodity;
+        mCostCommodity = costCommodity;
+        mIdForGroupCommodity = idForGroupCommodity;
+        mIsCommonCommodity = isCommonCommodity;
     }
 
-    public Commodity(String name, int cost, int idGroupCommodity, int isCommon, int number) {
-        mName = name;
-        mCost = cost;
-        mIdGroupCommodity = idGroupCommodity;
-        mIsCommon = isCommon;
-        mNumber = number;
+    public Commodity(String nameCommodity, int costCommodity, int idForGroupCommodity,
+                     int isCommonCommodity, int numberCommodity) {
+        mNameCommodity = nameCommodity;
+        mCostCommodity = costCommodity;
+        mIdForGroupCommodity = idForGroupCommodity;
+        mIsCommonCommodity = isCommonCommodity;
+        mNumberCommodity = numberCommodity;
     }
 
-    public int getId() {
-        return mId;
+    public int getIdCommodity() {
+        return mIdCommodity;
     }
 
-    public String getName() {
-        return mName;
+    public String getNameCommodity() {
+        return mNameCommodity;
     }
 
-    public int getCost() {
-        return mCost;
+    public int getCostCommodity() {
+        return mCostCommodity;
     }
 
     public String getStringCost() {
-        return String.format("%d đ", mCost);
+        return String.format("%d đ", getCostCommodity());
     }
 
-    public int getIdGroupCommodity() {
-        return mIdGroupCommodity;
+    public int getIdForGroupCommodity() {
+        return mIdForGroupCommodity;
     }
 
-    public int getIsCommon() {
-        return mIsCommon;
+    public boolean isCommonCommodity() {
+        return mIsCommonCommodity == Constant.COMMON;
     }
 
-    public int getNumber() {
-        return mNumber;
+    public int getNumberCommodity() {
+        return mNumberCommodity;
     }
 
-    public void setNumber(int number) {
-        mNumber = number;
+    public void setNumberCommodity(int numberCommodity) {
+        mNumberCommodity = numberCommodity;
     }
 
     public Long getTotalCost() {
-        return (long) (mCost * mNumber);
+        return (long) (getCostCommodity() * getNumberCommodity());
     }
 
     public String getStringTotalCost() {

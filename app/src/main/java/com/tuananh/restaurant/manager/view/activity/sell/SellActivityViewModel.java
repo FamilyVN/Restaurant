@@ -45,13 +45,13 @@ public class SellActivityViewModel extends BaseViewModel<ActivitySellBinding, Se
         groupBoard.setSelected(true);
         mBoardList.clear();
         mBoardList.addAll(DatabaseManager.getInstance(getContext())
-            .getBoardAllByIdGroupBoard(groupBoard.getId()));
+            .getBoardAllByIdGroupBoard(groupBoard.getIdGroupBoard()));
         getView().showBoardList(mBoardList);
     }
 
-    public void updateBoard(int boardId) {
+    public void updateBoard(int idBoard) {
         for (Board board : mBoardList) {
-            if (board.getId() == boardId) {
+            if (board.getIdBoard() == idBoard) {
                 board.setIsSave(Constant.TRUE);
             }
         }

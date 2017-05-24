@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.databinding.ActivityPaymentBinding;
 import com.tuananh.restaurant.manager.model.Constant;
+import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.utils.CommonUtils;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
 
@@ -27,6 +28,8 @@ public class PaymentActivity
         Intent intent = getIntent();
         if (intent == null) return;
         getViewModel().setNameBoard(intent.getStringExtra(Constant.KEY_NAME_BOARD));
+        getViewModel()
+            .setIdBoard(intent.getIntExtra(Constant.KEY_BOARD_ID, Board.ID_BOARD_DEFAULT));
         mTotalMoney = intent.getLongExtra(Constant.KEY_TOTAL_MONEY, 0L);
         getViewModel().setTotalCustomerPay(String.format(Constant.FORMAT_MONEY,
             CommonUtils.convertToMoney(mTotalMoney.toString())));

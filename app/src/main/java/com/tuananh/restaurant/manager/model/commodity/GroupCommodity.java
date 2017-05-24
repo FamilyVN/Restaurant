@@ -4,12 +4,12 @@ package com.tuananh.restaurant.manager.model.commodity;
  * Created by framgia on 09/10/2016.
  */
 public class GroupCommodity {
-    private int mId;
+    private int mIdGroupCommodity;
     private String mNameGroupCommodity;
     private boolean mSelected;
 
-    public GroupCommodity(int id, String nameGroupCommodity) {
-        mId = id;
+    public GroupCommodity(int idGroupCommodity, String nameGroupCommodity) {
+        mIdGroupCommodity = idGroupCommodity;
         mNameGroupCommodity = nameGroupCommodity;
     }
 
@@ -17,8 +17,8 @@ public class GroupCommodity {
         mNameGroupCommodity = nameGroupCommodity;
     }
 
-    public int getId() {
-        return mId;
+    public int getIdGroupCommodity() {
+        return mIdGroupCommodity;
     }
 
     public String getNameGroupCommodity() {
