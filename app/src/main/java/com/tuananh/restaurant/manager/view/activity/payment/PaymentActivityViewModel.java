@@ -5,8 +5,10 @@ import android.text.TextUtils;
 
 import com.restaurant.tuananh.mvvm.BaseViewModel;
 import com.tuananh.restaurant.manager.R;
+import com.tuananh.restaurant.manager.database.DatabaseManager;
 import com.tuananh.restaurant.manager.databinding.ActivityPaymentBinding;
 import com.tuananh.restaurant.manager.model.Constant;
+import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.utils.CommonUtils;
 import com.tuananh.restaurant.manager.utils.ToastUtils;
 import com.tuananh.restaurant.manager.view.activity.sell.SellActivity;
@@ -24,6 +26,7 @@ public class PaymentActivityViewModel
     private String mTotalCustomerPay;
     private String mCustomersPay;
     private String mRefundsToCustomers;
+    private int mIdBoard;
     private List<String> mCustomersPayList = new ArrayList<>();
 
     @Override
@@ -38,6 +41,15 @@ public class PaymentActivityViewModel
 
     public void setNameBoard(String nameBoard) {
         mNameBoard = nameBoard;
+        notifyChange();
+    }
+
+    public int getIdBoard() {
+        return mIdBoard;
+    }
+
+    public void setIdBoard(int idBoard) {
+        mIdBoard = idBoard;
         notifyChange();
     }
 
@@ -103,6 +115,9 @@ public class PaymentActivityViewModel
         if (TextUtils.equals(getBinding().layoutCustomersPay.textContent.getText(), "0 đ")) {
             ToastUtils.showMessages(getContext(), R.string.msg_user_not_edit_money);
             return;
+        }
+        if (mIdBoard != Board.ID_BOARD_DEFAULT) {
+            DatabaseManager.getInstance(getContext()).deleteBoard(mIdBoard);
         }
         startActivity(new Intent(getContext(), SellActivity.class));
         finish();

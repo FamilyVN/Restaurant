@@ -38,6 +38,7 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
         mIsQuickPay = idBoard == Constant.ID_BOARD_DEFAULT;
         mBoard = !mIsQuickPay ?
             DatabaseManager.getInstance(getContext()).getBoardById(idBoard) : new Board();
+        getView().updateButton(!mBoard.isSave());
         if (mIsQuickPay) {
             getView().updateButton(false);
         }
@@ -59,6 +60,10 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
         return mBoard.getNameBoard();
     }
 
+    public Board getBoard() {
+        return mBoard;
+    }
+
     public Long getTotalCost() {
         Long totalCost = 0L;
         for (Commodity commodity : mCommoditySelectedList) {
@@ -72,20 +77,21 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
     }
 
     public void saveData() {
-        if (mBoard.getId() != Board.ID_DEFAULT) {
-            Log.d("TAG", "isSave = " + mBoard.getIsSave());
-            if (mBoard.getIsSave() == Constant.FALSE) {
+        if (mBoard.getIdBoard() != Board.ID_BOARD_DEFAULT) {
+            Log.d("TAG", "isSave = " + mBoard.isSave());
+            if (!mBoard.isSave()) {
                 for (Commodity commodity : mCommoditySelectedList) {
-                    DatabaseManager.getInstance(getContext()).addBoardCommodity(
-                        mBoard.getId(), commodity.getId(), commodity.getNumber());
+                    DatabaseManager.getInstance(getContext()).insertBoardCommodity(
+                        mBoard.getIdBoard(), commodity.getIdCommodity(),
+                        commodity.getNumberCommodity());
                 }
                 mBoard.setIsSave(Constant.TRUE);
                 DatabaseManager.getInstance(getContext()).updateBoard(mBoard);
             } else {
                 for (Commodity commodity : mCommoditySelectedList) {
-                    DatabaseManager.getInstance(getContext())
-                        .updateBoardCommodity(mBoard.getId(), commodity.getId(),
-                            commodity.getNumber());
+                    DatabaseManager.getInstance(getContext()).updateBoardCommodity(
+                        mBoard.getIdBoard(), commodity.getIdCommodity(),
+                        commodity.getNumberCommodity());
                 }
             }
         }
@@ -98,7 +104,7 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
         mCommodityList.clear();
         if (position != 0) {
             mCommodityList.addAll(DatabaseManager.getInstance(getContext())
-                .getCommodityAllByIdGroupCommodity(groupCommodity.getId()));
+                .getCommodityAllByIdGroupCommodity(groupCommodity.getIdGroupCommodity()));
         } else {
             mCommodityList.addAll(DatabaseManager.getInstance(getContext())
                 .getCommodityAllCommon());
@@ -115,7 +121,7 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
     public int searchCommodity(Commodity commoditySearch, List<Commodity> commodityList) {
         int index = Constant.KEY_NOT_FOUND;
         for (Commodity commodity : commodityList) {
-            if (commodity.getId() == commoditySearch.getId()) {
+            if (commodity.getIdCommodity() == commoditySearch.getIdCommodity()) {
                 index = commodityList.indexOf(commodity);
             }
         }
@@ -132,7 +138,8 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
         int index = searchCommodity(commodity, mCommoditySelectedList);
         if (index != Constant.KEY_NOT_FOUND) {
             Commodity commoditySelected = mCommoditySelectedList.get(index);
-            commoditySelected.setNumber(commoditySelected.getNumber() + Constant.ADD_NUMBER);
+            commoditySelected
+                .setNumberCommodity(commoditySelected.getNumberCommodity() + Constant.ADD_NUMBER);
         } else {
             mCommoditySelectedList.add(commodity);
         }

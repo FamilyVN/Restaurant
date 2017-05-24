@@ -24,8 +24,8 @@ public class DBSetting {
     public void addSetting(Setting setting) {
         SQLiteDatabase db = mSQLiteOpenHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(DBConstant.KEY_NAME_SETTING, setting.getName());
-        values.put(DBConstant.KEY_ID_IMAGE_SETTING, setting.getIdImage());
+        values.put(DBConstant.KEY_NAME_SETTING, setting.getNameSettings());
+        values.put(DBConstant.KEY_ID_IMAGE_SETTING, setting.getIdImageSettings());
         db.insert(DBConstant.TABLE_SETTING, null, values);
         db.close();
     }

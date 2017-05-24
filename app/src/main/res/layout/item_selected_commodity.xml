@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical|right"
             android:paddingRight="@dimen/margin_padding_5"
-            android:text="@{String.valueOf(viewModel.number)}"/>
+            android:text="@{String.valueOf(viewModel.numberCommodity)}"/>
 
         <TextView
             android:id="@+id/text_view_name_commodity_selected"
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:maxWidth="@dimen/size_150"
             android:paddingLeft="@dimen/margin_padding_10"
-            android:text="@{viewModel.name}"/>
+            android:text="@{viewModel.nameCommodity}"/>
 
         <TextView
             android:id="@+id/text_view_total_cost_commodity_selected"

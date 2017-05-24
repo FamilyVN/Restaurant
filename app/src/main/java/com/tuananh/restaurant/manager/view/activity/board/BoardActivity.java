@@ -125,6 +125,7 @@ public class BoardActivity
                 Intent intent = new Intent(BoardActivity.this, PaymentActivity.class);
                 intent.putExtra(Constant.KEY_NAME_BOARD, getViewModel().getNameBoard());
                 intent.putExtra(Constant.KEY_TOTAL_MONEY, getViewModel().getTotalCost());
+                intent.putExtra(Constant.KEY_BOARD_ID, getViewModel().getBoard().getIdBoard());
                 startActivity(intent);
             } else {
                 ToastUtils.showMessages(BoardActivity.this, R.string.not_commodity_selected);
@@ -143,9 +144,9 @@ public class BoardActivity
     public class SelectedCommodityListener implements BaseViewAdapter.Presenter {
         public void onReduce(Commodity commodity, int position) {
             updateButton(!getViewModel().isQuickPay());
-            int number = commodity.getNumber();
+            int number = commodity.getNumberCommodity();
             if (number - DELTA_UP_REDUCE > 0) {
-                commodity.setNumber(number - DELTA_UP_REDUCE);
+                commodity.setNumberCommodity(number - DELTA_UP_REDUCE);
             } else {
                 getViewModel().removeSelectedList(position);
             }
@@ -155,7 +156,7 @@ public class BoardActivity
 
         public void onUpAmount(Commodity commodity) {
             updateButton(!getViewModel().isQuickPay());
-            commodity.setNumber(commodity.getNumber() + DELTA_UP_REDUCE);
+            commodity.setNumberCommodity(commodity.getNumberCommodity() + DELTA_UP_REDUCE);
             mCommoditySelectedAdapter.notifyDataSetChanged();
             getViewModel().updateTotalCost();
         }

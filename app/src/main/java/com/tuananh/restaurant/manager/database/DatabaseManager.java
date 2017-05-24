@@ -4,10 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.tuananh.databasehelper.queryhelper.QueryHelper;
-import com.tuananh.restaurant.manager.controller.database.DBTest;
 import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.model.board.GroupBoard;
@@ -36,6 +34,19 @@ public class DatabaseManager implements DatabaseInterface {
     }
 
     @Override
+    public boolean insertBoard(Board board) {
+        SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DBConstant.KEY_NAME_BOARD, board.getNameBoard());
+        values.put(DBConstant.KEY_FOR_ID_GROUP_BOARD, board.getIdForGroupBoard());
+        values.put(DBConstant.KEY_IS_SAVE, board.isSave());
+        values.put(DBConstant.KEY_IS_PAID, board.isPaid());
+        long checkInsert = db.insert(DBConstant.TABLE_BOARD, null, values);
+        db.close();
+        return checkInsert != Constant.INSERT_FAILED;
+    }
+
+    @Override
     public List<Board> getBoardAllByIdGroupBoard(int idGroupBoard) {
         List<Board> boardList = new ArrayList<>();
         QueryHelper queryHelper = new QueryHelper();
@@ -49,7 +60,8 @@ public class DatabaseManager implements DatabaseInterface {
                     cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_BOARD)),
                     cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_FOR_ID_GROUP_BOARD)),
                     cursor.getString(cursor.getColumnIndex(DBConstant.KEY_NAME_BOARD)),
-                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE))
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE)),
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_PAID))
                 );
                 boardList.add(board);
             } while (cursor.moveToNext());
@@ -81,7 +93,8 @@ public class DatabaseManager implements DatabaseInterface {
         QueryHelper queryHelper = new QueryHelper();
         queryHelper
             .setTableName(DBConstant.TABLE_BOARD)
-            .addCondition(DBConstant.KEY_ID_BOARD, idBoard);
+            .addCondition(DBConstant.KEY_ID_BOARD, idBoard)
+            .addCondition(DBConstant.KEY_IS_PAID, Constant.FALSE);
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
             do {
@@ -89,7 +102,8 @@ public class DatabaseManager implements DatabaseInterface {
                     cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_BOARD)),
                     cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_FOR_ID_GROUP_BOARD)),
                     cursor.getString(cursor.getColumnIndex(DBConstant.KEY_NAME_BOARD)),
-                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE))
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE)),
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_PAID))
                 );
             } while (cursor.moveToNext());
         }
@@ -101,13 +115,14 @@ public class DatabaseManager implements DatabaseInterface {
         SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DBConstant.KEY_NAME_BOARD, board.getNameBoard());
-        values.put(DBConstant.KEY_FOR_ID_GROUP_BOARD, board.getIdGroup());
-        values.put(DBConstant.KEY_IS_SAVE, board.getIsSave());
+        values.put(DBConstant.KEY_FOR_ID_GROUP_BOARD, board.getIdForGroupBoard());
+        values.put(DBConstant.KEY_IS_SAVE, board.isSave());
         int checkUpdate = 0;
         try {
             checkUpdate = db.update(DBConstant.TABLE_BOARD, values,
-                DBConstant.KEY_ID_BOARD + "= ?", new String[]{String.valueOf(board.getId())});
+                DBConstant.KEY_ID_BOARD + "= ?", new String[]{String.valueOf(board.getIdBoard())});
         } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             db.close();
         }
@@ -115,14 +130,34 @@ public class DatabaseManager implements DatabaseInterface {
     }
 
     @Override
-    public void addBoardCommodity(int idBoard, int idCommodity, int number) {
+    public boolean deleteBoard(int idBoard) {
+        // not delete row
+        // -> update field isPay = true
+        SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DBConstant.KEY_IS_PAID, Constant.TRUE);
+        int checkUpdate = 0;
+        try {
+            checkUpdate = db.update(DBConstant.TABLE_BOARD, values,
+                DBConstant.KEY_ID_BOARD + "= ?", new String[]{String.valueOf(idBoard)});
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.close();
+        }
+        return checkUpdate >= Constant.UPDATE_SUCCESS;
+    }
+
+    @Override
+    public boolean insertBoardCommodity(int idBoard, int idCommodity, int number) {
         SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DBConstant.KEY_ID_BOARD, idBoard);
         values.put(DBConstant.KEY_ID_COMMODITY, idCommodity);
         values.put(DBConstant.KEY_NUMBER_COMMODITY_IN_BOARD, number);
-        db.insert(DBConstant.TABLE_BOARD_COMMODITY, null, values);
+        long checkInsert = db.insert(DBConstant.TABLE_BOARD_COMMODITY, null, values);
         db.close();
+        return checkInsert != Constant.INSERT_FAILED;
     }
 
     @Override
@@ -138,10 +173,13 @@ public class DatabaseManager implements DatabaseInterface {
                 DBConstant.KEY_ID_COMMODITY + "= ? AND " + DBConstant.KEY_ID_BOARD + "= ?",
                 new String[]{String.valueOf(idCommodity), String.valueOf(idBoard)});
         } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             db.close();
         }
-        Log.d("TAG", "checkUpdate = " + checkUpdate);
+        if (checkUpdate <= 0) {
+            return insertBoardCommodity(idBoard, idCommodity, number);
+        }
         return checkUpdate >= Constant.UPDATE_SUCCESS;
     }
 
@@ -170,7 +208,7 @@ public class DatabaseManager implements DatabaseInterface {
         QueryHelper queryHelper = new QueryHelper();
         queryHelper
             .setTableName(DBConstant.TABLE_COMMODITY)
-            .addCondition(DBConstant.KEY_IS_COMMON_COMMODITY, DBTest.COMMON);
+            .addCondition(DBConstant.KEY_IS_COMMON_COMMODITY, Constant.COMMON);
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
             do {
@@ -239,5 +277,19 @@ public class DatabaseManager implements DatabaseInterface {
             } while (cursor.moveToNext());
         }
         return commoditySelectedList;
+    }
+
+    @Override
+    public boolean insertCommodity(Commodity commodity) {
+        SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DBConstant.KEY_NAME_COMMODITY, commodity.getNameCommodity());
+        values.put(DBConstant.KEY_COST_COMMODITY, commodity.getCostCommodity());
+        values.put(DBConstant.KEY_FOR_ID_GROUP_COMMODITY, commodity.getIdForGroupCommodity());
+        values.put(DBConstant.KEY_IS_COMMON_COMMODITY, commodity.isCommonCommodity());
+        values.put(DBConstant.KEY_NUMBER_COMMODITY, 1);
+        long checkInsert = db.insert(DBConstant.TABLE_COMMODITY, null, values);
+        db.close();
+        return checkInsert != Constant.INSERT_FAILED;
     }
 }

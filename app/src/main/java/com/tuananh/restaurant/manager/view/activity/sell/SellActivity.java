@@ -79,7 +79,7 @@ public class SellActivity
     public class SelectedBoardListener implements BaseViewAdapter.Presenter {
         public void onClickItemBoard(Board board) {
             Intent intent = new Intent(SellActivity.this, BoardActivity.class);
-            intent.putExtra(Constant.KEY_BOARD_ID, board.getId());
+            intent.putExtra(Constant.KEY_BOARD_ID, board.getIdBoard());
             startActivityForResult(intent, Constant.FLAG_SELECTED_BOARD);
         }
     }
