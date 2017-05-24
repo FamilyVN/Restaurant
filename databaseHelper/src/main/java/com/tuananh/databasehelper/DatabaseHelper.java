@@ -26,7 +26,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String mNameDatabase;
 
     public DatabaseHelper(Context context, String nameDatabase,
-                          SQLiteDatabase.CursorFactory factory, int version) {
+                          SQLiteDatabase.CursorFactory factory, int version,
+                          boolean isCopyFromAsset) {
         super(context, nameDatabase, factory, version);
         mNameDatabase = nameDatabase;
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -38,7 +39,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         mContext = context;
         try {
-            createDatabase();
+            if (isCopyFromAsset) {
+                createDatabase();
+            }
         } catch (IOException mIOException) {
             throw new Error("UnableToCreateDatabase");
         }

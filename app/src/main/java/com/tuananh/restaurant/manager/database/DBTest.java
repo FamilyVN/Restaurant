@@ -1,13 +1,9 @@
-package com.tuananh.restaurant.manager.controller.database;
+package com.tuananh.restaurant.manager.database;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.tuananh.restaurant.manager.R;
-import com.tuananh.restaurant.manager.controller.board.DBGroupBoard;
-import com.tuananh.restaurant.manager.controller.commodity.DBGroupCommodity;
-import com.tuananh.restaurant.manager.controller.setting.DBSetting;
-import com.tuananh.restaurant.manager.database.DatabaseManager;
 import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.model.board.GroupBoard;
@@ -24,20 +20,15 @@ public class DBTest {
     public final static int NOT_PAID = 0;
 
     public static void createDB(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-            Constant.SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences =
+            context.getSharedPreferences(Constant.SHARED_PREFERENCES, Context.MODE_PRIVATE);
         if (sharedPreferences.getBoolean(Constant.UPDATE, true)) {
-            DBHelper dbHelper = new DBHelper(context);
-            dbHelper.createDBGroupBoard();
-            dbHelper.createDBGroupCommodity();
-            dbHelper.createDBSetting();
             //---
-            DBGroupBoard dbGroupBoard = dbHelper.getDBGroupBoard();
-            dbGroupBoard.addGroupBoard(new GroupBoard("Bàn 1-5"));
-            dbGroupBoard.addGroupBoard(new GroupBoard("Bàn 6-10"));
-            dbGroupBoard.addGroupBoard(new GroupBoard("Bàn 11-15"));
-            dbGroupBoard.addGroupBoard(new GroupBoard("Bàn 16-20"));
-            dbGroupBoard.addGroupBoard(new GroupBoard("Bàn 21-25"));
+            DatabaseManager.getInstance(context).insertGroupBoard(new GroupBoard("Bàn 1-5"));
+            DatabaseManager.getInstance(context).insertGroupBoard(new GroupBoard("Bàn 6-10"));
+            DatabaseManager.getInstance(context).insertGroupBoard(new GroupBoard("Bàn 11-15"));
+            DatabaseManager.getInstance(context).insertGroupBoard(new GroupBoard("Bàn 16-20"));
+            DatabaseManager.getInstance(context).insertGroupBoard(new GroupBoard("Bàn 21-25"));
             //---
             int idGroupBoard = 1;
             while (idGroupBoard < 6) {
@@ -48,16 +39,24 @@ public class DBTest {
                 idGroupBoard++;
             }
             //---
-            DBGroupCommodity dbGroupCommodity = dbHelper.getDBGroupCommodity();
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Phổ biến")); // 1
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nước mía")); // 2
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nước dừa")); // 3
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Sữa chua")); // 4
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nước ngọt"));// 5
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nhân trần"));// 6
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Đồ ăn"));    // 7
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Thuốc lá")); // 8
-            dbGroupCommodity.addGroupCommodity(new GroupCommodity("Nước ngâm"));// 9
+            DatabaseManager.getInstance(context)
+                .insertGroupCommodity(new GroupCommodity("Phổ biến")); // 1
+            DatabaseManager.getInstance(context)
+                .insertGroupCommodity(new GroupCommodity("Nước mía")); // 2
+            DatabaseManager.getInstance(context)
+                .insertGroupCommodity(new GroupCommodity("Nước dừa")); // 3
+            DatabaseManager.getInstance(context)
+                .insertGroupCommodity(new GroupCommodity("Sữa chua")); // 4
+            DatabaseManager.getInstance(context)
+                .insertGroupCommodity(new GroupCommodity("Nước ngọt"));// 5
+            DatabaseManager.getInstance(context)
+                .insertGroupCommodity(new GroupCommodity("Nhân trần"));// 6
+            DatabaseManager.getInstance(context)
+                .insertGroupCommodity(new GroupCommodity("Đồ ăn"));    // 7
+            DatabaseManager.getInstance(context)
+                .insertGroupCommodity(new GroupCommodity("Thuốc lá")); // 8
+            DatabaseManager.getInstance(context)
+                .insertGroupCommodity(new GroupCommodity("Nước ngâm"));// 9
             //
             // nuoc mia
             DatabaseManager.getInstance(context)
@@ -140,10 +139,12 @@ public class DBTest {
             DatabaseManager.getInstance(context)
                 .insertCommodity(new Commodity("Nước sấu", 10000, 9, Constant.COMMON));
             //---
-            DBSetting dbSetting = dbHelper.getDBSetting();
-            dbSetting.addSetting(new Setting("Nhóm thực đơn", R.drawable.ic_group_foods));
-            dbSetting.addSetting(new Setting("Đồ uống, món ăn", R.drawable.ic_food));
-            dbSetting.addSetting(new Setting("Sơ đồ bàn", R.drawable.ic_map_table));
+            DatabaseManager.getInstance(context)
+                .insertSetting(new Setting("Nhóm thực đơn", R.drawable.ic_group_foods));
+            DatabaseManager.getInstance(context)
+                .insertSetting(new Setting("Đồ uống, món ăn", R.drawable.ic_food));
+            DatabaseManager.getInstance(context)
+                .insertSetting(new Setting("Sơ đồ bàn", R.drawable.ic_map_table));
             //
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean(Constant.UPDATE, false);

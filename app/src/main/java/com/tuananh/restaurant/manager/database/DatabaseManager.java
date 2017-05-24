@@ -11,6 +11,7 @@ import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.model.board.GroupBoard;
 import com.tuananh.restaurant.manager.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
+import com.tuananh.restaurant.manager.model.setting.Setting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +86,16 @@ public class DatabaseManager implements DatabaseInterface {
             } while (cursor.moveToNext());
         }
         return groupBoardList;
+    }
+
+    @Override
+    public boolean insertGroupBoard(GroupBoard groupBoard) {
+        SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DBConstant.KEY_NAME_GROUP_BOARD, groupBoard.getNameGroupBoard());
+        long checkInsert = db.insert(DBConstant.TABLE_GROUP_BOARD, null, values);
+        db.close();
+        return checkInsert != Constant.INSERT_FAILED;
     }
 
     @Override
@@ -181,6 +192,16 @@ public class DatabaseManager implements DatabaseInterface {
             return insertBoardCommodity(idBoard, idCommodity, number);
         }
         return checkUpdate >= Constant.UPDATE_SUCCESS;
+    }
+
+    @Override
+    public boolean insertGroupCommodity(GroupCommodity groupCommodity) {
+        SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DBConstant.KEY_NAME_GROUP_COMMODITY, groupCommodity.getNameGroupCommodity());
+        long checkInsert = db.insert(DBConstant.TABLE_GROUP_COMMODITY, null, values);
+        db.close();
+        return checkInsert != Constant.INSERT_FAILED;
     }
 
     @Override
@@ -289,6 +310,37 @@ public class DatabaseManager implements DatabaseInterface {
         values.put(DBConstant.KEY_IS_COMMON_COMMODITY, commodity.isCommonCommodity());
         values.put(DBConstant.KEY_NUMBER_COMMODITY, 1);
         long checkInsert = db.insert(DBConstant.TABLE_COMMODITY, null, values);
+        db.close();
+        return checkInsert != Constant.INSERT_FAILED;
+    }
+
+    @Override
+    public List<Setting> getSettingAll() {
+        List<Setting> settingList = new ArrayList<>();
+        QueryHelper queryHelper = new QueryHelper();
+        queryHelper.setTableName(DBConstant.TABLE_SETTING);
+        Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                Setting setting =
+                    new Setting(
+                        cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_SETTING)),
+                        cursor.getString(cursor.getColumnIndex(DBConstant.KEY_NAME_SETTING)),
+                        cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_IMAGE_SETTING))
+                    );
+                settingList.add(setting);
+            } while (cursor.moveToNext());
+        }
+        return settingList;
+    }
+
+    @Override
+    public boolean insertSetting(Setting setting) {
+        SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DBConstant.KEY_NAME_SETTING, setting.getNameSettings());
+        values.put(DBConstant.KEY_ID_IMAGE_SETTING, setting.getIdImageSettings());
+        long checkInsert = db.insert(DBConstant.TABLE_SETTING, null, values);
         db.close();
         return checkInsert != Constant.INSERT_FAILED;
     }
