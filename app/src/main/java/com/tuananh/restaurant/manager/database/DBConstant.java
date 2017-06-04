@@ -10,7 +10,6 @@ public class DBConstant {
     public final static String KEY_NAME_BOARD = "name_board";
     public final static String KEY_FOR_ID_GROUP_BOARD = "id_for_group_board";
     public final static String KEY_IS_SAVE = "is_save_board";
-    public final static String KEY_IS_PAID = "is_paid_board";
     // table group board
     public final static String TABLE_GROUP_BOARD = "group_board";
     public final static String KEY_ID_GROUP_BOARD = "id_group_board";
@@ -36,4 +35,5 @@ public class DBConstant {
     public final static String TABLE_BOARD_COMMODITY = "board_commodity";
     public final static String KEY_ID_BOARD_COMMODITY = "id_board_commodity";
     public final static String KEY_NUMBER_COMMODITY_IN_BOARD = "number_commodity_in_board";
+    public final static String KEY_IS_PAID_IN_BOARD_COMMODITY = "is_paid_in_board_commodity";
 }

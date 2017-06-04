@@ -1,5 +1,6 @@
 package com.tuananh.restaurant.manager.view.activity.payment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.text.TextUtils;
 
@@ -71,5 +72,11 @@ public class PaymentActivity
         }
         getViewModel().setRefundsToCustomers(String.format(Constant.FORMAT_MONEY,
             isPayExactly ? "0" : CommonUtils.convertToMoney(refundsToCustomer.toString())));
+    }
+
+    public void openActivity() {
+        Intent intent = new Intent();
+        setResult(Activity.RESULT_OK, intent);
+        finish();
     }
 }

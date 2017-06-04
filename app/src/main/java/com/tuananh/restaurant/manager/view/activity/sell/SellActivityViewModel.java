@@ -25,10 +25,9 @@ public class SellActivityViewModel extends BaseViewModel<ActivitySellBinding, Se
     }
 
     private void loadData() {
-        mGroupBoardList =
-            DatabaseManager.getInstance(getContext()).getGroupBoardAll();
+        mGroupBoardList = DatabaseManager.getInstance(getContext()).getGroupBoardAll();
         if (!mGroupBoardList.isEmpty()) {
-            mGroupBoardList.get(0).setSelected(true);
+            mGroupBoardList.get(Constant.ID_GROUP_DEFAULT).setSelected(true);
         }
         getView().showGroupBoardList(mGroupBoardList);
     }

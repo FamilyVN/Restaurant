@@ -11,25 +11,22 @@ public class Board {
     private int mIdForGroupBoard;
     private String mNameBoard;
     private int mIsSave;
-    private int mIsPaid;
 
     public Board() {
         mIdBoard = ID_BOARD_DEFAULT;
     }
 
-    public Board(int idBoard, int idForGroupBoard, String nameBoard, int isSave, int isPaid) {
+    public Board(int idBoard, int idForGroupBoard, String nameBoard, int isSave) {
         mIdBoard = idBoard;
         mIdForGroupBoard = idForGroupBoard;
         mNameBoard = nameBoard;
         mIsSave = isSave;
-        mIsPaid = isPaid;
     }
 
-    public Board(int idForGroupBoard, String nameBoard, int isSave, int isPaid) {
+    public Board(int idForGroupBoard, String nameBoard, int isSave) {
         mIdForGroupBoard = idForGroupBoard;
         mNameBoard = nameBoard;
         mIsSave = isSave;
-        mIsPaid = isPaid;
     }
 
     public int getIdBoard() {
@@ -50,13 +47,5 @@ public class Board {
 
     public void setIsSave(int isSave) {
         mIsSave = isSave;
-    }
-
-    public boolean isPaid() {
-        return mIsPaid == Constant.TRUE;
-    }
-
-    public void setIsPaid(int isPaid) {
-        mIsPaid = isPaid;
     }
 }

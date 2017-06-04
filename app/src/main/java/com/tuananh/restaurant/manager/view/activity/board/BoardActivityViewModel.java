@@ -42,10 +42,17 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
         if (mIsQuickPay) {
             getView().updateButton(false);
         }
-        mGroupCommodityList = DatabaseManager.getInstance(getContext()).getGroupCommodityAll();
+        List<GroupCommodity> groupCommodityList =
+            DatabaseManager.getInstance(getContext()).getGroupCommodityAll();
+        if (!CommonUtils.isEmptyList(groupCommodityList)) {
+            mGroupCommodityList.addAll(groupCommodityList);
+        }
         loadDataGroupCommodityList(Constant.ID_GROUP_COMMODITY);
-        mCommoditySelectedList.addAll(
-            DatabaseManager.getInstance(getContext()).getCommoditySelectedInBoardList(idBoard));
+        List<Commodity> commodityList =
+            DatabaseManager.getInstance(getContext()).getCommoditySelectedInBoardList(idBoard);
+        if (!CommonUtils.isEmptyList(commodityList)) {
+            mCommoditySelectedList.addAll(commodityList);
+        }
     }
 
     public void updateTotalCost() {
@@ -103,11 +110,17 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
         groupCommodity.setSelected(true);
         mCommodityList.clear();
         if (position != 0) {
-            mCommodityList.addAll(DatabaseManager.getInstance(getContext())
-                .getCommodityAllByIdGroupCommodity(groupCommodity.getIdGroupCommodity()));
+            List<Commodity> commodityList = DatabaseManager.getInstance(getContext())
+                .getCommodityAllByIdGroupCommodity(groupCommodity.getIdGroupCommodity());
+            if (!CommonUtils.isEmptyList(commodityList)) {
+                mCommodityList.addAll(commodityList);
+            }
         } else {
-            mCommodityList.addAll(DatabaseManager.getInstance(getContext())
-                .getCommodityAllCommon());
+            List<Commodity> commodityCommonList =
+                DatabaseManager.getInstance(getContext()).getCommodityAllCommon();
+            if (!CommonUtils.isEmptyList(commodityCommonList)) {
+                mCommodityList.addAll(commodityCommonList);
+            }
         }
         getView().showCommodityList(mCommodityList);
     }

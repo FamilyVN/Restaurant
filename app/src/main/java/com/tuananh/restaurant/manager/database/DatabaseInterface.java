@@ -17,13 +17,13 @@ public interface DatabaseInterface {
     List<Board> getBoardAllByIdGroupBoard(int idGroupBoard);
     Board getBoardById(int idBoard);
     boolean updateBoard(Board board);
-    boolean deleteBoard(int idBoard);
     // group board
     List<GroupBoard> getGroupBoardAll();
     boolean insertGroupBoard(GroupBoard groupBoard);
     // board commodity
     boolean insertBoardCommodity(int idBoard, int idCommodity, int number);
     boolean updateBoardCommodity(int idBoard, int idCommodity, int number);
+    boolean deleteBoardCommodity(int idBoard);
     // group commodity
     boolean insertGroupCommodity(GroupCommodity groupCommodity);
     List<GroupCommodity> getGroupCommodityAll();

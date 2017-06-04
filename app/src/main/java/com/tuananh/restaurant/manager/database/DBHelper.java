@@ -28,6 +28,10 @@ public class DBHelper extends DatabaseHelper {
         return sInstance;
     }
 
+    public boolean isCopyFromAsset() {
+        return mIsCopyFromAsset;
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         if (!mIsCopyFromAsset) {
@@ -54,8 +58,7 @@ public class DBHelper extends DatabaseHelper {
                 + DBConstant.KEY_ID_BOARD + " INTEGER PRIMARY KEY,"
                 + DBConstant.KEY_FOR_ID_GROUP_BOARD + " INTEGER,"
                 + DBConstant.KEY_NAME_BOARD + " TEXT,"
-                + DBConstant.KEY_IS_SAVE + " INTEGER,"
-                + DBConstant.KEY_IS_PAID + " INTEGER" + ")";
+                + DBConstant.KEY_IS_SAVE + " INTEGER" + ")";
         String CREATE_TABLE_GROUP_BOARD =
             "CREATE TABLE " + DBConstant.TABLE_GROUP_BOARD + "("
                 + DBConstant.KEY_ID_GROUP_BOARD + " INTEGER PRIMARY KEY,"
@@ -82,7 +85,8 @@ public class DBHelper extends DatabaseHelper {
                 + DBConstant.KEY_ID_BOARD_COMMODITY + " INTEGER PRIMARY KEY,"
                 + DBConstant.KEY_ID_BOARD + " INTEGER,"
                 + DBConstant.KEY_ID_COMMODITY + " INTEGER,"
-                + DBConstant.KEY_NUMBER_COMMODITY_IN_BOARD + " INTEGER" + ")";
+                + DBConstant.KEY_NUMBER_COMMODITY_IN_BOARD + " INTEGER,"
+                + DBConstant.KEY_IS_PAID_IN_BOARD_COMMODITY + " INTEGER" + ")";
         db.execSQL(CREATE_TABLE_BOARD);
         db.execSQL(CREATE_TABLE_GROUP_BOARD);
         db.execSQL(CREATE_TABLE_GROUP_COMMODITY);

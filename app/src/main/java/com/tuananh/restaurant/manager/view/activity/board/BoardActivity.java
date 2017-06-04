@@ -16,6 +16,7 @@ import com.tuananh.restaurant.manager.utils.CommonUtils;
 import com.tuananh.restaurant.manager.utils.ToastUtils;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
 import com.tuananh.restaurant.manager.view.activity.payment.PaymentActivity;
+import com.tuananh.restaurant.manager.view.activity.sell.SellActivity;
 import com.tuananh.restaurant.manager.view.custom.BottomSheetBehaviorRecyclerManager;
 import com.tuananh.restaurant.manager.view.custom.BottomSheetBehaviorV2;
 
@@ -102,6 +103,15 @@ public class BoardActivity
         getBinding().buttonSave.setVisibility(isSave ? View.VISIBLE : View.GONE);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constant.REQUEST_CODE_PAYMENT && resultCode == RESULT_OK) {
+            startActivity(new Intent(this, SellActivity.class));
+            finish();
+        }
+    }
+
     public class GroupCommodityListener implements BaseViewAdapter.Presenter {
         public void onSelected(int position) {
             getViewModel().loadDataGroupCommodityList(position);
@@ -126,7 +136,7 @@ public class BoardActivity
                 intent.putExtra(Constant.KEY_NAME_BOARD, getViewModel().getNameBoard());
                 intent.putExtra(Constant.KEY_TOTAL_MONEY, getViewModel().getTotalCost());
                 intent.putExtra(Constant.KEY_BOARD_ID, getViewModel().getBoard().getIdBoard());
-                startActivity(intent);
+                startActivityForResult(intent, Constant.REQUEST_CODE_PAYMENT);
             } else {
                 ToastUtils.showMessages(BoardActivity.this, R.string.not_commodity_selected);
             }

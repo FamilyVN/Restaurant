@@ -19,6 +19,8 @@ public class Constant {
     // flag
     public static final int FLAG_SELECTED_BOARD = 200;
     //
+    public static final int REQUEST_CODE_PAYMENT = 900;
+    //
     public static final int TYPE_ADD = 1;
     public static final int TYPE_REMOVE = 2;
     public static final int TYPE_CLEAR_ALL = 3;
