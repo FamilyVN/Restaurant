@@ -2,6 +2,8 @@ package com.tuananh.restaurant.manager.view.activity.menu;
 
 import com.restaurant.tuananh.mvvm.BaseViewModel;
 import com.tuananh.restaurant.manager.R;
+import com.tuananh.restaurant.manager.database.DBHelper;
+import com.tuananh.restaurant.manager.database.DBTest;
 import com.tuananh.restaurant.manager.databinding.ActivityMenuBinding;
 import com.tuananh.restaurant.manager.model.MenuModel;
 import com.tuananh.restaurant.manager.view.adapter.MenuGridViewAdapter;
@@ -16,6 +18,10 @@ public class MenuActivityViewModel extends BaseViewModel<ActivityMenuBinding, Me
     @Override
     public void onAttached(boolean isFirst) {
         super.onAttached(isFirst);
+        // if isCopyFromAsset == false -> createDB
+        if (!DBHelper.getInstance(getContext()).isCopyFromAsset()) {
+            DBTest.createDB(getContext());
+        }
         createItemMenu();
     }
 

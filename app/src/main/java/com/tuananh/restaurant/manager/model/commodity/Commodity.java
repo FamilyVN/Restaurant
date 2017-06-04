@@ -12,25 +12,29 @@ public class Commodity {
     private int mCostCommodity;
     private int mIdForGroupCommodity;
     private int mIsCommonCommodity;
-    private int mNumberCommodity;
+    private int mNumberCommodity = 1;
+    private int mIsPaid;
 
     public Commodity(int idCommodity, String nameCommodity, int costCommodity,
-                     int idForGroupCommodity, int isCommonCommodity, int numberCommodity) {
+                     int idForGroupCommodity, int isCommonCommodity, int numberCommodity,
+                     int isPaid) {
         mIdCommodity = idCommodity;
         mNameCommodity = nameCommodity;
         mCostCommodity = costCommodity;
         mIdForGroupCommodity = idForGroupCommodity;
         mIsCommonCommodity = isCommonCommodity;
         mNumberCommodity = numberCommodity;
+        mIsPaid = isPaid;
     }
 
     public Commodity(int idCommodity, String nameCommodity, int costCommodity,
-                     int idForGroupCommodity, int isCommonCommodity) {
+                     int idForGroupCommodity, int isCommonCommodity, int isPaid) {
         mIdCommodity = idCommodity;
         mNameCommodity = nameCommodity;
         mCostCommodity = costCommodity;
         mIdForGroupCommodity = idForGroupCommodity;
         mIsCommonCommodity = isCommonCommodity;
+        mIsPaid = isPaid;
     }
 
     public Commodity(String nameCommodity, int costCommodity, int idForGroupCommodity,
@@ -88,5 +92,13 @@ public class Commodity {
 
     public String getStringTotalCost() {
         return CommonUtils.convertToMoney(getTotalCost().toString()) + " đ";
+    }
+
+    public void setIsPaid(int isPaid) {
+        mIsPaid = isPaid;
+    }
+
+    public boolean isPaid() {
+        return mIsPaid == Constant.TRUE;
     }
 }

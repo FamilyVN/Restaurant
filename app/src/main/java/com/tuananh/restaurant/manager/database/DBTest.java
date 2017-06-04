@@ -17,7 +17,6 @@ import com.tuananh.restaurant.manager.model.setting.Setting;
 public class DBTest {
     public final static int NOT_COMMON = 0;
     public final static int NOT_SAVE = 0;
-    public final static int NOT_PAID = 0;
 
     public static void createDB(Context context) {
         SharedPreferences sharedPreferences =
@@ -34,7 +33,7 @@ public class DBTest {
             while (idGroupBoard < 6) {
                 for (int i = 1; i <= 5; i++) {
                     DatabaseManager.getInstance(context).insertBoard(new Board(
-                        idGroupBoard, "Bàn " + ((idGroupBoard - 1) * 5 + i), NOT_SAVE, NOT_PAID));
+                        idGroupBoard, "Bàn " + ((idGroupBoard - 1) * 5 + i), NOT_SAVE));
                 }
                 idGroupBoard++;
             }

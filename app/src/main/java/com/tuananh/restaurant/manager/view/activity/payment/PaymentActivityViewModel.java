@@ -1,6 +1,5 @@
 package com.tuananh.restaurant.manager.view.activity.payment;
 
-import android.content.Intent;
 import android.text.TextUtils;
 
 import com.restaurant.tuananh.mvvm.BaseViewModel;
@@ -11,7 +10,6 @@ import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.utils.CommonUtils;
 import com.tuananh.restaurant.manager.utils.ToastUtils;
-import com.tuananh.restaurant.manager.view.activity.sell.SellActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,10 +115,9 @@ public class PaymentActivityViewModel
             return;
         }
         if (mIdBoard != Board.ID_BOARD_DEFAULT) {
-            DatabaseManager.getInstance(getContext()).deleteBoard(mIdBoard);
+            DatabaseManager.getInstance(getContext()).deleteBoardCommodity(mIdBoard);
         }
-        startActivity(new Intent(getContext(), SellActivity.class));
-        finish();
+        getView().openActivity();
     }
 
     public void updateCost(boolean isPayExactly) {

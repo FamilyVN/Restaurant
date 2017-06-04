@@ -41,7 +41,6 @@ public class DatabaseManager implements DatabaseInterface {
         values.put(DBConstant.KEY_NAME_BOARD, board.getNameBoard());
         values.put(DBConstant.KEY_FOR_ID_GROUP_BOARD, board.getIdForGroupBoard());
         values.put(DBConstant.KEY_IS_SAVE, board.isSave());
-        values.put(DBConstant.KEY_IS_PAID, board.isPaid());
         long checkInsert = db.insert(DBConstant.TABLE_BOARD, null, values);
         db.close();
         return checkInsert != Constant.INSERT_FAILED;
@@ -61,8 +60,7 @@ public class DatabaseManager implements DatabaseInterface {
                     cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_BOARD)),
                     cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_FOR_ID_GROUP_BOARD)),
                     cursor.getString(cursor.getColumnIndex(DBConstant.KEY_NAME_BOARD)),
-                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE)),
-                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_PAID))
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE))
                 );
                 boardList.add(board);
             } while (cursor.moveToNext());
@@ -104,8 +102,7 @@ public class DatabaseManager implements DatabaseInterface {
         QueryHelper queryHelper = new QueryHelper();
         queryHelper
             .setTableName(DBConstant.TABLE_BOARD)
-            .addCondition(DBConstant.KEY_ID_BOARD, idBoard)
-            .addCondition(DBConstant.KEY_IS_PAID, Constant.FALSE);
+            .addCondition(DBConstant.KEY_ID_BOARD, idBoard);
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
             do {
@@ -113,8 +110,7 @@ public class DatabaseManager implements DatabaseInterface {
                     cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_BOARD)),
                     cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_FOR_ID_GROUP_BOARD)),
                     cursor.getString(cursor.getColumnIndex(DBConstant.KEY_NAME_BOARD)),
-                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE)),
-                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_PAID))
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE))
                 );
             } while (cursor.moveToNext());
         }
@@ -141,31 +137,13 @@ public class DatabaseManager implements DatabaseInterface {
     }
 
     @Override
-    public boolean deleteBoard(int idBoard) {
-        // not delete row
-        // -> update field isPay = true
-        SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(DBConstant.KEY_IS_PAID, Constant.TRUE);
-        int checkUpdate = 0;
-        try {
-            checkUpdate = db.update(DBConstant.TABLE_BOARD, values,
-                DBConstant.KEY_ID_BOARD + "= ?", new String[]{String.valueOf(idBoard)});
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            db.close();
-        }
-        return checkUpdate >= Constant.UPDATE_SUCCESS;
-    }
-
-    @Override
     public boolean insertBoardCommodity(int idBoard, int idCommodity, int number) {
         SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DBConstant.KEY_ID_BOARD, idBoard);
         values.put(DBConstant.KEY_ID_COMMODITY, idCommodity);
         values.put(DBConstant.KEY_NUMBER_COMMODITY_IN_BOARD, number);
+        values.put(DBConstant.KEY_IS_PAID_IN_BOARD_COMMODITY, Constant.FALSE);
         long checkInsert = db.insert(DBConstant.TABLE_BOARD_COMMODITY, null, values);
         db.close();
         return checkInsert != Constant.INSERT_FAILED;
@@ -192,6 +170,34 @@ public class DatabaseManager implements DatabaseInterface {
             return insertBoardCommodity(idBoard, idCommodity, number);
         }
         return checkUpdate >= Constant.UPDATE_SUCCESS;
+    }
+
+    @Override
+    public boolean deleteBoardCommodity(int idBoard) {
+        // not delete row
+        // -> update field isPaid = true
+        // -> update field isSave = false
+        SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
+        // values isPaid for boardCommodity table
+        ContentValues values = new ContentValues();
+        values.put(DBConstant.KEY_IS_PAID_IN_BOARD_COMMODITY, Constant.TRUE);
+        // values isSave for board table
+        ContentValues valuesBoard = new ContentValues();
+        valuesBoard.put(DBConstant.KEY_IS_SAVE, Constant.FALSE);
+        int checkUpdateBoardCommodity = 0;
+        int checkUpdateBoard = 0;
+        try {
+            checkUpdateBoardCommodity = db.update(DBConstant.TABLE_BOARD_COMMODITY, values,
+                DBConstant.KEY_ID_BOARD + "= ?", new String[]{String.valueOf(idBoard)});
+            checkUpdateBoard = db.update(DBConstant.TABLE_BOARD, valuesBoard,
+                DBConstant.KEY_ID_BOARD + "= ?", new String[]{String.valueOf(idBoard)});
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.close();
+        }
+        return checkUpdateBoardCommodity >= Constant.UPDATE_SUCCESS
+            && checkUpdateBoard >= Constant.UPDATE_SUCCESS;
     }
 
     @Override
@@ -280,7 +286,10 @@ public class DatabaseManager implements DatabaseInterface {
             .setJoinTable(DBConstant.TABLE_BOARD_COMMODITY, DBConstant.TABLE_COMMODITY,
                 DBConstant.TABLE_BOARD_COMMODITY + "." + DBConstant.KEY_ID_COMMODITY,
                 DBConstant.TABLE_COMMODITY + "." + DBConstant.KEY_ID_COMMODITY)
-            .addCondition(DBConstant.KEY_ID_BOARD, idBoard);
+            .addCondition(DBConstant.TABLE_BOARD_COMMODITY + "." + DBConstant.KEY_ID_BOARD, idBoard)
+            .addCondition(
+                DBConstant.TABLE_BOARD_COMMODITY + "." + DBConstant.KEY_IS_PAID_IN_BOARD_COMMODITY,
+                Constant.FALSE);
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
             do {
@@ -291,8 +300,10 @@ public class DatabaseManager implements DatabaseInterface {
                         cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_COST_COMMODITY)),
                         cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_FOR_ID_GROUP_COMMODITY)),
                         cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_COMMON_COMMODITY)),
-                        cursor
-                            .getInt(cursor.getColumnIndex(DBConstant.KEY_NUMBER_COMMODITY_IN_BOARD))
+                        cursor.getInt(
+                            cursor.getColumnIndex(DBConstant.KEY_NUMBER_COMMODITY_IN_BOARD)),
+                        cursor.getInt(
+                            cursor.getColumnIndex(DBConstant.KEY_IS_PAID_IN_BOARD_COMMODITY))
                     );
                 commoditySelectedList.add(commodity);
             } while (cursor.moveToNext());
