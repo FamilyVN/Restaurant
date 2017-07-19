@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 /**
  * Created by TuanAnh on 3/23/2017.
@@ -30,5 +31,10 @@ public class ViewBindingAdapter {
     @BindingAdapter("visibility")
     public static void setVisibility(View view, String text) {
         view.setVisibility(TextUtils.isEmpty(text) ? View.GONE : View.VISIBLE);
+    }
+
+    @BindingAdapter("image")
+    public static void setImageResource(ImageView imageView, int resId) {
+        imageView.setImageResource(resId);
     }
 }
