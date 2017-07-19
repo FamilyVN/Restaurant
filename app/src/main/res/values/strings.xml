@@ -34,6 +34,8 @@
     <string name="text_board_order">Chọn món</string>
     <string name="text_board_order_bottom">Chọn món</string>
     <string name="msg_user_not_edit_money">Khách hàng chưa trả tiền</string>
+    // setting
+    <string name="text_drink_and_food">Đồ uống, món ăn</string>
 
 
 </resources>
