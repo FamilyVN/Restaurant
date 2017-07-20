@@ -1,11 +1,13 @@
 package com.tuananh.restaurant.manager.view.activity.settings;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.restaurant.tuananh.mvvm.recycler.BaseViewAdapter;
 import com.restaurant.tuananh.mvvm.recycler.SingleTypeAdapter;
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.databinding.ActivitySettingBinding;
+import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.setting.Setting;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
 
@@ -37,5 +39,14 @@ public class SettingActivity
     }
 
     public class SettingClickListener implements BaseViewAdapter.Presenter {
+        public void showItemSetting(Setting setting) {
+            switch (setting.getIdSettings()) {
+                case Constant.TYPE_SETTING_DRINK_AND_FOOD:
+                    startActivity(new Intent(SettingActivity.this, ListDrinkFoodActivity.class));
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

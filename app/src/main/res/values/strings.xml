@@ -1,20 +1,25 @@
 <resources>
     <string name="app_name">Quản lý bán hàng</string>
+    // title
     <string name="title_settings">Cài đặt chung</string>
+    <string name="title_board">Thanh toán</string>
+    <string name="title_sell">Bán hàng</string>
+    <string name="title_list_drink_and_food">Danh mục món</string>
+    // menu
     <string name="text_menu_sell">BÁN HÀNG</string>
     <string name="text_menu_quick_payment">THANH TOÁN NHANH</string>
     <string name="text_menu_settings">CÀI ĐẶT</string>
     <string name="text_menu_help">GIÚP ĐỠ</string>
-    <string name="title_sell">Bán hàng</string>
+    // board
     <string name="board_number">Bàn %d</string>
     <string name="board_activity_board">Bàn: </string>
     <string name="board_activity_total_money">Tổng: </string>
     <string name="board_activity_save">Lưu</string>
     <string name="board_activity_pay">Thanh toán</string>
-    <string name="title_board">Thanh toán</string>
     <string name="text_view_customers_pay">Khách đưa:</string>
     <string name="text_view_refunds_to_customers">Tiền trả lại : </string>
     <string name="not_commodity_selected">Không có danh sách món gọi</string>
+    // payment
     <string name="text_button_pay_number_0">0</string>
     <string name="text_button_pay_number_00">00</string>
     <string name="text_button_pay_number_000">000</string>

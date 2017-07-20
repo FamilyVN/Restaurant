@@ -14,6 +14,8 @@ public class Constant {
     public static final int UPDATE_SUCCESS = 1;
     public static final int INSERT_FAILED = -1;
     public static final int COMMON = 1;
+    //
+    public static final int TYPE_SETTING_DRINK_AND_FOOD = 1;
     // string
     public static final String KEY_BOARD_ID = "board_id";
     // flag
