@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.ActionBar">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".view.activity.menu.MenuActivity"
             android:screenOrientation="portrait"
@@ -18,21 +18,21 @@
         </activity>
         <activity
             android:name=".view.activity.settings.SettingActivity"
-            android:label="@string/title_settings"/>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.payment.PaymentActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.sell.SellActivity"
-            android:label="@string/title_sell"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.board.BoardActivity"
-            android:label="@string/title_board"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".view.activity.settings.ListDrinkFoodActivity"
-            android:label="@string/title_list_drink_and_food"
+            android:name=".view.activity.settings.drinkfood.ListDrinkFoodActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.settings.roomboard.MapRoomBoardActivity"
             android:screenOrientation="portrait"/>
     </application>
 </manifest>

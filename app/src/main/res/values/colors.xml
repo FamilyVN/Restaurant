@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3a50c9</color>
     <color name="colorPrimaryDark">#3a50c9</color>
     <color name="colorShadow">#f3f8f5</color>
+    <color name="colorGreyLight">#c89d9b9d</color>
+    <color name="colorBlueEnabled">#9A9B9D</color>
+    <color name="colorBlueHover">#89ABE3</color>
+    <color name="colorBlue">#3a50c9</color>
 </resources>

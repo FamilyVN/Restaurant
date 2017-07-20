@@ -1,4 +1,4 @@
-package com.tuananh.restaurant.manager.view.activity.settings;
+package com.tuananh.restaurant.manager.view.activity.settings.drinkfood;
 
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.databinding.ActivityListDrinkFoodBinding;

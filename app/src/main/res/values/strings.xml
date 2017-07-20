@@ -41,6 +41,8 @@
     <string name="msg_user_not_edit_money">Khách hàng chưa trả tiền</string>
     // setting
     <string name="text_drink_and_food">Đồ uống, món ăn</string>
-
-
+    <string name="text_map_room_board"> Sơ đồ phòng, bàn</string>
+    // room board
+    <string name="text_room_board_add">Thêm</string>
+    <string name="edit_room_board_hint_name_board">Tên bàn</string>
 </resources>

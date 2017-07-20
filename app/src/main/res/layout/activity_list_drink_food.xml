@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.tuananh.restaurant.manager.view.activity.settings.ListDrinkFoodActivityViewModel"/>
+            type="com.tuananh.restaurant.manager.view.activity.settings.drinkfood.ListDrinkFoodActivityViewModel"/>
     </data>
 
     <LinearLayout
