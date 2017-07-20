@@ -10,6 +10,8 @@ import com.tuananh.restaurant.manager.databinding.ActivitySettingBinding;
 import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.setting.Setting;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
+import com.tuananh.restaurant.manager.view.activity.settings.drinkfood.ListDrinkFoodActivity;
+import com.tuananh.restaurant.manager.view.activity.settings.roomboard.MapRoomBoardActivity;
 
 import java.util.List;
 
@@ -43,6 +45,9 @@ public class SettingActivity
             switch (setting.getIdSettings()) {
                 case Constant.TYPE_SETTING_DRINK_AND_FOOD:
                     startActivity(new Intent(SettingActivity.this, ListDrinkFoodActivity.class));
+                    break;
+                case Constant.TYPE_SETTING_ROOM_BOARD:
+                    startActivity(new Intent(SettingActivity.this, MapRoomBoardActivity.class));
                     break;
                 default:
                     break;
