@@ -8,12 +8,17 @@
         <variable
             name="viewModel"
             type="com.tuananh.restaurant.manager.model.setting.Setting"/>
+
+        <variable
+            name="listener"
+            type="com.tuananh.restaurant.manager.view.activity.settings.SettingActivity.SettingClickListener"/>
     </data>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_padding_5"
+        android:onClick="@{() -> listener.showItemSetting(viewModel)}"
         card_view:cardCornerRadius="@dimen/margin_padding_10"
         card_view:cardUseCompatPadding="true">
 
