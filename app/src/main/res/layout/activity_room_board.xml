@@ -30,46 +30,51 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/padding_small"
-            app:adapter="@{groupBoardAdapter}"
-            app:layoutManager="@{groupBoardLayoutManager}"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/margin_padding_5">
+            android:orientation="vertical">
 
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_small"
+                app:adapter="@{groupBoardAdapter}"
+                app:layoutManager="@{groupBoardLayoutManager}"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_padding_5">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="@string/edit_room_board_hint_name_board"
+                    android:maxLength="28"
+                    android:textSize="@dimen/text_size_18"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="@dimen/margin_padding_10"
+                    android:layout_marginTop="@dimen/margin_padding_10"
+                    android:background="@drawable/selector_button_blue"
+                    android:text="@string/text_room_board_add"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_size_16"/>
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:hint="@string/edit_room_board_hint_name_board"
-                android:maxLength="28"
-                android:textSize="@dimen/text_size_18"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/margin_padding_5"
-                android:layout_marginTop="@dimen/margin_padding_5"
-                android:background="@drawable/selector_button_blue"
-                android:text="@string/text_room_board_add"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_16"/>
+                android:padding="@dimen/padding_small"
+                app:adapter="@{boardAdapter}"
+                app:layoutManager="@{boardLayoutManager}"/>
         </LinearLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:padding="@dimen/padding_small"
-            app:adapter="@{boardAdapter}"
-            app:layoutManager="@{boardLayoutManager}"/>
-
     </android.support.v4.widget.NestedScrollView>
 </layout>
