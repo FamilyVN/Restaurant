@@ -94,8 +94,9 @@ public class Commodity {
         return CommonUtils.convertToMoney(getTotalCost().toString()) + " đ";
     }
 
-    public void setIsPaid(int isPaid) {
+    public Commodity setIsPaid(int isPaid) {
         mIsPaid = isPaid;
+        return this;
     }
 
     public boolean isPaid() {

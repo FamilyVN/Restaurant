@@ -20,7 +20,7 @@
         android:layout_margin="@dimen/margin_padding_10"
         android:background="@drawable/surround_item"
         android:gravity="center"
-        android:onClick="@{() -> listener.onClickItemBoard(viewModel)}"
+        android:onClick="@{(v) -> listener.onClickItemBoard(v, viewModel)}"
         android:padding="@dimen/padding_high"
         android:text="@{viewModel.nameBoard}">
     </TextView>
