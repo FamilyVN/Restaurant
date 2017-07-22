@@ -1,18 +1,25 @@
 package com.tuananh.restaurant.manager.view.activity.settings.roomboard;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.PopupWindow;
 
 import com.restaurant.tuananh.mvvm.recycler.BaseViewAdapter;
 import com.restaurant.tuananh.mvvm.recycler.SingleTypeAdapter;
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.databinding.ActivityRoomBoardBinding;
+import com.tuananh.restaurant.manager.databinding.PopupWindowEditRoomBoardBinding;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.model.board.GroupBoard;
+import com.tuananh.restaurant.manager.model.editboard.EditRoomBoard;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,10 +30,27 @@ public class MapRoomBoardActivity
     private static final int SPAN_COUNT = 2;
     private SingleTypeAdapter<GroupBoard> mGroupBoardAdapter;
     private SingleTypeAdapter<Board> mBoardAdapter;
+    private List<EditRoomBoard> mEditRoomBoardList = new ArrayList<>();
+    private PopupWindowEditRoomBoardBinding mEditRoomBoardBinding;
+    private PopupWindow mPopupEditRoomBoard;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mEditRoomBoardList.add(new EditRoomBoard(1, "Đổi tên"));
+        mEditRoomBoardList.add(new EditRoomBoard(2, "Xóa"));
+        createPopupEditRoomBoard();
+    }
+
+    private void createPopupEditRoomBoard() {
+        LayoutInflater layoutInflater = LayoutInflater.from(MapRoomBoardActivity.this);
+        mEditRoomBoardBinding = DataBindingUtil
+            .inflate(layoutInflater, R.layout.popup_window_edit_room_board, null, true);
+        SingleTypeAdapter<EditRoomBoard> editRoomBoardAdapter =
+            new SingleTypeAdapter<>(MapRoomBoardActivity.this, R.layout.item_edit_room_board);
+        editRoomBoardAdapter.set(mEditRoomBoardList);
+        mEditRoomBoardBinding.setAdapter(editRoomBoardAdapter);
+        mEditRoomBoardBinding.setLayoutManager(new LinearLayoutManager(MapRoomBoardActivity.this));
     }
 
     @Override
@@ -69,7 +93,13 @@ public class MapRoomBoardActivity
     }
 
     public class SelectedBoardListener implements BaseViewAdapter.Presenter {
-        public void onClickItemBoard(Board board) {
+        public void onClickItemBoard(View view, Board board) {
+            if (mPopupEditRoomBoard != null) {
+                mPopupEditRoomBoard.dismiss();
+            }
+            mPopupEditRoomBoard = new PopupWindow(mEditRoomBoardBinding.getRoot(),
+                view.getWidth(), view.getHeight() + 20, true);
+            mPopupEditRoomBoard.showAsDropDown(view, 0, 20);
         }
     }
 }

@@ -29,7 +29,8 @@ public class GroupCommodity {
         return mSelected;
     }
 
-    public void setSelected(boolean selected) {
+    public GroupCommodity setSelected(boolean selected) {
         mSelected = selected;
+        return this;
     }
 }

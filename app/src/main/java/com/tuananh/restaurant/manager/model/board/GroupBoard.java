@@ -29,7 +29,8 @@ public class GroupBoard {
         return mIsSelected;
     }
 
-    public void setSelected(boolean selected) {
+    public GroupBoard setSelected(boolean selected) {
         mIsSelected = selected;
+        return this;
     }
 }

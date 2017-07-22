@@ -1,6 +1,7 @@
 package com.tuananh.restaurant.manager.model.board;
 
 import com.tuananh.restaurant.manager.model.Constant;
+import com.tuananh.restaurant.manager.model.editboard.EditRoomBoard;
 
 /**
  * Created by framgia on 16/09/2016.
@@ -11,6 +12,7 @@ public class Board {
     private int mIdForGroupBoard;
     private String mNameBoard;
     private int mIsSave;
+    private EditRoomBoard mEditRoomBoard;
 
     public Board() {
         mIdBoard = ID_BOARD_DEFAULT;
@@ -45,7 +47,17 @@ public class Board {
         return mIsSave == Constant.TRUE;
     }
 
-    public void setIsSave(int isSave) {
+    public Board setIsSave(int isSave) {
         mIsSave = isSave;
+        return this;
+    }
+
+    public EditRoomBoard getEditRoomBoard() {
+        return mEditRoomBoard;
+    }
+
+    public Board setEditRoomBoard(EditRoomBoard editRoomBoard) {
+        mEditRoomBoard = editRoomBoard;
+        return this;
     }
 }
