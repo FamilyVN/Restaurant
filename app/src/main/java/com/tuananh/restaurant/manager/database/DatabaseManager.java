@@ -41,6 +41,7 @@ public class DatabaseManager implements DatabaseInterface {
         values.put(DBConstant.KEY_NAME_BOARD, board.getNameBoard());
         values.put(DBConstant.KEY_FOR_ID_GROUP_BOARD, board.getIdForGroupBoard());
         values.put(DBConstant.KEY_IS_SAVE, board.isSave());
+        values.put(DBConstant.KEY_IS_USED, board.isUsed());
         long checkInsert = db.insert(DBConstant.TABLE_BOARD, null, values);
         db.close();
         return checkInsert != Constant.INSERT_FAILED;
@@ -52,7 +53,8 @@ public class DatabaseManager implements DatabaseInterface {
         QueryHelper queryHelper = new QueryHelper();
         queryHelper
             .setTableName(DBConstant.TABLE_BOARD)
-            .addCondition(DBConstant.KEY_FOR_ID_GROUP_BOARD, idGroupBoard);
+            .addCondition(DBConstant.KEY_FOR_ID_GROUP_BOARD, idGroupBoard)
+            .addCondition(DBConstant.KEY_IS_USED, Constant.TRUE);
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
             do {
@@ -60,7 +62,8 @@ public class DatabaseManager implements DatabaseInterface {
                     cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_BOARD)),
                     cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_FOR_ID_GROUP_BOARD)),
                     cursor.getString(cursor.getColumnIndex(DBConstant.KEY_NAME_BOARD)),
-                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE))
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE)),
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_USED))
                 );
                 boardList.add(board);
             } while (cursor.moveToNext());
@@ -102,6 +105,7 @@ public class DatabaseManager implements DatabaseInterface {
         QueryHelper queryHelper = new QueryHelper();
         queryHelper
             .setTableName(DBConstant.TABLE_BOARD)
+            .addCondition(DBConstant.KEY_IS_USED, Constant.TRUE)
             .addCondition(DBConstant.KEY_ID_BOARD, idBoard);
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
@@ -110,7 +114,8 @@ public class DatabaseManager implements DatabaseInterface {
                     cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_BOARD)),
                     cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_FOR_ID_GROUP_BOARD)),
                     cursor.getString(cursor.getColumnIndex(DBConstant.KEY_NAME_BOARD)),
-                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE))
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE)),
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_USED))
                 );
             } while (cursor.moveToNext());
         }
@@ -124,6 +129,8 @@ public class DatabaseManager implements DatabaseInterface {
         values.put(DBConstant.KEY_NAME_BOARD, board.getNameBoard());
         values.put(DBConstant.KEY_FOR_ID_GROUP_BOARD, board.getIdForGroupBoard());
         values.put(DBConstant.KEY_IS_SAVE, board.isSave());
+        // if board.isUsed() == false ~~ delete board
+        values.put(DBConstant.KEY_IS_USED, board.isUsed());
         int checkUpdate = 0;
         try {
             checkUpdate = db.update(DBConstant.TABLE_BOARD, values,
