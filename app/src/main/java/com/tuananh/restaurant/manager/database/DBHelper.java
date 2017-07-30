@@ -58,7 +58,8 @@ public class DBHelper extends DatabaseHelper {
                 + DBConstant.KEY_ID_BOARD + " INTEGER PRIMARY KEY,"
                 + DBConstant.KEY_FOR_ID_GROUP_BOARD + " INTEGER,"
                 + DBConstant.KEY_NAME_BOARD + " TEXT,"
-                + DBConstant.KEY_IS_SAVE + " INTEGER" + ")";
+                + DBConstant.KEY_IS_SAVE + " INTEGER"
+                + DBConstant.KEY_IS_USED + " INTEGER" + ")";
         String CREATE_TABLE_GROUP_BOARD =
             "CREATE TABLE " + DBConstant.TABLE_GROUP_BOARD + "("
                 + DBConstant.KEY_ID_GROUP_BOARD + " INTEGER PRIMARY KEY,"
