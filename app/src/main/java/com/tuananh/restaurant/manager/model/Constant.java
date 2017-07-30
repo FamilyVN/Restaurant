@@ -14,12 +14,9 @@ public class Constant {
     public static final int UPDATE_SUCCESS = 1;
     public static final int INSERT_FAILED = -1;
     public static final int COMMON = 1;
-    // type setting
+    //
     public static final int TYPE_SETTING_DRINK_AND_FOOD = 1;
     public static final int TYPE_SETTING_ROOM_BOARD = 2;
-    // type edit room board
-    public static final int TYPE_EDIT_ROOM_BOARD_RENAME = 1;
-    public static final int TYPE_EDIT_ROOM_BOARD_DELETE = 2;
     // string
     public static final String KEY_BOARD_ID = "board_id";
     // flag
@@ -35,6 +32,7 @@ public class Constant {
     //
     public static final String KEY_NAME_BOARD = "name_board";
     public static final String KEY_TOTAL_MONEY = "total_money";
+    public static final int CHECK_ADD_TRUE = 0;
     public static final String SHARED_PREFERENCES = "restaurant_manager";
     public static final String UPDATE = "update";
     // format
