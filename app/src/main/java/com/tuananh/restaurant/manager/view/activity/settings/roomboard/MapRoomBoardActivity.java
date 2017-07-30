@@ -12,10 +12,8 @@ import android.widget.PopupWindow;
 import com.restaurant.tuananh.mvvm.recycler.BaseViewAdapter;
 import com.restaurant.tuananh.mvvm.recycler.SingleTypeAdapter;
 import com.tuananh.restaurant.manager.R;
-import com.tuananh.restaurant.manager.database.DatabaseManager;
 import com.tuananh.restaurant.manager.databinding.ActivityRoomBoardBinding;
 import com.tuananh.restaurant.manager.databinding.PopupWindowEditRoomBoardBinding;
-import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.model.board.GroupBoard;
 import com.tuananh.restaurant.manager.model.editboard.EditRoomBoard;
@@ -39,8 +37,8 @@ public class MapRoomBoardActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mEditRoomBoardList.add(new EditRoomBoard(Constant.TYPE_EDIT_ROOM_BOARD_RENAME, "Đổi tên"));
-        mEditRoomBoardList.add(new EditRoomBoard(Constant.TYPE_EDIT_ROOM_BOARD_DELETE, "Xóa"));
+        mEditRoomBoardList.add(new EditRoomBoard(1, "Đổi tên"));
+        mEditRoomBoardList.add(new EditRoomBoard(2, "Xóa"));
         createPopupEditRoomBoard();
     }
 
@@ -51,7 +49,6 @@ public class MapRoomBoardActivity
         SingleTypeAdapter<EditRoomBoard> editRoomBoardAdapter =
             new SingleTypeAdapter<>(MapRoomBoardActivity.this, R.layout.item_edit_room_board);
         editRoomBoardAdapter.set(mEditRoomBoardList);
-        editRoomBoardAdapter.setPresenter(new SelectedEditRoomBoardListener());
         mEditRoomBoardBinding.setAdapter(editRoomBoardAdapter);
         mEditRoomBoardBinding.setLayoutManager(new LinearLayoutManager(MapRoomBoardActivity.this));
     }
@@ -103,27 +100,6 @@ public class MapRoomBoardActivity
             mPopupEditRoomBoard = new PopupWindow(mEditRoomBoardBinding.getRoot(),
                 view.getWidth(), view.getHeight() + 20, true);
             mPopupEditRoomBoard.showAsDropDown(view, 0, 20);
-            getViewModel().setBoard(board);
-        }
-    }
-
-    public class SelectedEditRoomBoardListener implements BaseViewAdapter.Presenter {
-        public void onEditRoomBoard(View view, EditRoomBoard editRoomBoard) {
-            Board board = getViewModel().getBoard();
-            if (board != null) {
-                switch (editRoomBoard.getId()) {
-                    case Constant.TYPE_EDIT_ROOM_BOARD_RENAME:
-                        break;
-                    case Constant.TYPE_EDIT_ROOM_BOARD_DELETE:
-                        getViewModel().deleteBoard();
-                        board.setUsed(Constant.FALSE);
-                        DatabaseManager.getInstance(MapRoomBoardActivity.this).updateBoard(board);
-                        if (mPopupEditRoomBoard != null) {
-                            mPopupEditRoomBoard.dismiss();
-                        }
-                        break;
-                }
-            }
         }
     }
 }

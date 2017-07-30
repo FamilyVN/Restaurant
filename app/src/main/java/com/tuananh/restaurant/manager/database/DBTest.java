@@ -15,8 +15,8 @@ import com.tuananh.restaurant.manager.model.setting.Setting;
  * Created by framgia on 17/09/2016.
  */
 public class DBTest {
-    public static final int NOT_COMMON = 0;
-    public static final int NOT_SAVE = 0;
+    public final static int NOT_COMMON = 0;
+    public final static int NOT_SAVE = 0;
 
     public static void createDB(Context context) {
         SharedPreferences sharedPreferences =
@@ -32,8 +32,8 @@ public class DBTest {
             int idGroupBoard = 1;
             while (idGroupBoard < 6) {
                 for (int i = 1; i <= 5; i++) {
-                    DatabaseManager.getInstance(context).insertBoard(new Board(idGroupBoard,
-                        "Bàn " + ((idGroupBoard - 1) * 5 + i), NOT_SAVE, Constant.TRUE));
+                    DatabaseManager.getInstance(context).insertBoard(new Board(
+                        idGroupBoard, "Bàn " + ((idGroupBoard - 1) * 5 + i), NOT_SAVE));
                 }
                 idGroupBoard++;
             }

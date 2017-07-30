@@ -17,7 +17,6 @@ public class MapRoomBoardActivityViewModel
     extends BaseViewModelRestaurant<ActivityRoomBoardBinding, MapRoomBoardActivity> {
     private List<GroupBoard> mGroupBoardList = new ArrayList<>();
     private List<Board> mBoardList = new ArrayList<>();
-    private Board mBoard;
 
     @Override
     public void onAttached(boolean isFirst) {
@@ -47,22 +46,6 @@ public class MapRoomBoardActivityViewModel
     private void unSelectedGroupBoard() {
         for (GroupBoard groupBoard : mGroupBoardList) {
             groupBoard.setSelected(false);
-        }
-    }
-
-    public void setBoard(Board board) {
-        mBoard = board;
-        notifyChange();
-    }
-
-    public Board getBoard() {
-        return mBoard;
-    }
-
-    public void deleteBoard() {
-        if (mBoard != null) {
-            mBoardList.remove(mBoard);
-            getView().showBoardList(mBoardList);
         }
     }
 }

@@ -6,17 +6,12 @@
         <variable
             name="viewModel"
             type="com.tuananh.restaurant.manager.model.editboard.EditRoomBoard"/>
-
-        <variable
-            name="listener"
-            type="com.tuananh.restaurant.manager.view.activity.settings.roomboard.MapRoomBoardActivity.SelectedEditRoomBoardListener"/>
     </data>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_padding_10"
-        android:onClick="@{(v) -> listener.onEditRoomBoard(v, viewModel)}"
         android:padding="@dimen/margin_padding_5"
         android:text="@{viewModel.nameEditBoard}"
         android:textSize="@dimen/text_size_18"/>
