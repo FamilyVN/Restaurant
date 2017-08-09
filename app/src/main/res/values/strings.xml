@@ -18,7 +18,8 @@
     <string name="board_activity_pay">Thanh toán</string>
     <string name="text_view_customers_pay">Khách đưa:</string>
     <string name="text_view_refunds_to_customers">Tiền trả lại : </string>
-    <string name="not_commodity_selected">Không có danh sách món gọi</string>
+    <string name="msg_not_commodity_selected">Không có danh sách món gọi</string>
+    <string name="text_save_data_ok">Cập nhật dữ liệu thành công</string>
     // payment
     <string name="text_button_pay_number_0">0</string>
     <string name="text_button_pay_number_00">00</string>

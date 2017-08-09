@@ -7,4 +7,6 @@
     <color name="colorBlueEnabled">#9A9B9D</color>
     <color name="colorBlueHover">#89ABE3</color>
     <color name="colorBlue">#3a50c9</color>
+    <color name="colorOrange">#f9e1b0</color>
+    <color name="colorBackground">#f5f5f5</color>
 </resources>

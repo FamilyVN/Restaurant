@@ -311,6 +311,10 @@ public class QueryHelper {
         return sqlQuery.toString();
     }
 
+    public List<String> getColumnList() {
+        return mColumnList;
+    }
+
     /**
      * @return String[] selectionArgs
      */
