@@ -1,5 +1,6 @@
 package com.tuananh.restaurant.manager.view.activity.board;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -125,8 +126,12 @@ public class BoardActivity
                 updateButton(false);
                 getViewModel().saveData();
                 mCommoditySelectedAdapter.notifyDataSetChanged();
+                ToastUtils.showMessages(BoardActivity.this, R.string.text_save_data_ok);
+                Intent intent = new Intent();
+                setResult(Activity.RESULT_OK, intent);
+                finish();
             } else {
-                ToastUtils.showMessages(BoardActivity.this, R.string.not_commodity_selected);
+                ToastUtils.showMessages(BoardActivity.this, R.string.msg_not_commodity_selected);
             }
         }
 
@@ -138,7 +143,7 @@ public class BoardActivity
                 intent.putExtra(Constant.KEY_BOARD_ID, getViewModel().getBoard().getIdBoard());
                 startActivityForResult(intent, Constant.REQUEST_CODE_PAYMENT);
             } else {
-                ToastUtils.showMessages(BoardActivity.this, R.string.not_commodity_selected);
+                ToastUtils.showMessages(BoardActivity.this, R.string.msg_not_commodity_selected);
             }
         }
 

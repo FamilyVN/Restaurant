@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.tuananh.databasehelper.queryhelper.QueryHelper;
 import com.tuananh.restaurant.manager.model.Constant;
@@ -297,6 +298,10 @@ public class DatabaseManager implements DatabaseInterface {
             .addCondition(
                 DBConstant.TABLE_BOARD_COMMODITY + "." + DBConstant.KEY_IS_PAID_IN_BOARD_COMMODITY,
                 Constant.FALSE);
+        Log.d("TAG", "query = " + queryHelper.getSqlQuery());
+        for (String column : queryHelper.getSelectionArgs()) {
+            Log.d("TAG", "column = " + column);
+        }
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
             do {

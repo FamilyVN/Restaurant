@@ -18,9 +18,10 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="@dimen/card_view_item_group_board_width"
-        android:layout_height="@dimen/item_group_board_height"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_small"
         android:background="@{viewModel.selected ? @drawable/surround_item_selected : @drawable/surround_item}"
+        android:minHeight="@dimen/size_50"
         android:onClick="@{() -> listener.onClickItemGroupBoard(position)}"
         android:orientation="vertical">
 
@@ -28,6 +29,7 @@
             android:id="@+id/text_number_group_board"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:gravity="center"
             android:text="@{viewModel.nameGroupBoard}"/>
     </android.support.v7.widget.CardView>
