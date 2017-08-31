@@ -42,8 +42,14 @@ public class ListDrinkFoodActivityViewModel
         groupCommodity.setSelected(true);
         setNameGroupCommoditySelected(groupCommodity.getNameGroupCommodity());
         mCommodityList.clear();
-        mCommodityList.addAll(DatabaseManager.getInstance(getContext())
-            .getCommodityAllByIdGroupCommodity(groupCommodity.getIdGroupCommodity()));
+        List<Commodity> commodityList;
+        if (position == Constant.ID_GROUP_DEFAULT) {
+            commodityList = DatabaseManager.getInstance(getContext()).getCommodityAllCommon();
+        } else {
+            commodityList = DatabaseManager.getInstance(getContext())
+                .getCommodityAllByIdGroupCommodity(groupCommodity.getIdGroupCommodity());
+        }
+        mCommodityList.addAll(commodityList);
         getView().showCommodityList(mCommodityList);
     }
 
