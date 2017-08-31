@@ -18,6 +18,7 @@ import java.util.List;
  * Created by framgia on 05/05/2017.
  */
 public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, BoardActivity> {
+    private static final String TAG = "TAG: " + BoardActivityViewModel.class.getSimpleName();
     private List<Commodity> mCommoditySelectedList = new ArrayList<>();
     private List<GroupCommodity> mGroupCommodityList = new ArrayList<>();
     private List<Commodity> mCommodityList = new ArrayList<>();
@@ -36,6 +37,7 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
     private void loadData() {
         int idBoard = getIntent().getIntExtra(Constant.KEY_BOARD_ID, Constant.ID_BOARD_DEFAULT);
         mIsQuickPay = idBoard == Constant.ID_BOARD_DEFAULT;
+        Log.d(TAG, "idBoard = " + idBoard);
         mBoard = !mIsQuickPay ?
             DatabaseManager.getInstance(getContext()).getBoardById(idBoard) : new Board();
         getView().updateButton(!mBoard.isSave());

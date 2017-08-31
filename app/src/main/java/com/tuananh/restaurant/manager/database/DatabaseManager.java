@@ -106,8 +106,12 @@ public class DatabaseManager implements DatabaseInterface {
         QueryHelper queryHelper = new QueryHelper();
         queryHelper
             .setTableName(DBConstant.TABLE_BOARD)
-            .addCondition(DBConstant.KEY_IS_USED, Constant.TRUE)
-            .addCondition(DBConstant.KEY_ID_BOARD, idBoard);
+            .addCondition(DBConstant.KEY_ID_BOARD, idBoard)
+            .addCondition(DBConstant.KEY_IS_USED, Constant.TRUE);
+        Log.d("TAG: BoardById ", "query = " + queryHelper.getSqlQuery());
+        for (String column : queryHelper.getSelectionArgs()) {
+            Log.d("TAG: BoardById ", "column = " + column);
+        }
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
             do {
@@ -294,13 +298,14 @@ public class DatabaseManager implements DatabaseInterface {
             .setJoinTable(DBConstant.TABLE_BOARD_COMMODITY, DBConstant.TABLE_COMMODITY,
                 DBConstant.TABLE_BOARD_COMMODITY + "." + DBConstant.KEY_ID_COMMODITY,
                 DBConstant.TABLE_COMMODITY + "." + DBConstant.KEY_ID_COMMODITY)
-            .addCondition(DBConstant.TABLE_BOARD_COMMODITY + "." + DBConstant.KEY_ID_BOARD, idBoard)
             .addCondition(
                 DBConstant.TABLE_BOARD_COMMODITY + "." + DBConstant.KEY_IS_PAID_IN_BOARD_COMMODITY,
-                Constant.FALSE);
-        Log.d("TAG", "query = " + queryHelper.getSqlQuery());
+                Constant.FALSE)
+            .addCondition(DBConstant.TABLE_BOARD_COMMODITY + "." + DBConstant.KEY_ID_BOARD,
+                idBoard);
+        Log.d("TAG: Commodity ", "query = " + queryHelper.getSqlQuery());
         for (String column : queryHelper.getSelectionArgs()) {
-            Log.d("TAG", "column = " + column);
+            Log.d("TAG: Commodity ", "column = " + column);
         }
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
