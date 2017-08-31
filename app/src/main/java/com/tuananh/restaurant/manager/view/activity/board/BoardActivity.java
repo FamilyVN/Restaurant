@@ -28,7 +28,6 @@ import java.util.List;
 public class BoardActivity
     extends BaseActivityRestaurant<ActivityBoardBinding, BoardActivityViewModel> {
     private static final int DELTA_UP_REDUCE = 1;
-    private static final int NUMBER_ROW = 3;
     private SingleTypeAdapter<Commodity> mCommoditySelectedAdapter;
     private SingleTypeAdapter<GroupCommodity> mGroupCommodityAdapter;
     private SingleTypeAdapter<Commodity> mCommodityAdapter;
@@ -95,7 +94,7 @@ public class BoardActivity
         mCommodityAdapter.addAll(commodityList);
         mCommodityAdapter.setPresenter(new CommodityListener());
         getBinding().setCommodityAdapter(mCommodityAdapter);
-        getBinding().setCommodityLayoutManager(new GridLayoutManager(this, NUMBER_ROW));
+        getBinding().setCommodityLayoutManager(new GridLayoutManager(this, Constant.NUMBER_ROW));
     }
 
     public void updateButton(boolean isSave) {
