@@ -17,7 +17,6 @@ import com.tuananh.restaurant.manager.utils.CommonUtils;
 import com.tuananh.restaurant.manager.utils.ToastUtils;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
 import com.tuananh.restaurant.manager.view.activity.payment.PaymentActivity;
-import com.tuananh.restaurant.manager.view.activity.sell.SellActivity;
 import com.tuananh.restaurant.manager.view.custom.BottomSheetBehaviorRecyclerManager;
 import com.tuananh.restaurant.manager.view.custom.BottomSheetBehaviorV2;
 
@@ -108,7 +107,8 @@ public class BoardActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constant.REQUEST_CODE_PAYMENT && resultCode == RESULT_OK) {
-            startActivity(new Intent(this, SellActivity.class));
+            Intent intent = new Intent();
+            setResult(Activity.RESULT_OK, intent);
             finish();
         }
     }
@@ -140,7 +140,7 @@ public class BoardActivity
                 Intent intent = new Intent(BoardActivity.this, PaymentActivity.class);
                 intent.putExtra(Constant.KEY_NAME_BOARD, getViewModel().getNameBoard());
                 intent.putExtra(Constant.KEY_TOTAL_MONEY, getViewModel().getTotalCost());
-                intent.putExtra(Constant.KEY_BOARD_ID, getViewModel().getBoard().getIdBoard());
+                intent.putExtra(Constant.KEY_ID_BOARD, getViewModel().getBoard().getIdBoard());
                 startActivityForResult(intent, Constant.REQUEST_CODE_PAYMENT);
             } else {
                 ToastUtils.showMessages(BoardActivity.this, R.string.msg_not_commodity_selected);

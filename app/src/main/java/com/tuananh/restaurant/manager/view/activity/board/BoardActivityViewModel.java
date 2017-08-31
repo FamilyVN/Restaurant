@@ -35,7 +35,7 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
     }
 
     private void loadData() {
-        int idBoard = getIntent().getIntExtra(Constant.KEY_BOARD_ID, Constant.ID_BOARD_DEFAULT);
+        int idBoard = getIntent().getIntExtra(Constant.KEY_ID_BOARD, Constant.ID_BOARD_DEFAULT);
         mIsQuickPay = idBoard == Constant.ID_BOARD_DEFAULT;
         Log.d(TAG, "idBoard = " + idBoard);
         mBoard = !mIsQuickPay ?
