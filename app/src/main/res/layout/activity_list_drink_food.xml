@@ -1,16 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <variable
+            name="groupCommodityAdapter"
+            type="android.support.v7.widget.RecyclerView.Adapter"/>
+
+        <variable
+            name="groupCommodityLayoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager"/>
+
+        <variable
+            name="commodityAdapter"
+            type="android.support.v7.widget.RecyclerView.Adapter"/>
+
+        <variable
+            name="commodityLayoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager"/>
 
         <variable
             name="viewModel"
             type="com.tuananh.restaurant.manager.view.activity.settings.drinkfood.ListDrinkFoodActivityViewModel"/>
     </data>
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-    </LinearLayout>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_small"
+                app:adapter="@{groupCommodityAdapter}"
+                app:layoutManager="@{groupCommodityLayoutManager}"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_padding_5"
+                android:gravity="center_horizontal"
+                android:text="@{viewModel.nameGroupCommoditySelected}"
+                android:textAllCaps="true"
+                android:textSize="@dimen/text_size_18"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="@string/edit_drink_food_hint_name_commodity"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLength="28"
+                    android:textSize="@dimen/text_size_18"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="@dimen/margin_padding_10"
+                    android:layout_marginTop="@dimen/margin_padding_10"
+                    android:background="@drawable/selector_button_blue"
+                    android:text="@string/text_room_board_add"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_size_16"/>
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_small"
+                app:adapter="@{commodityAdapter}"
+                app:layoutManager="@{commodityLayoutManager}"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </layout>
