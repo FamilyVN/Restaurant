@@ -61,9 +61,9 @@ public class SellActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constant.FLAG_SELECTED_BOARD && resultCode == Activity.RESULT_OK) {
-            int boardId = data.getIntExtra(Constant.KEY_BOARD_ID, Constant.ID_BOARD_DEFAULT);
-            if (boardId != Constant.ID_BOARD_DEFAULT) {
-                getViewModel().updateBoard(boardId);
+            int idBoard = data.getIntExtra(Constant.KEY_ID_BOARD, Constant.ID_BOARD_DEFAULT);
+            if (idBoard != Constant.ID_BOARD_DEFAULT) {
+                getViewModel().updateBoard(idBoard);
                 mBoardAdapter.notifyDataSetChanged();
             }
         }
@@ -79,7 +79,7 @@ public class SellActivity
     public class SelectedBoardListener implements BaseViewAdapter.Presenter {
         public void onClickItemBoard(Board board) {
             Intent intent = new Intent(SellActivity.this, BoardActivity.class);
-            intent.putExtra(Constant.KEY_BOARD_ID, board.getIdBoard());
+            intent.putExtra(Constant.KEY_ID_BOARD, board.getIdBoard());
             startActivityForResult(intent, Constant.FLAG_SELECTED_BOARD);
         }
     }

@@ -21,7 +21,7 @@ public class Constant {
     public static final int TYPE_EDIT_ROOM_BOARD_RENAME = 1;
     public static final int TYPE_EDIT_ROOM_BOARD_DELETE = 2;
     // string
-    public static final String KEY_BOARD_ID = "board_id";
+    public static final String KEY_ID_BOARD = "id_board";
     // flag
     public static final int FLAG_SELECTED_BOARD = 200;
     //

@@ -30,7 +30,7 @@ public class PaymentActivity
         if (intent == null) return;
         getViewModel().setNameBoard(intent.getStringExtra(Constant.KEY_NAME_BOARD));
         getViewModel()
-            .setIdBoard(intent.getIntExtra(Constant.KEY_BOARD_ID, Board.ID_BOARD_DEFAULT));
+            .setIdBoard(intent.getIntExtra(Constant.KEY_ID_BOARD, Board.ID_BOARD_DEFAULT));
         mTotalMoney = intent.getLongExtra(Constant.KEY_TOTAL_MONEY, 0L);
         getViewModel().setTotalCustomerPay(String.format(Constant.FORMAT_MONEY,
             CommonUtils.convertToMoney(mTotalMoney.toString())));
