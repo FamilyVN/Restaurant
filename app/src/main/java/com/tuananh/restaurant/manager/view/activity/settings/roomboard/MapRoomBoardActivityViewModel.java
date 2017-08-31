@@ -50,13 +50,13 @@ public class MapRoomBoardActivityViewModel
         }
     }
 
+    public Board getBoard() {
+        return mBoard;
+    }
+
     public void setBoard(Board board) {
         mBoard = board;
         notifyChange();
-    }
-
-    public Board getBoard() {
-        return mBoard;
     }
 
     public void deleteBoard() {
