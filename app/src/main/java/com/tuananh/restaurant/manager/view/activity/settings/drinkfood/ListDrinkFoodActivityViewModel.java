@@ -18,6 +18,7 @@ public class ListDrinkFoodActivityViewModel
     private List<GroupCommodity> mGroupCommodityList = new ArrayList<>();
     private List<Commodity> mCommodityList = new ArrayList<>();
     private String mNameGroupCommoditySelected;
+    private int mGroupCommodityId;
 
     @Override
     public void onAttached(boolean isFirst) {
@@ -30,8 +31,9 @@ public class ListDrinkFoodActivityViewModel
         mGroupCommodityList = DatabaseManager.getInstance(getContext()).getGroupCommodityAll();
         if (!mGroupCommodityList.isEmpty()) {
             mGroupCommodityList.get(Constant.ID_GROUP_DEFAULT).setSelected(true);
+            setGroupCommodityId(Constant.ID_GROUP_DEFAULT);
             setNameGroupCommoditySelected(
-                mGroupCommodityList.get(Constant.ID_GROUP_DEFAULT).getNameGroupCommodity());
+                mGroupCommodityList.get(mGroupCommodityId).getNameGroupCommodity());
         }
         getView().showGroupCommodityList(mGroupCommodityList);
     }
@@ -40,6 +42,7 @@ public class ListDrinkFoodActivityViewModel
         unSelectedGroupBoard();
         GroupCommodity groupCommodity = mGroupCommodityList.get(position);
         groupCommodity.setSelected(true);
+        setGroupCommodityId(groupCommodity.getIdGroupCommodity());
         setNameGroupCommoditySelected(groupCommodity.getNameGroupCommodity());
         mCommodityList.clear();
         List<Commodity> commodityList;
@@ -57,6 +60,15 @@ public class ListDrinkFoodActivityViewModel
         for (GroupCommodity groupCommodity : mGroupCommodityList) {
             groupCommodity.setSelected(false);
         }
+    }
+
+    public int getGroupCommodityId() {
+        return mGroupCommodityId;
+    }
+
+    public void setGroupCommodityId(int groupCommodityId) {
+        mGroupCommodityId = groupCommodityId;
+        notifyChange();
     }
 
     public String getNameGroupCommoditySelected() {

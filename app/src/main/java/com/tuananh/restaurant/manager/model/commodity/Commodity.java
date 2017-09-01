@@ -67,7 +67,8 @@ public class Commodity {
     }
 
     public String getStringCost() {
-        return String.format("%d đ", getCostCommodity());
+        return String
+            .format("%s đ", CommonUtils.convertToMoney(String.valueOf(getCostCommodity())));
     }
 
     public int getIdForGroupCommodity() {

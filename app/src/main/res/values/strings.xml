@@ -48,4 +48,5 @@
     <string name="edit_room_board_hint_name_board">Tên bàn</string>
     // drink food
     <string name="edit_drink_food_hint_name_commodity">Tên món ăn</string>
+    <string name="text_add">Thêm</string>
 </resources>
