@@ -1,14 +1,13 @@
 package com.tuananh.restaurant.manager.view.activity.settings.drinkfood;
 
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 
 import com.restaurant.tuananh.mvvm.recycler.BaseViewAdapter;
 import com.restaurant.tuananh.mvvm.recycler.SingleTypeAdapter;
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.databinding.ActivityListDrinkFoodBinding;
-import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
@@ -22,6 +21,12 @@ public class ListDrinkFoodActivity
     extends BaseActivityRestaurant<ActivityListDrinkFoodBinding, ListDrinkFoodActivityViewModel> {
     private SingleTypeAdapter<GroupCommodity> mGroupCommodityAdapter;
     private SingleTypeAdapter<Commodity> mCommodityAdapter;
+
+    @Override
+    protected void onViewCreated() {
+        super.onViewCreated();
+        getBinding().setListener(this);
+    }
 
     public void showGroupCommodityList(List<GroupCommodity> groupCommodityList) {
         if (mGroupCommodityAdapter != null) {
@@ -46,10 +51,14 @@ public class ListDrinkFoodActivity
         }
         mCommodityAdapter =
             new SingleTypeAdapter<>(this, R.layout.item_drink_food_setting_commodity);
-        getBinding().setCommodityLayoutManager(new GridLayoutManager(this, Constant.NUMBER_ROW));
+        getBinding().setCommodityLayoutManager(new LinearLayoutManager(this));
         getBinding().setCommodityAdapter(mCommodityAdapter);
         mCommodityAdapter.addAll(commodityList);
         mCommodityAdapter.setPresenter(new SelectedCommodityListener());
+    }
+
+    public void onAddCommodity() {
+        Log.d("TAG", "onAddCommodity : id = " + getViewModel().getGroupCommodityId());
     }
 
     @Override
@@ -66,6 +75,11 @@ public class ListDrinkFoodActivity
 
     public class SelectedCommodityListener implements BaseViewAdapter.Presenter {
         public void onClickItemCommodity(View view, Commodity commodity) {
+            Log.d("TAG", "onClickItemCommodity : id = " + commodity.getIdCommodity());
+        }
+
+        public void onDeleteCommodity(View view, Commodity commodity) {
+            Log.d("TAG", "onDeleteCommodity : id = " + commodity.getIdCommodity());
         }
     }
 }
