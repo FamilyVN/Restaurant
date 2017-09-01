@@ -44,5 +44,115 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_18"/>
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/edit_name_commodity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_padding_10"
+            android:layout_marginLeft="@dimen/margin_padding_20"
+            android:layout_marginRight="@dimen/margin_padding_20"
+            android:layout_marginTop="@dimen/margin_padding_10"
+            android:hint="@string/edit_drink_food_hint_name_commodity"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLength="28"
+            android:textSize="@dimen/text_size_18"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_padding_10"
+            android:layout_marginLeft="@dimen/margin_padding_20"
+            android:layout_marginRight="@dimen/margin_padding_20"
+            android:layout_marginTop="@dimen/margin_padding_10"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edit_cost_commodity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/edit_drink_food_hint_cost_commodity"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:maxLength="8"
+                android:textSize="@dimen/text_size_18"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:minWidth="@dimen/size_50"
+                android:text="@string/text_add_drink_food_currency_unit"
+                android:textSize="@dimen/text_size_18"/>
+        </LinearLayout>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_padding_20"
+            android:layout_marginRight="@dimen/margin_padding_20"
+            android:padding="@dimen/margin_padding_10"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_padding_10"
+            android:paddingBottom="@dimen/margin_padding_10"
+            android:paddingTop="@dimen/margin_padding_10"
+            android:text="@string/text_add_drink_food_common_commodity"
+            android:textSize="@dimen/text_size_16"/>
+
+        <RadioGroup
+            android:id="@+id/radio_group_common_commodity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_padding_20"
+            android:layout_marginRight="@dimen/margin_padding_20"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RadioButton
+                android:id="@+id/radio_button_yes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:paddingBottom="@dimen/margin_padding_5"
+                android:paddingTop="@dimen/margin_padding_5"
+                android:text="@string/text_yes"/>
+
+            <RadioButton
+                android:id="@+id/radio_button_no"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:paddingBottom="@dimen/margin_padding_5"
+                android:paddingTop="@dimen/margin_padding_5"
+                android:text="@string/text_no"/>
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_padding_40"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/margin_padding_10"
+                android:layout_marginTop="@dimen/margin_padding_10"
+                android:background="@drawable/selector_button_blue"
+                android:onClick="@{() -> listener.onSave()}"
+                android:text="@string/board_activity_save"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_16"/>
+        </LinearLayout>
     </LinearLayout>
 </layout>

@@ -83,8 +83,9 @@ public class Commodity {
         return mNumberCommodity;
     }
 
-    public void setNumberCommodity(int numberCommodity) {
+    public Commodity setNumberCommodity(int numberCommodity) {
         mNumberCommodity = numberCommodity;
+        return this;
     }
 
     public Long getTotalCost() {
