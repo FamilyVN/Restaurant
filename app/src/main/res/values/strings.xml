@@ -5,6 +5,7 @@
     <string name="title_board">Thanh toán</string>
     <string name="title_sell">Bán hàng</string>
     <string name="title_list_drink_and_food">Danh mục món</string>
+    <string name="title_add_drink_and_food">Thêm món mới</string>
     // menu
     <string name="text_menu_sell">BÁN HÀNG</string>
     <string name="text_menu_quick_payment">THANH TOÁN NHANH</string>

@@ -44,14 +44,18 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="@{() -> listener.onBackPressed()}"
+                android:paddingBottom="@dimen/margin_padding_10"
                 android:paddingLeft="@dimen/margin_padding_15"
+                android:paddingRight="@dimen/margin_padding_15"
+                android:paddingTop="@dimen/margin_padding_10"
                 android:src="@drawable/ic_back_white"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_padding_15"
-                android:text="@string/title_list_drink_and_food"
+                android:text="@string/title_add_drink_and_food"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_18"/>
 

@@ -27,6 +27,12 @@ public class SellActivity
     private SingleTypeAdapter<Board> mBoardAdapter;
 
     @Override
+    protected void onViewCreated() {
+        super.onViewCreated();
+        getBinding().setListener(this);
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.activity_sell;
     }

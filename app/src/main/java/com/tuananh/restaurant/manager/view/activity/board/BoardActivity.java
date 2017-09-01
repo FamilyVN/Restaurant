@@ -37,6 +37,7 @@ public class BoardActivity
     protected void onViewCreated() {
         super.onViewCreated();
         getBinding().setListener(new BoardListener());
+        getBinding().setListenerNavigation(this);
         mBottomSheetBehavior = BottomSheetBehaviorV2.from(getBinding().bottomSheet);
         mBottomSheetBehavior.setState(BottomSheetBehaviorV2.STATE_HIDDEN);
         BottomSheetBehaviorRecyclerManager manager =
