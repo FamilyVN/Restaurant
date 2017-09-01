@@ -49,5 +49,13 @@
     <string name="edit_room_board_hint_name_board">Tên bàn</string>
     // drink food
     <string name="edit_drink_food_hint_name_commodity">Tên món ăn</string>
+    <string name="edit_drink_food_hint_cost_commodity">Giá bán lẻ</string>
     <string name="text_add">Thêm</string>
+    //
+    <string name="text_yes">Có</string>
+    <string name="text_no">Không</string>
+    <string name="text_add_drink_food_common_commodity">Thuộc nhóm hàng phổ biến</string>
+    <string name="text_add_drink_food_currency_unit">đồng</string>
+    <string name="msg_add_drink_food_success">Thêm mặt hàng thành công</string>
+
 </resources>
