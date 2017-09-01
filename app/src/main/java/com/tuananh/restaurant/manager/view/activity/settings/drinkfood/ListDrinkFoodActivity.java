@@ -1,5 +1,6 @@
 package com.tuananh.restaurant.manager.view.activity.settings.drinkfood;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
@@ -8,9 +9,11 @@ import com.restaurant.tuananh.mvvm.recycler.BaseViewAdapter;
 import com.restaurant.tuananh.mvvm.recycler.SingleTypeAdapter;
 import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.databinding.ActivityListDrinkFoodBinding;
+import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
+import com.tuananh.restaurant.manager.view.activity.settings.adddrinkfood.AddDrinkFoodActivity;
 
 import java.util.List;
 
@@ -59,6 +62,9 @@ public class ListDrinkFoodActivity
 
     public void onAddCommodity() {
         Log.d("TAG", "onAddCommodity : id = " + getViewModel().getGroupCommodityId());
+        Intent intent = new Intent(this, AddDrinkFoodActivity.class);
+        intent.putExtra(Constant.KEY_ID_GROUP_COMMODITY, getViewModel().getGroupCommodityId());
+        startActivityForResult(intent, Constant.REQUEST_CODE_ADD_DRINK_FOOD);
     }
 
     @Override

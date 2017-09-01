@@ -22,6 +22,12 @@ public class SettingActivity
     extends BaseActivityRestaurant<ActivitySettingBinding, SettingActivityViewModel> {
     private SingleTypeAdapter<Setting> mSettingAdapter;
 
+    @Override
+    protected void onViewCreated() {
+        super.onViewCreated();
+        getBinding().setListener(this);
+    }
+
     public void showSettingList(List<Setting> settingList) {
         if (mSettingAdapter != null) {
             mSettingAdapter.clear();

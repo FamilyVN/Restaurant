@@ -15,6 +15,10 @@
             type="com.tuananh.restaurant.manager.view.activity.board.BoardActivity.BoardListener"/>
 
         <variable
+            name="listenerNavigation"
+            type="com.tuananh.restaurant.manager.view.activity.board.BoardActivity"/>
+
+        <variable
             name="commoditySelectedAdapter"
             type="android.support.v7.widget.RecyclerView.Adapter"/>
 
@@ -49,6 +53,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorBlue"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> listenerNavigation.onBackPressed()}"
+                    android:paddingBottom="@dimen/margin_padding_10"
+                    android:paddingLeft="@dimen/margin_padding_15"
+                    android:paddingRight="@dimen/margin_padding_15"
+                    android:paddingTop="@dimen/margin_padding_10"
+                    android:src="@drawable/ic_back_white"/>
+
+            </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_list_commodity_selected"

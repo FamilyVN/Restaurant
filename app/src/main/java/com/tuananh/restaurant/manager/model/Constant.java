@@ -23,10 +23,12 @@ public class Constant {
     public static final int TYPE_EDIT_ROOM_BOARD_DELETE = 2;
     // string
     public static final String KEY_ID_BOARD = "id_board";
+    public static final String KEY_ID_GROUP_COMMODITY = "id_group_commodity";
     // flag
     public static final int FLAG_SELECTED_BOARD = 200;
     //
     public static final int REQUEST_CODE_PAYMENT = 900;
+    public static final int REQUEST_CODE_ADD_DRINK_FOOD = 901;
     //
     public static final int TYPE_ADD = 1;
     public static final int TYPE_REMOVE = 2;
