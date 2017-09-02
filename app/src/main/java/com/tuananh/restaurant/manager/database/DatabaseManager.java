@@ -149,6 +149,30 @@ public class DatabaseManager implements DatabaseInterface {
     }
 
     @Override
+    public List<Board> getBoardAllSave() {
+        List<Board> boardList = new ArrayList<>();
+        QueryHelper queryHelper = new QueryHelper();
+        queryHelper
+            .setTableName(DBConstant.TABLE_BOARD)
+            .addCondition(DBConstant.KEY_IS_SAVE, Constant.TRUE)
+            .addCondition(DBConstant.KEY_IS_USED, Constant.TRUE);
+        Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                Board board = new Board(
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_ID_BOARD)),
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_FOR_ID_GROUP_BOARD)),
+                    cursor.getString(cursor.getColumnIndex(DBConstant.KEY_NAME_BOARD)),
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_SAVE)),
+                    cursor.getInt(cursor.getColumnIndex(DBConstant.KEY_IS_USED))
+                );
+                boardList.add(board);
+            } while (cursor.moveToNext());
+        }
+        return boardList;
+    }
+
+    @Override
     public boolean insertBoardCommodity(int idBoard, int idCommodity, int number) {
         SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
         ContentValues values = new ContentValues();

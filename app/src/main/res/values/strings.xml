@@ -57,5 +57,6 @@
     <string name="text_add_drink_food_common_commodity">Thuộc nhóm hàng phổ biến</string>
     <string name="text_add_drink_food_currency_unit">đồng</string>
     <string name="msg_add_drink_food_success">Thêm mặt hàng thành công</string>
+    <string name="text_group_board_opening">Đang mở</string>
 
 </resources>

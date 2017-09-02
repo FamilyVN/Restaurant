@@ -72,6 +72,7 @@ public class SellActivity
                 getViewModel().updateBoard(idBoard);
                 mBoardAdapter.notifyDataSetChanged();
             }
+            getBinding().recyclerGroupBoard.scrollToPosition(0);
         }
     }
 
