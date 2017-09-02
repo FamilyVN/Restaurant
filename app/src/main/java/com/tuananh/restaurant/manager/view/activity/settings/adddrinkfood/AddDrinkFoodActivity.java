@@ -2,6 +2,9 @@ package com.tuananh.restaurant.manager.view.activity.settings.adddrinkfood;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.tuananh.restaurant.manager.R;
@@ -9,14 +12,48 @@ import com.tuananh.restaurant.manager.database.DatabaseManager;
 import com.tuananh.restaurant.manager.databinding.ActivityAddDrinkFoodBinding;
 import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.commodity.Commodity;
+import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddDrinkFoodActivity
     extends BaseActivityRestaurant<ActivityAddDrinkFoodBinding, AddDrinkFoodActivityViewModel> {
+    private int mIdForGroupCommodity;
+
     @Override
     protected void onViewCreated() {
         super.onViewCreated();
         getBinding().setListener(this);
+        initSpinner();
+    }
+
+    private void initSpinner() {
+        List<GroupCommodity> groupCommodityList =
+            DatabaseManager.getInstance(this).getGroupCommodityAll();
+        final List<String> dataList = new ArrayList<>();
+        for (GroupCommodity groupCommodity : groupCommodityList) {
+            dataList.add(groupCommodity.getNameGroupCommodity());
+        }
+        ArrayAdapter<String> adapter =
+            new ArrayAdapter<>(this, R.layout.item_spinner_group_commodity, dataList);
+        adapter.setDropDownViewResource(R.layout.item_spinner_list_single_choice);
+        getBinding().spinnerGroupCommodity.setAdapter(adapter);
+        getBinding().spinnerGroupCommodity.setSelection(1);
+        getBinding().spinnerGroupCommodity.setOnItemSelectedListener(
+            new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position,
+                                           long l) {
+                    mIdForGroupCommodity = position + 1;
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                    mIdForGroupCommodity = 2;
+                }
+            });
     }
 
     private int getIsCommonCommodity() {
@@ -39,8 +76,7 @@ public class AddDrinkFoodActivity
         try {
             costCommodity = Integer.parseInt(getBinding().editCostCommodity.getText().toString());
             // test
-            int idForGroupCommodity = 2;
-            commodity = new Commodity(nameCommodity, costCommodity, idForGroupCommodity,
+            commodity = new Commodity(nameCommodity, costCommodity, mIdForGroupCommodity,
                 getIsCommonCommodity());
         } catch (Exception e) {
             e.printStackTrace();
