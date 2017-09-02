@@ -1,6 +1,7 @@
 package com.tuananh.restaurant.manager.view.activity.sell;
 
 import com.restaurant.tuananh.mvvm.BaseViewModel;
+import com.tuananh.restaurant.manager.R;
 import com.tuananh.restaurant.manager.database.DatabaseManager;
 import com.tuananh.restaurant.manager.databinding.ActivitySellBinding;
 import com.tuananh.restaurant.manager.model.Constant;
@@ -26,8 +27,9 @@ public class SellActivityViewModel extends BaseViewModel<ActivitySellBinding, Se
 
     private void loadData() {
         mGroupBoardList = DatabaseManager.getInstance(getContext()).getGroupBoardAll();
+        mGroupBoardList.add(0, new GroupBoard(getString(R.string.text_group_board_opening)));
         if (!mGroupBoardList.isEmpty()) {
-            mGroupBoardList.get(Constant.ID_GROUP_DEFAULT).setSelected(true);
+            mGroupBoardList.get(Constant.ID_GROUP_BOARD_DEFAULT).setSelected(true);
         }
         getView().showGroupBoardList(mGroupBoardList);
     }
@@ -43,8 +45,12 @@ public class SellActivityViewModel extends BaseViewModel<ActivitySellBinding, Se
         GroupBoard groupBoard = mGroupBoardList.get(position);
         groupBoard.setSelected(true);
         mBoardList.clear();
-        mBoardList.addAll(DatabaseManager.getInstance(getContext())
-            .getBoardAllByIdGroupBoard(groupBoard.getIdGroupBoard()));
+        if (position == 0) {
+            mBoardList.addAll(DatabaseManager.getInstance(getContext()).getBoardAllSave());
+        } else {
+            mBoardList.addAll(DatabaseManager.getInstance(getContext())
+                .getBoardAllByIdGroupBoard(groupBoard.getIdGroupBoard()));
+        }
         getView().showBoardList(mBoardList);
     }
 

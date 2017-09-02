@@ -5,6 +5,7 @@ package com.tuananh.restaurant.manager.model;
  */
 public class Constant {
     public static final int ID_GROUP_DEFAULT = 0;
+    public static final int ID_GROUP_BOARD_DEFAULT = 1;
     public static final int ID_BOARD_DEFAULT = -1;
     public static final int ID_GROUP_COMMODITY = 0;
     public static final int TRUE = 1;
