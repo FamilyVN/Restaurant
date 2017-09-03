@@ -30,7 +30,7 @@ public class AddDrinkFoodActivity
     }
 
     private void initSpinner() {
-        List<GroupCommodity> groupCommodityList =
+        final List<GroupCommodity> groupCommodityList =
             DatabaseManager.getInstance(this).getGroupCommodityAll();
         final List<String> dataList = new ArrayList<>();
         for (GroupCommodity groupCommodity : groupCommodityList) {
@@ -46,12 +46,15 @@ public class AddDrinkFoodActivity
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position,
                                            long l) {
-                    mIdForGroupCommodity = position + 1;
+                    mIdForGroupCommodity =
+                        groupCommodityList.get(position).getIdGroupCommodity();
                 }
 
                 @Override
                 public void onNothingSelected(AdapterView<?> adapterView) {
-                    mIdForGroupCommodity = 2;
+                    if (groupCommodityList.size() > 1) {
+                        groupCommodityList.get(1).getIdGroupCommodity();
+                    }
                 }
             });
     }
@@ -75,7 +78,6 @@ public class AddDrinkFoodActivity
         int costCommodity;
         try {
             costCommodity = Integer.parseInt(getBinding().editCostCommodity.getText().toString());
-            // test
             commodity = new Commodity(nameCommodity, costCommodity, mIdForGroupCommodity,
                 getIsCommonCommodity());
         } catch (Exception e) {
@@ -85,6 +87,7 @@ public class AddDrinkFoodActivity
         if (DatabaseManager.getInstance(this).insertCommodity(commodity)) {
             Toast.makeText(this, R.string.msg_add_drink_food_success, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
+            intent.putExtra(Constant.KEY_POSITION_GROUP_COMMODITY, mIdForGroupCommodity);
             setResult(Activity.RESULT_OK, intent);
             finish();
         }

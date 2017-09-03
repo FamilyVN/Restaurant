@@ -1,5 +1,7 @@
 package com.tuananh.restaurant.manager.view.activity.settings.drinkfood;
 
+import android.util.Log;
+
 import com.tuananh.restaurant.manager.database.DatabaseManager;
 import com.tuananh.restaurant.manager.databinding.ActivityListDrinkFoodBinding;
 import com.tuananh.restaurant.manager.model.BaseViewModelRestaurant;
@@ -23,8 +25,10 @@ public class ListDrinkFoodActivityViewModel
     @Override
     public void onAttached(boolean isFirst) {
         super.onAttached(isFirst);
-        loadData();
-        loadDataCommodityList(Constant.ID_GROUP_DEFAULT);
+        if (isFirst) {
+            loadData();
+            loadDataCommodityList(Constant.ID_GROUP_DEFAULT);
+        }
     }
 
     private void loadData() {
@@ -39,6 +43,7 @@ public class ListDrinkFoodActivityViewModel
     }
 
     public void loadDataCommodityList(int position) {
+        Log.d("TAG", "position = " + position);
         unSelectedGroupBoard();
         GroupCommodity groupCommodity = mGroupCommodityList.get(position);
         groupCommodity.setSelected(true);

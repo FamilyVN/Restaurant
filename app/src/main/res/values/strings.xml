@@ -58,5 +58,8 @@
     <string name="text_add_drink_food_currency_unit">đồng</string>
     <string name="msg_add_drink_food_success">Thêm mặt hàng thành công</string>
     <string name="text_group_board_opening">Đang mở</string>
+    //
+    <string name="text_dialog_delete_commodity">Xóa sản phẩm</string>
+    <string name="text_dialog_msg_delete_commodity">Bạn có xóa sản phẩm này không ?</string>
 
 </resources>
