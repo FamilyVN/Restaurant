@@ -33,6 +33,7 @@ public interface DatabaseInterface {
     List<Commodity> getCommodityAllByIdGroupCommodity(int idGroupCommodity);
     List<Commodity> getCommoditySelectedInBoardList(int idBoard);
     boolean insertCommodity(Commodity commodity);
+    boolean deleteCommodity(int idCommodity);
     // setting
     List<Setting> getSettingAll();
     boolean insertSetting(Setting setting);

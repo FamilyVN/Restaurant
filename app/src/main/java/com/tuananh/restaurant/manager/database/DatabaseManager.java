@@ -367,6 +367,11 @@ public class DatabaseManager implements DatabaseInterface {
     }
 
     @Override
+    public boolean deleteCommodity(int idCommodity) {
+        return false;
+    }
+
+    @Override
     public List<Setting> getSettingAll() {
         List<Setting> settingList = new ArrayList<>();
         QueryHelper queryHelper = new QueryHelper();
