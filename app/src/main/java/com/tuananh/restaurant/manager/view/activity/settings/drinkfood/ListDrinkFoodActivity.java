@@ -95,15 +95,24 @@ public class ListDrinkFoodActivity
     }
 
     public class SelectedCommodityListener implements BaseViewAdapter.Presenter {
-        private AlertDialog.Builder createBuilder(final int idCommodity) {
+        private AlertDialog.Builder createBuilder(final Commodity commodity) {
             AlertDialog.Builder builder = new AlertDialog.Builder(ListDrinkFoodActivity.this)
                 .setTitle(R.string.text_dialog_delete_commodity)
                 .setMessage(R.string.text_dialog_msg_delete_commodity)
                 .setPositiveButton(R.string.text_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        DatabaseManager.getInstance(ListDrinkFoodActivity.this)
-                            .deleteCommodity(idCommodity);
+                        if (getViewModel().getGroupCommodityId() == Constant.ID_GROUP_DEFAULT) {
+                            if (DatabaseManager.getInstance(ListDrinkFoodActivity.this)
+                                .updateCommodity(commodity.getIdCommodity(), Constant.FALSE)) {
+                                getViewModel().removeCommodity(commodity);
+                            }
+                        } else {
+                            if (DatabaseManager.getInstance(ListDrinkFoodActivity.this)
+                                .deleteCommodity(commodity.getIdCommodity())) {
+                                getViewModel().removeCommodity(commodity);
+                            }
+                        }
                     }
                 })
                 .setNegativeButton(R.string.text_no, new DialogInterface.OnClickListener() {
@@ -119,13 +128,11 @@ public class ListDrinkFoodActivity
         }
 
         public void onDeleteCommodity(View view, Commodity commodity) {
-            Log.d("TAG", "onDeleteCommodity : id = " + commodity.getIdCommodity());
             if (mDialogDeleteCommodity != null && mDialogDeleteCommodity.isShowing()) {
                 mDialogDeleteCommodity.dismiss();
             }
-            mDialogDeleteCommodity = createBuilder(commodity.getIdCommodity()).create();
+            mDialogDeleteCommodity = createBuilder(commodity).create();
             mDialogDeleteCommodity.show();
-            mCommodityAdapter.notifyDataSetChanged();
         }
     }
 }

@@ -47,15 +47,16 @@ public class ListDrinkFoodActivityViewModel
         unSelectedGroupBoard();
         GroupCommodity groupCommodity = mGroupCommodityList.get(position);
         groupCommodity.setSelected(true);
-        setGroupCommodityId(groupCommodity.getIdGroupCommodity());
         setNameGroupCommoditySelected(groupCommodity.getNameGroupCommodity());
         mCommodityList.clear();
         List<Commodity> commodityList;
         if (position == Constant.ID_GROUP_DEFAULT) {
             commodityList = DatabaseManager.getInstance(getContext()).getCommodityAllCommon();
+            setGroupCommodityId(Constant.ID_GROUP_DEFAULT);
         } else {
             commodityList = DatabaseManager.getInstance(getContext())
                 .getCommodityAllByIdGroupCommodity(groupCommodity.getIdGroupCommodity());
+            setGroupCommodityId(groupCommodity.getIdGroupCommodity());
         }
         mCommodityList.addAll(commodityList);
         getView().showCommodityList(mCommodityList);
@@ -83,5 +84,10 @@ public class ListDrinkFoodActivityViewModel
     public void setNameGroupCommoditySelected(String nameGroupCommoditySelected) {
         mNameGroupCommoditySelected = nameGroupCommoditySelected;
         notifyChange();
+    }
+
+    public void removeCommodity(Commodity commodity) {
+        mCommodityList.remove(commodity);
+        getView().showCommodityList(mCommodityList);
     }
 }
