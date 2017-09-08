@@ -158,4 +158,8 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
         }
         getView().showCommoditySelectedList(mCommoditySelectedList);
     }
+
+    public boolean onCancelBoardCommodity() {
+        return DatabaseManager.getInstance(getContext()).cancelBoardCommodity(mBoard.getIdBoard());
+    }
 }

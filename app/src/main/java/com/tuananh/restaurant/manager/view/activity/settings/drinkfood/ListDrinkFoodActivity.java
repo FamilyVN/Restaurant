@@ -66,7 +66,6 @@ public class ListDrinkFoodActivity
     }
 
     public void onAddCommodity() {
-        Log.d("TAG", "onAddCommodity : id = " + getViewModel().getGroupCommodityId());
         Intent intent = new Intent(this, AddDrinkFoodActivity.class);
         startActivityForResult(intent, Constant.REQUEST_CODE_ADD_DRINK_FOOD);
     }
@@ -96,7 +95,7 @@ public class ListDrinkFoodActivity
 
     public class SelectedCommodityListener implements BaseViewAdapter.Presenter {
         private AlertDialog.Builder createBuilder(final Commodity commodity) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(ListDrinkFoodActivity.this)
+            return new AlertDialog.Builder(ListDrinkFoodActivity.this)
                 .setTitle(R.string.text_dialog_delete_commodity)
                 .setMessage(R.string.text_dialog_msg_delete_commodity)
                 .setPositiveButton(R.string.text_yes, new DialogInterface.OnClickListener() {
@@ -120,7 +119,6 @@ public class ListDrinkFoodActivity
                     public void onClick(DialogInterface dialog, int which) {
                     }
                 });
-            return builder;
         }
 
         public void onClickItemCommodity(View view, Commodity commodity) {

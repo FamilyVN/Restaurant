@@ -25,6 +25,7 @@ public interface DatabaseInterface {
     boolean insertBoardCommodity(int idBoard, int idCommodity, int number);
     boolean updateBoardCommodity(int idBoard, int idCommodity, int number);
     boolean deleteBoardCommodity(int idBoard);
+    boolean cancelBoardCommodity(int idBoard);
     // group commodity
     boolean insertGroupCommodity(GroupCommodity groupCommodity);
     List<GroupCommodity> getGroupCommodityAll();
