@@ -27,7 +27,7 @@ public class SellActivityViewModel extends BaseViewModel<ActivitySellBinding, Se
         }
     }
 
-    private void loadData() {
+    public void loadData() {
         mGroupBoardList = DatabaseManager.getInstance(getContext()).getGroupBoardAll();
         mGroupBoardList.add(0, new GroupBoard(getString(R.string.text_group_board_opening)));
         if (!mGroupBoardList.isEmpty()) {

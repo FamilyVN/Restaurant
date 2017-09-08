@@ -67,12 +67,9 @@ public class SellActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constant.FLAG_SELECTED_BOARD && resultCode == Activity.RESULT_OK) {
-            int idBoard = data.getIntExtra(Constant.KEY_ID_BOARD, Constant.ID_BOARD_DEFAULT);
-            if (idBoard != Constant.ID_BOARD_DEFAULT) {
-                getViewModel().updateBoard(idBoard);
-                mBoardAdapter.notifyDataSetChanged();
-            }
             getBinding().recyclerGroupBoard.scrollToPosition(0);
+            getViewModel().loadData();
+            getViewModel().loadDataBoardList(Constant.ID_GROUP_DEFAULT);
         }
     }
 
