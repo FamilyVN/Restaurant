@@ -22,8 +22,10 @@ public class MapRoomBoardActivityViewModel
     @Override
     public void onAttached(boolean isFirst) {
         super.onAttached(isFirst);
-        loadData();
-        loadDataBoardList(Constant.ID_GROUP_DEFAULT);
+        if (isFirst) {
+            loadData();
+            loadDataBoardList(Constant.ID_GROUP_DEFAULT);
+        }
     }
 
     private void loadData() {

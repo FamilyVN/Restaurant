@@ -18,11 +18,13 @@ public class MenuActivityViewModel extends BaseViewModel<ActivityMenuBinding, Me
     @Override
     public void onAttached(boolean isFirst) {
         super.onAttached(isFirst);
-        // if isCopyFromAsset == false -> createDB
-        if (!DBHelper.getInstance(getContext()).isCopyFromAsset()) {
-            DBTest.createDB(getContext());
+        if (isFirst) {
+            // if isCopyFromAsset == false -> createDB
+            if (!DBHelper.getInstance(getContext()).isCopyFromAsset()) {
+                DBTest.createDB(getContext());
+            }
+            createItemMenu();
         }
-        createItemMenu();
     }
 
     private void createItemMenu() {
