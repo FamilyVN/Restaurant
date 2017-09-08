@@ -17,7 +17,9 @@ public class SettingActivityViewModel
     @Override
     public void onAttached(boolean isFirst) {
         super.onAttached(isFirst);
-        loadData();
+        if (isFirst) {
+            loadData();
+        }
     }
 
     private void loadData() {

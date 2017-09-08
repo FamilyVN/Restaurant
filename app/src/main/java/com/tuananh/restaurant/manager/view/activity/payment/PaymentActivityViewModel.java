@@ -30,7 +30,9 @@ public class PaymentActivityViewModel
     @Override
     public void onAttached(boolean isFirst) {
         super.onAttached(isFirst);
-        updateCost(false);
+        if (isFirst) {
+            updateCost(false);
+        }
     }
 
     public String getNameBoard() {

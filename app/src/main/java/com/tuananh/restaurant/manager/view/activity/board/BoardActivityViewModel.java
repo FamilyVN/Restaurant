@@ -1,7 +1,5 @@
 package com.tuananh.restaurant.manager.view.activity.board;
 
-import android.util.Log;
-
 import com.restaurant.tuananh.mvvm.BaseViewModel;
 import com.tuananh.restaurant.manager.database.DatabaseManager;
 import com.tuananh.restaurant.manager.databinding.ActivityBoardBinding;
@@ -28,16 +26,17 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
     @Override
     public void onAttached(boolean isFirst) {
         super.onAttached(isFirst);
-        loadData();
-        getView().showCommoditySelectedList(mCommoditySelectedList);
-        getView().showGroupCommodityList(mGroupCommodityList);
-        updateTotalCost();
+        if (isFirst) {
+            loadData();
+            getView().showCommoditySelectedList(mCommoditySelectedList);
+            getView().showGroupCommodityList(mGroupCommodityList);
+            updateTotalCost();
+        }
     }
 
     private void loadData() {
         int idBoard = getIntent().getIntExtra(Constant.KEY_ID_BOARD, Constant.ID_BOARD_DEFAULT);
         mIsQuickPay = idBoard == Constant.ID_BOARD_DEFAULT;
-        Log.d(TAG, "idBoard = " + idBoard);
         mBoard = !mIsQuickPay ?
             DatabaseManager.getInstance(getContext()).getBoardById(idBoard) : new Board();
         getView().updateButton(!mBoard.isSave());
@@ -87,7 +86,6 @@ public class BoardActivityViewModel extends BaseViewModel<ActivityBoardBinding, 
 
     public void saveData() {
         if (mBoard.getIdBoard() != Board.ID_BOARD_DEFAULT) {
-            Log.d("TAG", "isSave = " + mBoard.isSave());
             if (!mBoard.isSave()) {
                 for (Commodity commodity : mCommoditySelectedList) {
                     DatabaseManager.getInstance(getContext()).insertBoardCommodity(
