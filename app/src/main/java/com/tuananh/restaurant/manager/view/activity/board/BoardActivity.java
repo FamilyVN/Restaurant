@@ -1,6 +1,9 @@
 package com.tuananh.restaurant.manager.view.activity.board;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,6 +35,7 @@ public class BoardActivity
     private SingleTypeAdapter<GroupCommodity> mGroupCommodityAdapter;
     private SingleTypeAdapter<Commodity> mCommodityAdapter;
     private BottomSheetBehaviorV2 mBottomSheetBehavior;
+    private Dialog mDialogCancelBoardCommodity;
 
     @Override
     protected void onViewCreated() {
@@ -111,6 +115,34 @@ public class BoardActivity
             setResult(Activity.RESULT_OK, intent);
             finish();
         }
+    }
+
+    private AlertDialog.Builder createBuilder() {
+        return new AlertDialog.Builder(this)
+            .setTitle(R.string.text_board_cancel_board_commodity)
+            .setMessage(R.string.text_dialog_msg_cancel_board_commodity)
+            .setPositiveButton(R.string.text_yes, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    getViewModel().onCancelBoardCommodity();
+                    Intent intent = new Intent();
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
+                }
+            })
+            .setNegativeButton(R.string.text_no, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+    }
+
+    public void onCancelBoardCommodity() {
+        if (mDialogCancelBoardCommodity != null && mDialogCancelBoardCommodity.isShowing()) {
+            mDialogCancelBoardCommodity.dismiss();
+        }
+        mDialogCancelBoardCommodity = createBuilder().create();
+        mDialogCancelBoardCommodity.show();
     }
 
     public class GroupCommodityListener implements BaseViewAdapter.Presenter {

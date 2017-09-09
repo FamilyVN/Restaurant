@@ -237,6 +237,11 @@ public class DatabaseManager implements DatabaseInterface {
     }
 
     @Override
+    public boolean cancelBoardCommodity(int idBoard) {
+        return false;
+    }
+
+    @Override
     public boolean insertGroupCommodity(GroupCommodity groupCommodity) {
         SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
         ContentValues values = new ContentValues();
