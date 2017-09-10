@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.tuananh.databasehelper.queryhelper.QueryHelper;
 import com.tuananh.restaurant.manager.model.Constant;
@@ -108,10 +107,6 @@ public class DatabaseManager implements DatabaseInterface {
             .setTableName(DBConstant.TABLE_BOARD)
             .addCondition(DBConstant.KEY_ID_BOARD, idBoard)
             .addCondition(DBConstant.KEY_IS_USED, Constant.TRUE);
-        Log.d("TAG: BoardById ", "query = " + queryHelper.getSqlQuery());
-        for (String column : queryHelper.getSelectionArgs()) {
-            Log.d("TAG: BoardById ", "column = " + column);
-        }
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
             do {
@@ -238,7 +233,22 @@ public class DatabaseManager implements DatabaseInterface {
 
     @Override
     public boolean cancelBoardCommodity(int idBoard) {
-        return false;
+        SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
+        int deleteBoardCommodity = 0;
+        int checkUpdateBoard = 0;
+        ContentValues valuesBoard = new ContentValues();
+        valuesBoard.put(DBConstant.KEY_IS_SAVE, Constant.FALSE);
+        try {
+            deleteBoardCommodity = db.delete(DBConstant.TABLE_BOARD_COMMODITY,
+                DBConstant.KEY_ID_BOARD + " = ?", new String[]{String.valueOf(idBoard)});
+            checkUpdateBoard = db.update(DBConstant.TABLE_BOARD, valuesBoard,
+                DBConstant.KEY_ID_BOARD + " = ?", new String[]{String.valueOf(idBoard)});
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.close();
+        }
+        return deleteBoardCommodity > 0 && checkUpdateBoard >= Constant.UPDATE_SUCCESS;
     }
 
     @Override
@@ -332,10 +342,6 @@ public class DatabaseManager implements DatabaseInterface {
                 Constant.FALSE)
             .addCondition(DBConstant.TABLE_BOARD_COMMODITY + "." + DBConstant.KEY_ID_BOARD,
                 idBoard);
-        Log.d("TAG: Commodity ", "query = " + queryHelper.getSqlQuery());
-        for (String column : queryHelper.getSelectionArgs()) {
-            Log.d("TAG: Commodity ", "column = " + column);
-        }
         Cursor cursor = DBHelper.getInstance(mContext).query(queryHelper);
         if (cursor != null && cursor.moveToFirst()) {
             do {
