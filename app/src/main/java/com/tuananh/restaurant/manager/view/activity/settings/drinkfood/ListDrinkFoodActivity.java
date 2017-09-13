@@ -5,8 +5,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
-import android.view.View;
 
 import com.restaurant.tuananh.mvvm.recycler.BaseViewAdapter;
 import com.restaurant.tuananh.mvvm.recycler.SingleTypeAdapter;
@@ -29,6 +27,7 @@ public class ListDrinkFoodActivity
     protected SingleTypeAdapter<Commodity> mCommodityAdapter;
     private SingleTypeAdapter<GroupCommodity> mGroupCommodityAdapter;
     private Dialog mDialogDeleteCommodity;
+    private int mPosition;
 
     @Override
     protected void onViewCreated() {
@@ -89,6 +88,7 @@ public class ListDrinkFoodActivity
     public class SelectedGroupCommodityListener implements BaseViewAdapter.Presenter {
         public void onClickItemGroupCommodity(int position) {
             getViewModel().loadDataCommodityList(position);
+            mPosition = position;
             mGroupCommodityAdapter.notifyDataSetChanged();
         }
     }
@@ -97,7 +97,9 @@ public class ListDrinkFoodActivity
         private AlertDialog.Builder createBuilder(final Commodity commodity) {
             return new AlertDialog.Builder(ListDrinkFoodActivity.this)
                 .setTitle(R.string.text_dialog_delete_commodity)
-                .setMessage(R.string.text_dialog_msg_delete_commodity)
+                .setMessage(getViewModel().getGroupCommodityId() == Constant.ID_GROUP_DEFAULT ?
+                    R.string.text_dialog_msg_delete_commodity_common :
+                    R.string.text_dialog_msg_delete_commodity)
                 .setPositiveButton(R.string.text_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -121,11 +123,13 @@ public class ListDrinkFoodActivity
                 });
         }
 
-        public void onClickItemCommodity(View view, Commodity commodity) {
-            Log.d("TAG", "onClickItemCommodity : id = " + commodity.getIdCommodity());
+        public void onClickItemCommodity(Commodity commodity) {
+            Intent intent = new Intent(getApplicationContext(), AddDrinkFoodActivity.class);
+            intent.putExtra(Constant.KEY_COMMODITY, commodity);
+            startActivityForResult(intent, Constant.REQUEST_CODE_ADD_DRINK_FOOD);
         }
 
-        public void onDeleteCommodity(View view, Commodity commodity) {
+        public void onDeleteCommodity(Commodity commodity) {
             if (mDialogDeleteCommodity != null && mDialogDeleteCommodity.isShowing()) {
                 mDialogDeleteCommodity.dismiss();
             }

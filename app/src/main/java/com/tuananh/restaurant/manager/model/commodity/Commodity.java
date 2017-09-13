@@ -3,10 +3,12 @@ package com.tuananh.restaurant.manager.model.commodity;
 import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.utils.CommonUtils;
 
+import java.io.Serializable;
+
 /**
  * Created by framgia on 09/10/2016.
  */
-public class Commodity {
+public class Commodity implements Serializable {
     private int mIdCommodity;
     private String mNameCommodity;
     private int mCostCommodity;
