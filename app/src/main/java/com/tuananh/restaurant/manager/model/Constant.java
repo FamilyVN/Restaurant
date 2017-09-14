@@ -41,6 +41,8 @@ public class Constant {
     public static final String KEY_TOTAL_MONEY = "total_money";
     public static final String SHARED_PREFERENCES = "restaurant_manager";
     public static final String UPDATE = "update";
+    //
+    public static final String KEY_COMMODITY = "commodity";
     // format
     public static final String FORMAT_MONEY = "%s đ";
 }

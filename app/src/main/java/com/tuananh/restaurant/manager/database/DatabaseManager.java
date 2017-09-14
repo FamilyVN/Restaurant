@@ -395,6 +395,28 @@ public class DatabaseManager implements DatabaseInterface {
     }
 
     @Override
+    public boolean updateCommodity(int idCommodity, Commodity commodity) {
+        SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
+        int checkUpdateCommodity = 0;
+        ContentValues values = new ContentValues();
+        values.put(DBConstant.KEY_ID_COMMODITY, idCommodity);
+        values.put(DBConstant.KEY_NAME_COMMODITY, commodity.getNameCommodity());
+        values.put(DBConstant.KEY_COST_COMMODITY, commodity.getCostCommodity());
+        values.put(DBConstant.KEY_FOR_ID_GROUP_COMMODITY, commodity.getIdForGroupCommodity());
+        values.put(DBConstant.KEY_IS_COMMON_COMMODITY,
+            commodity.isCommonCommodity() ? Constant.TRUE : Constant.FALSE);
+        try {
+            checkUpdateCommodity = db.update(DBConstant.TABLE_COMMODITY, values,
+                DBConstant.KEY_ID_COMMODITY + "= ?", new String[]{String.valueOf(idCommodity)});
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.close();
+        }
+        return checkUpdateCommodity >= Constant.UPDATE_SUCCESS;
+    }
+
+    @Override
     public boolean deleteCommodity(int idCommodity) {
         SQLiteDatabase db = DBHelper.getInstance(mContext).getWritableDatabase();
         int checkDeleteCommodity =

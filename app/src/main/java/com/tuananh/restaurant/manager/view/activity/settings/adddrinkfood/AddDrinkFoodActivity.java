@@ -21,12 +21,35 @@ import java.util.List;
 public class AddDrinkFoodActivity
     extends BaseActivityRestaurant<ActivityAddDrinkFoodBinding, AddDrinkFoodActivityViewModel> {
     private int mIdForGroupCommodity;
+    private int mPositionDefault;
+    private int mIdCommodity;
+    private Commodity mCommodity;
 
     @Override
     protected void onViewCreated() {
         super.onViewCreated();
+        updateData();
         getBinding().setListener(this);
         initSpinner();
+    }
+
+    private void updateData() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            mCommodity = (Commodity) intent.getSerializableExtra(Constant.KEY_COMMODITY);
+            boolean isCommonCommodity = false;
+            if (mCommodity != null) {
+                mIdCommodity = mCommodity.getIdCommodity();
+                getBinding().editNameCommodity.setText(mCommodity.getNameCommodity());
+                getBinding().editCostCommodity
+                    .setText(String.valueOf(mCommodity.getCostCommodity()));
+                isCommonCommodity = mCommodity.isCommonCommodity();
+            } else {
+                mIdCommodity = -1;
+            }
+            getBinding().radioButtonYes.setChecked(isCommonCommodity);
+            getBinding().radioButtonNo.setChecked(!isCommonCommodity);
+        }
     }
 
     private void initSpinner() {
@@ -36,11 +59,22 @@ public class AddDrinkFoodActivity
         for (GroupCommodity groupCommodity : groupCommodityList) {
             dataList.add(groupCommodity.getNameGroupCommodity());
         }
+        // note
+        dataList.remove(0);
+        groupCommodityList.remove(0);
+        if (mCommodity != null) {
+            for (GroupCommodity groupCommodity : groupCommodityList) {
+                if (groupCommodity.getIdGroupCommodity() == mCommodity.getIdForGroupCommodity()) {
+                    mPositionDefault = groupCommodityList.indexOf(groupCommodity);
+                }
+            }
+        }
+        //
         ArrayAdapter<String> adapter =
             new ArrayAdapter<>(this, R.layout.item_spinner_group_commodity, dataList);
         adapter.setDropDownViewResource(R.layout.item_spinner_list_single_choice);
         getBinding().spinnerGroupCommodity.setAdapter(adapter);
-        getBinding().spinnerGroupCommodity.setSelection(1);
+        getBinding().spinnerGroupCommodity.setSelection(mPositionDefault);
         getBinding().spinnerGroupCommodity.setOnItemSelectedListener(
             new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -52,8 +86,8 @@ public class AddDrinkFoodActivity
 
                 @Override
                 public void onNothingSelected(AdapterView<?> adapterView) {
-                    if (groupCommodityList.size() > 1) {
-                        groupCommodityList.get(1).getIdGroupCommodity();
+                    if (groupCommodityList.size() > 0) {
+                        groupCommodityList.get(0).getIdGroupCommodity();
                     }
                 }
             });
@@ -84,13 +118,23 @@ public class AddDrinkFoodActivity
             e.printStackTrace();
         }
         if (commodity == null) return;
-        if (DatabaseManager.getInstance(this).insertCommodity(commodity)) {
-            Toast.makeText(this, R.string.msg_add_drink_food_success, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent();
-            intent.putExtra(Constant.KEY_POSITION_GROUP_COMMODITY, mIdForGroupCommodity);
-            setResult(Activity.RESULT_OK, intent);
-            finish();
+        if (mIdCommodity == -1) {
+            if (DatabaseManager.getInstance(this).insertCommodity(commodity)) {
+                onSaveSuccess();
+            }
+        } else {
+            if (DatabaseManager.getInstance(this).updateCommodity(mIdCommodity, commodity)) {
+                onSaveSuccess();
+            }
         }
+    }
+
+    private void onSaveSuccess() {
+        Toast.makeText(this, R.string.msg_add_drink_food_success, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent();
+        intent.putExtra(Constant.KEY_POSITION_GROUP_COMMODITY, mIdForGroupCommodity);
+        setResult(Activity.RESULT_OK, intent);
+        finish();
     }
 
     @Override

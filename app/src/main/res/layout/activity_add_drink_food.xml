@@ -88,11 +88,20 @@
                 android:textSize="@dimen/text_size_18"/>
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_padding_10"
+            android:paddingLeft="@dimen/margin_padding_10"
+            android:paddingTop="@dimen/margin_padding_10"
+            android:text="@string/text_add_drink_food_group_commodity"
+            android:textSize="@dimen/text_size_18"/>
+
         <Spinner
             android:id="@+id/spinner_group_commodity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_padding_10"
+            android:layout_marginLeft="@dimen/margin_padding_20"
             android:layout_marginRight="@dimen/margin_padding_20"
             android:padding="@dimen/margin_padding_10"/>
 
@@ -101,6 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_padding_10"
             android:paddingBottom="@dimen/margin_padding_10"
+            android:paddingLeft="@dimen/margin_padding_10"
             android:paddingTop="@dimen/margin_padding_10"
             android:text="@string/text_add_drink_food_common_commodity"
             android:textSize="@dimen/text_size_18"/>
@@ -112,6 +122,8 @@
             android:layout_marginLeft="@dimen/margin_padding_20"
             android:layout_marginRight="@dimen/margin_padding_20"
             android:orientation="horizontal"
+            android:paddingLeft="@dimen/margin_padding_10"
+            android:paddingRight="@dimen/margin_padding_10"
             android:weightSum="2">
 
             <RadioButton
@@ -119,7 +131,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="false"
                 android:paddingBottom="@dimen/margin_padding_5"
                 android:paddingTop="@dimen/margin_padding_5"
                 android:text="@string/text_yes"/>
@@ -129,7 +140,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:paddingBottom="@dimen/margin_padding_5"
                 android:paddingTop="@dimen/margin_padding_5"
                 android:text="@string/text_no"/>
