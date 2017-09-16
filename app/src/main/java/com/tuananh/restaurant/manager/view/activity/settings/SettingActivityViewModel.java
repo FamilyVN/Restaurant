@@ -24,10 +24,12 @@ public class SettingActivityViewModel
 
     private void loadData() {
         List<Setting> settingList = new ArrayList<>();
+        settingList.add(new Setting(Constant.TYPE_SETTING_LIST_MENU,
+            getString(R.string.text_setting_group_commodity), R.drawable.ic_group_foods));
         settingList.add(new Setting(Constant.TYPE_SETTING_DRINK_AND_FOOD,
-            getString(R.string.text_drink_and_food), R.drawable.ic_food));
+            getString(R.string.text_setting_drink_and_food), R.drawable.ic_food));
         settingList.add(new Setting(Constant.TYPE_SETTING_ROOM_BOARD,
-            getString(R.string.text_map_room_board), R.drawable.ic_map_table));
+            getString(R.string.text_setting_map_room_board), R.drawable.ic_map_table));
         getView().showSettingList(settingList);
     }
 }
