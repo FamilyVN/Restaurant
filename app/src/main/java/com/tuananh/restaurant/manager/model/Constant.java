@@ -17,8 +17,9 @@ public class Constant {
     public static final int COMMON = 1;
     public static final int NUMBER_ROW = 3;
     // type setting
-    public static final int TYPE_SETTING_DRINK_AND_FOOD = 1;
-    public static final int TYPE_SETTING_ROOM_BOARD = 2;
+    public static final int TYPE_SETTING_LIST_MENU = 1;
+    public static final int TYPE_SETTING_DRINK_AND_FOOD = 2;
+    public static final int TYPE_SETTING_ROOM_BOARD = 3;
     // type edit room board
     public static final int TYPE_EDIT_ROOM_BOARD_RENAME = 1;
     public static final int TYPE_EDIT_ROOM_BOARD_DELETE = 2;

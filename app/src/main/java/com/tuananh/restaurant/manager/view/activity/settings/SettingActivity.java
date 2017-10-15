@@ -11,6 +11,7 @@ import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.setting.Setting;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
 import com.tuananh.restaurant.manager.view.activity.settings.drinkfood.ListDrinkFoodActivity;
+import com.tuananh.restaurant.manager.view.activity.settings.listmenu.ListMenuActivity;
 import com.tuananh.restaurant.manager.view.activity.settings.roomboard.MapRoomBoardActivity;
 
 import java.util.List;
@@ -49,6 +50,9 @@ public class SettingActivity
     public class SettingClickListener implements BaseViewAdapter.Presenter {
         public void showItemSetting(Setting setting) {
             switch (setting.getIdSettings()) {
+                case Constant.TYPE_SETTING_LIST_MENU:
+                    startActivity(new Intent(SettingActivity.this, ListMenuActivity.class));
+                    break;
                 case Constant.TYPE_SETTING_DRINK_AND_FOOD:
                     startActivity(new Intent(SettingActivity.this, ListDrinkFoodActivity.class));
                     break;

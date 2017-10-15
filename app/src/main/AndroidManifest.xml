@@ -36,5 +36,8 @@
         <activity
             android:name=".view.activity.settings.adddrinkfood.AddDrinkFoodActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.settings.listmenu.ListMenuActivity"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>
