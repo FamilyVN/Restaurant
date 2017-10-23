@@ -67,6 +67,7 @@ public class ListDrinkFoodActivity
     public void onAddCommodity() {
         Intent intent = new Intent(this, AddDrinkFoodActivity.class);
         startActivityForResult(intent, Constant.REQUEST_CODE_ADD_DRINK_FOOD);
+        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
     }
 
     @Override
@@ -127,6 +128,7 @@ public class ListDrinkFoodActivity
             Intent intent = new Intent(getApplicationContext(), AddDrinkFoodActivity.class);
             intent.putExtra(Constant.KEY_COMMODITY, commodity);
             startActivityForResult(intent, Constant.REQUEST_CODE_ADD_DRINK_FOOD);
+            overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
         }
 
         public void onDeleteCommodity(Commodity commodity) {

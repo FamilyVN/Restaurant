@@ -49,19 +49,20 @@ public class SettingActivity
 
     public class SettingClickListener implements BaseViewAdapter.Presenter {
         public void showItemSetting(Setting setting) {
+            Intent intent;
             switch (setting.getIdSettings()) {
                 case Constant.TYPE_SETTING_LIST_MENU:
-                    startActivity(new Intent(SettingActivity.this, ListMenuActivity.class));
+                    intent = new Intent(SettingActivity.this, ListMenuActivity.class);
                     break;
                 case Constant.TYPE_SETTING_DRINK_AND_FOOD:
-                    startActivity(new Intent(SettingActivity.this, ListDrinkFoodActivity.class));
-                    break;
-                case Constant.TYPE_SETTING_ROOM_BOARD:
-                    startActivity(new Intent(SettingActivity.this, MapRoomBoardActivity.class));
+                    intent = new Intent(SettingActivity.this, ListDrinkFoodActivity.class);
                     break;
                 default:
+                    intent = new Intent(SettingActivity.this, MapRoomBoardActivity.class);
                     break;
             }
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
         }
     }
 }

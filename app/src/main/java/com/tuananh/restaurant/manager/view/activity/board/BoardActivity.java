@@ -114,6 +114,7 @@ public class BoardActivity
             Intent intent = new Intent();
             setResult(Activity.RESULT_OK, intent);
             finish();
+            overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
         }
     }
 
@@ -128,6 +129,7 @@ public class BoardActivity
                     Intent intent = new Intent();
                     setResult(Activity.RESULT_OK, intent);
                     finish();
+                    overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
                 }
             })
             .setNegativeButton(R.string.text_no, new DialogInterface.OnClickListener() {
@@ -162,6 +164,7 @@ public class BoardActivity
                 Intent intent = new Intent();
                 setResult(Activity.RESULT_OK, intent);
                 finish();
+                overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
             } else {
                 ToastUtils.showMessages(BoardActivity.this, R.string.msg_not_commodity_selected);
             }
@@ -174,6 +177,7 @@ public class BoardActivity
                 intent.putExtra(Constant.KEY_TOTAL_MONEY, getViewModel().getTotalCost());
                 intent.putExtra(Constant.KEY_ID_BOARD, getViewModel().getBoard().getIdBoard());
                 startActivityForResult(intent, Constant.REQUEST_CODE_PAYMENT);
+                overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
             } else {
                 ToastUtils.showMessages(BoardActivity.this, R.string.msg_not_commodity_selected);
             }

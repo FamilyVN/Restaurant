@@ -41,6 +41,7 @@ public class MapRoomBoardActivity
         super.onCreate(savedInstanceState);
         mEditRoomBoardList.add(new EditRoomBoard(Constant.TYPE_EDIT_ROOM_BOARD_RENAME, "Đổi tên"));
         mEditRoomBoardList.add(new EditRoomBoard(Constant.TYPE_EDIT_ROOM_BOARD_DELETE, "Xóa"));
+        getBinding().setListener(this);
         createPopupEditRoomBoard();
     }
 
