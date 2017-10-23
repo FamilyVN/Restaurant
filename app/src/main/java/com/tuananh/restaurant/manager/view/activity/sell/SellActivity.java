@@ -85,6 +85,7 @@ public class SellActivity
             Intent intent = new Intent(SellActivity.this, BoardActivity.class);
             intent.putExtra(Constant.KEY_ID_BOARD, board.getIdBoard());
             startActivityForResult(intent, Constant.FLAG_SELECTED_BOARD);
+            overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
         }
     }
 }

@@ -135,6 +135,7 @@ public class AddDrinkFoodActivity
         intent.putExtra(Constant.KEY_POSITION_GROUP_COMMODITY, mIdForGroupCommodity);
         setResult(Activity.RESULT_OK, intent);
         finish();
+        overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
     }
 
     @Override
