@@ -13,6 +13,7 @@ import com.tuananh.restaurant.manager.databinding.ActivityAddDrinkFoodBinding;
 import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.commodity.Commodity;
 import com.tuananh.restaurant.manager.model.commodity.GroupCommodity;
+import com.tuananh.restaurant.manager.utils.CommonUtils;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
 
 import java.util.ArrayList;
@@ -109,7 +110,7 @@ public class AddDrinkFoodActivity
     public void onSave() {
         Commodity commodity = null;
         String nameCommodity = getBinding().editNameCommodity.getText().toString();
-        int costCommodity;
+        int costCommodity = 0;
         try {
             costCommodity = Integer.parseInt(getBinding().editCostCommodity.getText().toString());
             commodity = new Commodity(nameCommodity, costCommodity, mIdForGroupCommodity,
@@ -118,6 +119,14 @@ public class AddDrinkFoodActivity
             e.printStackTrace();
         }
         if (commodity == null) return;
+        if (costCommodity < 1000) {
+            Toast.makeText(this, R.string.msg_add_drink_food_cost_failed, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (CommonUtils.isEmpty(nameCommodity)) {
+            Toast.makeText(this, R.string.msg_add_drink_food_name_empty, Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (mIdCommodity == -1) {
             if (DatabaseManager.getInstance(this).insertCommodity(commodity)) {
                 onSaveSuccess();

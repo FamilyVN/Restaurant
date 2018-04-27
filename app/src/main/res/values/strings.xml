@@ -61,10 +61,13 @@
     <string name="text_add_drink_food_group_commodity">Nhóm hàng</string>
     <string name="text_add_drink_food_currency_unit">đồng</string>
     <string name="msg_add_drink_food_success">Thêm mặt hàng thành công</string>
+    <string name="msg_add_drink_food_cost_failed">Giá tiền sản phẩm không thể thấp hơn 1000 đồng</string>
+    <string name="msg_add_drink_food_name_empty">Tên món ăn không được để trống</string>
     <string name="text_group_board_opening">Đang mở</string>
     //
     <string name="text_dialog_delete_commodity">Xóa sản phẩm</string>
     <string name="text_dialog_msg_delete_commodity">Bạn có xóa sản phẩm này không ?</string>
     <string name="text_dialog_msg_delete_commodity_common">Bạn có xóa sản phẩm này khỏi nhóm phổ biến không ?</string>
-
+    // setting add room
+    <string name="msg_add_board_name_empty">Tên bàn không được để trống</string>
 </resources>
