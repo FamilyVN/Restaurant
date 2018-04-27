@@ -1,11 +1,13 @@
 package com.tuananh.restaurant.manager.view.activity.settings.roomboard;
 
+import com.tuananh.restaurant.manager.database.DBTest;
 import com.tuananh.restaurant.manager.database.DatabaseManager;
 import com.tuananh.restaurant.manager.databinding.ActivityRoomBoardBinding;
 import com.tuananh.restaurant.manager.model.BaseViewModelRestaurant;
 import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.model.board.GroupBoard;
+import com.tuananh.restaurant.manager.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,8 @@ public class MapRoomBoardActivityViewModel
     private List<GroupBoard> mGroupBoardList = new ArrayList<>();
     private List<Board> mBoardList = new ArrayList<>();
     private Board mBoard;
+    private int mIdGroupBoard;
+    private int mPosition;
 
     @Override
     public void onAttached(boolean isFirst) {
@@ -40,6 +44,8 @@ public class MapRoomBoardActivityViewModel
         unSelectedGroupBoard();
         GroupBoard groupBoard = mGroupBoardList.get(position);
         groupBoard.setSelected(true);
+        mIdGroupBoard = groupBoard.getIdGroupBoard();
+        mPosition = position;
         mBoardList.clear();
         mBoardList.addAll(DatabaseManager.getInstance(getContext())
             .getBoardAllByIdGroupBoard(groupBoard.getIdGroupBoard()));
@@ -66,5 +72,14 @@ public class MapRoomBoardActivityViewModel
             mBoardList.remove(mBoard);
             getView().showBoardList(mBoardList);
         }
+    }
+
+    public void addNewBoard() {
+        Board board = new Board(mIdGroupBoard, getBinding().editNameBoard.getText().toString(),
+            DBTest.NOT_SAVE, Constant.TRUE);
+        DatabaseManager.getInstance(getContext()).insertBoard(board);
+        getBinding().editNameBoard.setText("");
+        loadDataBoardList(mPosition);
+        CommonUtils.hideSoftKeyboard(getBinding().editNameBoard);
     }
 }

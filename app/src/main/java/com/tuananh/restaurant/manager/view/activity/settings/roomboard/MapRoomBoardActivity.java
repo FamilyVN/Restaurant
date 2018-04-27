@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.restaurant.tuananh.mvvm.recycler.BaseViewAdapter;
 import com.restaurant.tuananh.mvvm.recycler.SingleTypeAdapter;
@@ -19,6 +20,7 @@ import com.tuananh.restaurant.manager.model.Constant;
 import com.tuananh.restaurant.manager.model.board.Board;
 import com.tuananh.restaurant.manager.model.board.GroupBoard;
 import com.tuananh.restaurant.manager.model.editboard.EditRoomBoard;
+import com.tuananh.restaurant.manager.utils.CommonUtils;
 import com.tuananh.restaurant.manager.view.activity.BaseActivityRestaurant;
 
 import java.util.ArrayList;
@@ -43,6 +45,12 @@ public class MapRoomBoardActivity
         mEditRoomBoardList.add(new EditRoomBoard(Constant.TYPE_EDIT_ROOM_BOARD_DELETE, "Xóa"));
         getBinding().setListener(this);
         createPopupEditRoomBoard();
+    }
+
+    @Override
+    protected void onViewCreated() {
+        super.onViewCreated();
+        CommonUtils.setupHideKeyboardUI(getBinding().getRoot());
     }
 
     private void createPopupEditRoomBoard() {
@@ -89,6 +97,14 @@ public class MapRoomBoardActivity
         mBoardAdapter.setPresenter(new SelectedBoardListener());
     }
 
+    public void addNewBoard() {
+        if (CommonUtils.isEmpty(getBinding().editNameBoard.getText().toString())) {
+            Toast.makeText(this, R.string.msg_add_board_name_empty, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        getViewModel().addNewBoard();
+    }
+
     public class SelectedGroupBoardListener implements BaseViewAdapter.Presenter {
         public void onClickItemGroupBoard(int position) {
             getViewModel().loadDataBoardList(position);
@@ -103,7 +119,7 @@ public class MapRoomBoardActivity
             }
             mPopupEditRoomBoard = new PopupWindow(mEditRoomBoardBinding.getRoot(),
                 view.getWidth(), view.getHeight() + 20, true);
-            mPopupEditRoomBoard.showAsDropDown(view, 0, 20);
+            mPopupEditRoomBoard.showAsDropDown(view, 0, 10);
             getViewModel().setBoard(board);
         }
     }

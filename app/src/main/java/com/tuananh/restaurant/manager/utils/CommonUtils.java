@@ -64,6 +64,10 @@ public class CommonUtils {
         return !(objectList != null && objectList.size() > 0);
     }
 
+    public static boolean isEmpty(String text) {
+        return TextUtils.isEmpty(text) || TextUtils.isEmpty(text.trim());
+    }
+
     public static String convertListToString(List<String> stringList) {
         StringBuilder stringBuilder = new StringBuilder();
         for (String string : stringList) {

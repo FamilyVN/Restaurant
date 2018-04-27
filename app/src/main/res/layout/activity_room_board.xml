@@ -71,6 +71,7 @@
                 android:padding="@dimen/margin_padding_5">
 
                 <EditText
+                    android:id="@+id/edit_name_board"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -86,6 +87,7 @@
                     android:layout_marginBottom="@dimen/margin_padding_10"
                     android:layout_marginTop="@dimen/margin_padding_10"
                     android:background="@drawable/selector_button_blue"
+                    android:onClick="@{() -> listener.addNewBoard()}"
                     android:text="@string/text_room_board_add"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
